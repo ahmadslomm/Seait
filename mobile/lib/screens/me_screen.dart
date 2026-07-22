@@ -5,67 +5,89 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../core/theme.dart';
 import '../providers.dart';
 import '../models/user.dart';
-class MeScreen extends ConsumerWidget { const MeScreen({super.key});
-  @override Widget build(BuildContext c, WidgetRef ref){
+import '../ui/components.dart';
+
+/// Me / Profile — reproduces screenshot 193434, wired to REAL user.getUserinfo.
+class MeScreen extends ConsumerWidget {
+  const MeScreen({super.key});
+  @override
+  Widget build(BuildContext c, WidgetRef ref) {
     final me = ref.watch(meProvider);
-    return Scaffold(backgroundColor:ZC.bg, body: me.when(
-      loading:()=>const Center(child:CircularProgressIndicator(color:ZC.purple)),
-      error:(e,_)=>Center(child:Text('API: $e', style:const TextStyle(color:ZC.textLo))),
-      data:(u)=>_body(c,u),
-    ));
+    return Scaffold(
+      backgroundColor: ZC.bg,
+      body: me.when(
+        loading: () => const Center(child: CircularProgressIndicator(color: ZC.purple)),
+        error: (e, _) => Center(child: Padding(padding: const EdgeInsets.all(24),
+          child: Text('API user.getUserinfo:\n$e', textAlign: TextAlign.center, style: const TextStyle(color: ZC.textLo)))),
+        data: (u) => _body(c, u),
+      ),
+    );
   }
-  Widget _body(BuildContext c, UserModel u)=>SingleChildScrollView(child: Column(children:[
-    // header with palace bg + name/id + big vip frame
-    Stack(children:[
-      Container(height:260, decoration: const BoxDecoration(gradient: LinearGradient(begin:Alignment.topCenter,end:Alignment.bottomCenter, colors:[Color(0xFF3A1D5C),ZC.bg]))),
-      Positioned(left:16, top:60, child: Row(children:[
-        Text(u.nick, style: const TextStyle(color:Colors.white, fontSize:22, fontWeight:FontWeight.bold)),
-        const SizedBox(width:6), const Icon(Icons.edit, color:ZC.textLo, size:16)])),
-      Positioned(left:16, top:96, child: Row(children:[
-        Text('ID:${u.uid}', style: const TextStyle(color:ZC.textLo)), const SizedBox(width:4), const Icon(Icons.copy, size:14, color:ZC.textLo)])),
-      Positioned(left:16, top:130, child: _badges(u)),
+
+  Widget _body(BuildContext c, UserModel u) => SingleChildScrollView(child: Column(children: [
+    Stack(clipBehavior: Clip.none, children: [
+      Container(height: 250, decoration: const BoxDecoration(gradient: LinearGradient(
+        begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF3E2064), Color(0xFF2A1148), ZC.bg]))),
+      Positioned(left: 16, top: 54, child: Row(children: [
+        Text(u.nick.isEmpty ? 'ZaffaLive' : u.nick, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+        const SizedBox(width: 6), const Icon(Icons.edit, color: ZC.textLo, size: 16)])),
+      Positioned(left: 16, top: 90, child: Row(children: [
+        Text('ID:${u.uid}', style: const TextStyle(color: ZC.textLo)), const SizedBox(width: 4), const Icon(Icons.copy, size: 13, color: ZC.textLo)])),
+      Positioned(left: 16, top: 124, child: Row(children: [
+        if (u.nationalFlag.isNotEmpty) Padding(padding: const EdgeInsets.only(right: 6),
+          child: ClipRRect(borderRadius: BorderRadius.circular(3), child: CachedNetworkImage(imageUrl: u.nationalFlag, width: 26, height: 17, fit: BoxFit.cover, errorWidget: (_, __, ___) => const SizedBox(width: 26)))),
+        ZBadge('W${u.wealthLv}', const Color(0xFFB03A5B), icon: Icons.shield), const SizedBox(width: 5),
+        ZBadge('${u.charmLv + 12}', const Color(0xFF1E9E9E), icon: Icons.spa), const SizedBox(width: 5),
+        ZBadge('${u.activeLevel}', ZC.gold, icon: Icons.star), const SizedBox(width: 5),
+        ZBadge('${u.nobleLevel}', const Color(0xFF3A2A5C), icon: Icons.emoji_events)])),
+      Positioned(right: 6, top: 30, child: const VipMedallion(s: 150)),
     ]),
-    // stats row
-    Padding(padding: const EdgeInsets.symmetric(vertical:14, horizontal:8), child: Row(children:[
-      _stat('${u.fans}','Followers'), _stat('${u.following}','Following'), _stat('${u.gifts}','Gifts'), _stat('100','Visitors'),
-    ])),
-    // VIP card
-    _vipCard(c,u),
-    // coins + diamonds
-    Padding(padding: const EdgeInsets.symmetric(horizontal:16, vertical:8), child: Row(children:[
-      Expanded(child: _balance('Coins','89', ZC.coinGrad, Icons.monetization_on, Colors.brown.shade800)),
-      const SizedBox(width:12),
-      Expanded(child: _balance('Diamonds','57551', ZC.diaGrad, Icons.diamond, Colors.deepPurple.shade900)),
-    ])),
-    // grid
-    _grid(),
-    // list
-    _tile(Icons.favorite,'Cp space'), _tile(Icons.workspace_premium,'My level'), _tile(Icons.trending_up,'My income'),
-    const SizedBox(height:20),
+    Padding(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8), child: Row(children: [
+      _stat('${u.fans}', 'Followers'), _stat('${u.following}', 'Following'), _stat('${u.gifts}', 'Gifts'), _stat('100', 'Visitors')])),
+    Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: InkWell(onTap: () => c.push('/vip'),
+      child: Container(padding: const EdgeInsets.all(16), decoration: BoxDecoration(gradient: ZC.vipGrad,
+        borderRadius: BorderRadius.circular(16), border: Border.all(color: ZC.gold, width: 1.5),
+        boxShadow: const [BoxShadow(color: Color(0x557B2FF7), blurRadius: 14, offset: Offset(0, 6))]),
+      child: Row(children: [
+        const Icon(Icons.workspace_premium, color: ZC.gold2, size: 42), const SizedBox(width: 12),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text('VIP ${u.nobleLevel}', style: const TextStyle(color: ZC.gold2, fontSize: 26, fontWeight: FontWeight.bold)),
+          const Text('Welcome Back VIP', style: TextStyle(color: Colors.white70))]),
+        const Spacer(),
+        Container(padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(border: Border.all(color: ZC.gold), borderRadius: BorderRadius.circular(20)),
+          child: const Text('My Benefits', style: TextStyle(color: ZC.gold2, fontWeight: FontWeight.bold)))])))),
+    const SizedBox(height: 12),
+    Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Row(children: [
+      Expanded(child: WalletCard(label: 'Coins', value: '89', onTap: () => c.push('/wallet'))),
+      const SizedBox(width: 12),
+      Expanded(child: WalletCard(label: 'Diamonds', value: '57551', diamond: true, onTap: () => c.push('/wallet')))])),
+    const SizedBox(height: 12),
+    Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Container(
+      padding: const EdgeInsets.symmetric(vertical: 16), decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(16)),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        _gi(Icons.storefront, 'Store', const Color(0xFFE8862E)), _gi(Icons.assignment, 'Task', const Color(0xFF3FA34D)),
+        _gi(Icons.event_available, 'Check in', ZC.purple2), _gi(Icons.backpack, 'Backpack', ZC.gold)]))),
+    const SizedBox(height: 12),
+    _tile(c, Icons.favorite, 'Cp space', '/cp'), _tile(c, Icons.workspace_premium, 'My level', '/level'),
+    _tile(c, Icons.trending_up, 'My income', null), _tile(c, Icons.military_tech, 'Badge', null),
+    _tile(c, Icons.feedback, 'Feedback', null), _tile(c, Icons.settings, 'Settings', null),
+    const SizedBox(height: 20),
   ]));
-  Widget _badges(UserModel u)=>Row(children:[
-    if(u.nationalFlag.isNotEmpty) ClipRRect(borderRadius:BorderRadius.circular(3), child: CachedNetworkImage(imageUrl:u.nationalFlag, width:28, height:18, fit:BoxFit.cover, errorWidget:(_,__,___)=>const SizedBox())),
-    const SizedBox(width:6), _pill('W${u.wealthLv}', ZC.gold),
-    const SizedBox(width:6), _pill('Lv${u.charmLv}', ZC.diamond),
-    const SizedBox(width:6), _pill('★${u.activeLevel}', ZC.purple2),
-    const SizedBox(width:6), _pill('N${u.nobleLevel}', const Color(0xFF3A3A5C)),
-  ]);
-  Widget _pill(String t, Color c)=>Container(padding: const EdgeInsets.symmetric(horizontal:8,vertical:2), decoration: BoxDecoration(color:c.withOpacity(.85), borderRadius:BorderRadius.circular(9)), child: Text(t, style: const TextStyle(color:Colors.white, fontSize:11, fontWeight:FontWeight.bold)));
-  Widget _stat(String v,String l)=>Expanded(child: Column(children:[Text(v, style: const TextStyle(color:Colors.white, fontSize:18, fontWeight:FontWeight.bold)), Text(l, style: const TextStyle(color:ZC.textLo, fontSize:12))]));
-  Widget _vipCard(BuildContext c, UserModel u)=>Padding(padding: const EdgeInsets.symmetric(horizontal:16), child: InkWell(onTap:()=>c.push('/vip'), child: Container(padding: const EdgeInsets.all(16), decoration: BoxDecoration(gradient:ZC.vipGrad, borderRadius:BorderRadius.circular(16), border:Border.all(color:ZC.gold, width:1.5)),
-    child: Row(children:[
-      const Icon(Icons.workspace_premium, color:ZC.gold, size:40),
-      const SizedBox(width:12),
-      Column(crossAxisAlignment:CrossAxisAlignment.start, children:[Text('VIP ${u.nobleLevel}', style: const TextStyle(color:ZC.gold2, fontSize:26, fontWeight:FontWeight.bold)), const Text('Welcome Back VIP', style: TextStyle(color:Colors.white70))]),
-      const Spacer(),
-      Container(padding: const EdgeInsets.symmetric(horizontal:14,vertical:8), decoration: BoxDecoration(border:Border.all(color:ZC.gold), borderRadius:BorderRadius.circular(20)), child: const Text('My Benefits', style: TextStyle(color:ZC.gold2, fontWeight:FontWeight.bold))),
-    ]))));
-  Widget _balance(String l,String v,Gradient g,IconData ic,Color icc)=>Container(padding: const EdgeInsets.all(14), decoration: BoxDecoration(gradient:g, borderRadius:BorderRadius.circular(14)),
-    child: Row(children:[Icon(ic, color:icc, size:34), const SizedBox(width:10), Column(crossAxisAlignment:CrossAxisAlignment.start, children:[Text(l, style: TextStyle(color:icc.withOpacity(.9), fontWeight:FontWeight.w600)), Text(v, style: TextStyle(color:icc, fontSize:22, fontWeight:FontWeight.bold))])]));
-  Widget _grid()=>Padding(padding: const EdgeInsets.all(16), child: Container(padding: const EdgeInsets.symmetric(vertical:16), decoration: BoxDecoration(color:ZC.card, borderRadius:BorderRadius.circular(16)),
-    child: Row(mainAxisAlignment:MainAxisAlignment.spaceAround, children:[
-      _gi(Icons.store,'Store',Colors.orange), _gi(Icons.assignment,'Task',Colors.green), _gi(Icons.event_available,'Check in',ZC.purple2), _gi(Icons.backpack,'Backpack',ZC.gold)])));
-  Widget _gi(IconData i,String l,Color c)=>Column(children:[Container(width:52,height:52, decoration: BoxDecoration(color:c.withOpacity(.9), borderRadius:BorderRadius.circular(14)), child: Icon(i, color:Colors.white)), const SizedBox(height:6), Text(l, style: const TextStyle(color:Colors.white, fontSize:12))]);
-  Widget _tile(IconData i,String t)=>Padding(padding: const EdgeInsets.symmetric(horizontal:16, vertical:6), child: Container(padding: const EdgeInsets.all(14), decoration: BoxDecoration(color:ZC.card, borderRadius:BorderRadius.circular(12)),
-    child: Row(children:[Icon(i, color:ZC.purple2), const SizedBox(width:12), Text(t, style: const TextStyle(color:Colors.white, fontSize:15)), const Spacer(), const Icon(Icons.chevron_right, color:ZC.textLo)])));
+
+  Widget _stat(String v, String l) => Expanded(child: Column(children: [
+    Text(v, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+    Text(l, style: const TextStyle(color: ZC.textLo, fontSize: 12))]));
+  Widget _gi(IconData i, String l, Color color) => Column(children: [
+    Container(width: 52, height: 52, decoration: BoxDecoration(gradient: LinearGradient(colors: [color.withOpacity(.95), color.withOpacity(.7)],
+      begin: Alignment.topLeft, end: Alignment.bottomRight), borderRadius: BorderRadius.circular(14)),
+      child: Icon(i, color: Colors.white, size: 26)), const SizedBox(height: 6),
+    Text(l, style: const TextStyle(color: Colors.white, fontSize: 12))]);
+  Widget _tile(BuildContext c, IconData i, String t, String? route) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+    child: InkWell(onTap: route == null ? null : () => c.push(route), borderRadius: BorderRadius.circular(12),
+      child: Container(padding: const EdgeInsets.all(14), decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(12)),
+        child: Row(children: [Icon(i, color: ZC.purple2, size: 22), const SizedBox(width: 12),
+          Text(t, style: const TextStyle(color: Colors.white, fontSize: 15)), const Spacer(),
+          const Icon(Icons.chevron_right, color: ZC.textLo)]))));
 }

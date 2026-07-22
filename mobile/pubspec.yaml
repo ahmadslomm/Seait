@@ -13,4 +13,8 @@ dependencies:
   google_fonts: ^6.2.1
 flutter:
   uses-material-design: true
-  assets: [ ../assets/svga/, ../assets/pag/, ../assets/images/ ]
+  assets:
+    - ../assets/svga/
+    - ../assets/pag/
+    - ../assets/images/
+    - ../assets/ui/

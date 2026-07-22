@@ -39,3 +39,26 @@ cd backend && cp .env.example .env && npm i && npx prisma migrate dev && npm run
 # mobile
 cd mobile && flutter pub get && flutter run --dart-define=API_BASE=http://10.0.2.2:8080
 ```
+
+---
+
+## UI phase (matching the original) — added
+
+### Analysis
+- **`docs/SCREEN_ANALYSIS.md`** — all 38 real screenshots mapped: page name, elements, sizes, positions (Me/Profile, VIP, Home tabs, **Voice Room** seats+gift-panel, Wallet, Mine/decorations, CP, My-level, Moment, Live, Message, Search).
+
+### Design System (`mobile/lib/ui/components.dart`)
+Real components: CoinIcon / DiamondIcon / VipMedallion (from **cropped real app art** in `assets/ui/`), ZBadge, AvatarFrame, WalletCard, RoomSeat, RankingItem. Palette sampled from screenshots (deep purple `#1A0B2E`, gold VIP, purple/gold gradients).
+
+### Rebuilt priority pages (real Flutter + state + API binding — not mockups)
+- **Me/Profile** (`me_screen.dart`) — reproduces 193434: header (name/ID/badges + real VIP medallion image), 4 stats, VIP card, real Coins/Diamonds art cards, Store/Task/Check-in/Backpack grid, Cp-space/My-level/My-income/Badge/Feedback/Settings list. **Bound to `user.getUserinfo`** (real account 1278472).
+- **Voice Room** (`room_screen.dart`) — dynamic seat grid (host + guests, 5/10/15/21/30), gift banner, chat All/Message/Gift, bottom bar (emoji/mic/game/gift), **Gift panel** sheet (tabs + Crown-of-Glory/Angel-Scepter grid + coin balance + Send), Room-info sheet. **Real-time via `RoomSocket`** (backend `/room` engine).
+- **Home** (`home_screen.dart`) — Mine/Popular/Discover tabs, New-room/Recently/Follow chips, Welcome-to-Zaffalive banner, Gift-Wall + Events; **room cards bound to `room.getRecommendRoomV2`**.
+- **VIP Center** (`vip_screen.dart`) — current VIP medallion + progress, VIP 1–5 with per-level benefits/frames. + CP space, My-level (Wealth/Charm/Active/Game) screens.
+- Shell bottom nav: Home / Moment / Live / Message / Me.
+
+### Assets cropped from screenshots (`assets/ui/`)
+`vip_medallion.png`, `coin_icon.png`, `diamond_icon.png`, `bottom_nav.png` (real app art, not redrawn). Small game icons use styled Material where cropping was unreliable.
+
+### Unknown at runtime
+Elements/fields without a native handler are hit through the backend **fallback logger** (`unknown-apis.log`) as the app calls them — so missing APIs/fields surface live.
