@@ -1,0 +1,6019 @@
+{
+ "_cipher": {
+  "key": "md5(package_name)=840c48cfef8d10fa6dd80419f8e16dc8",
+  "scheme": "http_body=base64(XOR(json,key))"
+ },
+ "_envelope": {
+  "request": [
+   "action",
+   "token",
+   "uid",
+   "_login_uid",
+   "lang",
+   "ua",
+   "deviceid",
+   "sign",
+   "timestamp"
+  ],
+  "response": [
+   "response_status.error",
+   "response_data"
+  ]
+ },
+ "_total": 303,
+ "actions": {
+  "activity.clickBanner": {
+   "action": "activity.clickBanner",
+   "category": "Activity",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "activity.createRoomEvents": {
+   "action": "activity.createRoomEvents",
+   "category": "Activity",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "activity.getBannerList": {
+   "action": "activity.getBannerList",
+   "category": "Activity",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "activity.getBannerListV2": {
+   "action": "activity.getBannerListV2",
+   "category": "Activity",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "activity.getRoomEvents": {
+   "action": "activity.getRoomEvents",
+   "category": "Activity",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "app.checkAppVersion": {
+   "action": "app.checkAppVersion",
+   "category": "Config",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "app.commonConfig": {
+   "action": "app.commonConfig",
+   "category": "Config",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "app.getConfig": {
+   "action": "app.getConfig",
+   "category": "Config",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "app.getConfigV2": {
+   "action": "app.getConfigV2",
+   "category": "Config",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "deviceid",
+    "lang",
+    "ua"
+   ],
+   "response_fields": [
+    "value"
+   ],
+   "source": "captured"
+  },
+  "app.initApp": {
+   "action": "app.initApp",
+   "category": "Config",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "app.uploadPing": {
+   "action": "app.uploadPing",
+   "category": "Config",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "backPhoto.updateDefultPhoto": {
+   "action": "backPhoto.updateDefultPhoto",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "backPhoto.updatePhoto": {
+   "action": "backPhoto.updatePhoto",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.deleteCensorSong": {
+   "action": "bottle.deleteCensorSong",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.deleteSong": {
+   "action": "bottle.deleteSong",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.getCensorIngUSongCnt": {
+   "action": "bottle.getCensorIngUSongCnt",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.getLikeBottleList": {
+   "action": "bottle.getLikeBottleList",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.getUserCensorSongs": {
+   "action": "bottle.getUserCensorSongs",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.getUserTimelineExNew": {
+   "action": "bottle.getUserTimelineExNew",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.likeBottle": {
+   "action": "bottle.likeBottle",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.playFinish": {
+   "action": "bottle.playFinish",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.unlikeBottle": {
+   "action": "bottle.unlikeBottle",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "bottle.uploadSong": {
+   "action": "bottle.uploadSong",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "comment.addComment": {
+   "action": "comment.addComment",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "comment.bottleCommentList": {
+   "action": "comment.bottleCommentList",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "comment.bottleInfoNew": {
+   "action": "comment.bottleInfoNew",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "comment.commentCommentList": {
+   "action": "comment.commentCommentList",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "comment.delMyComment": {
+   "action": "comment.delMyComment",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "comment.praiseComment": {
+   "action": "comment.praiseComment",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "comment.unpraiseComment": {
+   "action": "comment.unpraiseComment",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "countryZone.getZonelist": {
+   "action": "countryZone.getZonelist",
+   "category": "Config",
+   "endpoint": "/api/GetCountry.php",
+   "method": "GET",
+   "encrypted": false,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [
+    "appid",
+    "captcha",
+    "countryList",
+    "message",
+    "rescode",
+    "time"
+   ],
+   "source": "captured"
+  },
+  "couple.cpRank": {
+   "action": "couple.cpRank",
+   "category": "CP",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "couple.onAnswerCouple": {
+   "action": "couple.onAnswerCouple",
+   "category": "CP",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "feedTopic.info": {
+   "action": "feedTopic.info",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "feedTopic.newUsong": {
+   "action": "feedTopic.newUsong",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "feedTopic.recomList": {
+   "action": "feedTopic.recomList",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "feedTopic.selectList": {
+   "action": "feedTopic.selectList",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "feedback.report": {
+   "action": "feedback.report",
+   "category": "Feedback",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.checkHasPacketGift": {
+   "action": "gift.checkHasPacketGift",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getClientGiftTabs": {
+   "action": "gift.getClientGiftTabs",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getCommonGift": {
+   "action": "gift.getCommonGift",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getDrawGiftTemplate": {
+   "action": "gift.getDrawGiftTemplate",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getGiftList": {
+   "action": "gift.getGiftList",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getPacketGift": {
+   "action": "gift.getPacketGift",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getReceieveGift": {
+   "action": "gift.getReceieveGift",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getTopUserGiftMap": {
+   "action": "gift.getTopUserGiftMap",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getUserGiftMap": {
+   "action": "gift.getUserGiftMap",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.getUserSongGiftList": {
+   "action": "gift.getUserSongGiftList",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.sendPrivateGift": {
+   "action": "gift.sendPrivateGift",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.sendSongGift": {
+   "action": "gift.sendSongGift",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.shareGiftMapMoment": {
+   "action": "gift.shareGiftMapMoment",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "gift.songGiftRank": {
+   "action": "gift.songGiftRank",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "login.call": {
+   "action": "login.call",
+   "category": "Auth",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "login.checkMobile": {
+   "action": "login.checkMobile",
+   "category": "Auth",
+   "endpoint": "/index.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [
+    "exist",
+    "time"
+   ],
+   "source": "captured"
+  },
+  "mall.buyCustomizeTheme": {
+   "action": "mall.buyCustomizeTheme",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.buyProduct": {
+   "action": "mall.buyProduct",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.buyTheme": {
+   "action": "mall.buyTheme",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.getMallProductV2": {
+   "action": "mall.getMallProductV2",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.getMyProduct": {
+   "action": "mall.getMyProduct",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.getSomeUserCarFrame": {
+   "action": "mall.getSomeUserCarFrame",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.getUserProduct": {
+   "action": "mall.getUserProduct",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.giveAwayProduct": {
+   "action": "mall.giveAwayProduct",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.giveAwayUserList": {
+   "action": "mall.giveAwayUserList",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.useProduct": {
+   "action": "mall.useProduct",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "mall.useTheme": {
+   "action": "mall.useTheme",
+   "category": "Store",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "medal.adornMedalList": {
+   "action": "medal.adornMedalList",
+   "category": "Medal",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "medal.getMedalList": {
+   "action": "medal.getMedalList",
+   "category": "Medal",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "medal.getSomeUserMedalList": {
+   "action": "medal.getSomeUserMedalList",
+   "category": "Medal",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "medal.getUserMedalListAdorn": {
+   "action": "medal.getUserMedalListAdorn",
+   "category": "Medal",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "medal.getUserMedalListAll": {
+   "action": "medal.getUserMedalListAll",
+   "category": "Medal",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "moment.browseUsids": {
+   "action": "moment.browseUsids",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "moment.follow": {
+   "action": "moment.follow",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "moment.getPublicSongTxt": {
+   "action": "moment.getPublicSongTxt",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "moment.hasHistory": {
+   "action": "moment.hasHistory",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "moment.history": {
+   "action": "moment.history",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "moment.recomV3": {
+   "action": "moment.recomV3",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "moment.song": {
+   "action": "moment.song",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "moment.topic": {
+   "action": "moment.topic",
+   "category": "Feed",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "notice.checkNotice": {
+   "action": "notice.checkNotice",
+   "category": "Messages",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "notice.clearNoticeAndImCount": {
+   "action": "notice.clearNoticeAndImCount",
+   "category": "Messages",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "preArea.getServer": {
+   "action": "preArea.getServer",
+   "category": "Config",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "account",
+    "action",
+    "deviceid",
+    "ipCountry",
+    "lang",
+    "langueCountry",
+    "sms",
+    "token",
+    "type",
+    "ua"
+   ],
+   "response_fields": [
+    "AudioIp",
+    "AudioPort",
+    "RadioRoomMgrIp",
+    "RadioRoomMgrPort",
+    "TalkServiceIP",
+    "TalkServicePort",
+    "action_pwd",
+    "activityUrl",
+    "agoraAppId",
+    "bigoAppId",
+    "domainName",
+    "domainNameV2",
+    "googleFcmPushID",
+    "imAppId",
+    "name",
+    "payUrl",
+    "privateProtocolUrl",
+    "pushUrl",
+    "qttKey",
+    "reportAppName",
+    "reportFileUrl",
+    "reportUrl",
+    "rulesUrl",
+    "shareUrl",
+    "umKey"
+   ],
+   "source": "captured"
+  },
+  "report.addBlackList": {
+   "action": "report.addBlackList",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "report.checkInBlackList": {
+   "action": "report.checkInBlackList",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "report.delBlackList": {
+   "action": "report.delBlackList",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "report.getBlackList": {
+   "action": "report.getBlackList",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "report.getReportConfig": {
+   "action": "report.getReportConfig",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "GET",
+   "encrypted": true,
+   "request_fields": [
+    "_login_uid",
+    "action",
+    "deviceid",
+    "lang",
+    "token",
+    "ua"
+   ],
+   "response_fields": [
+    "http_reportAction",
+    "http_reportCnt",
+    "http_reportFeq",
+    "notReportFiles",
+    "ping_domain",
+    "roomImReportTimeout"
+   ],
+   "source": "captured"
+  },
+  "report.reportUser": {
+   "action": "report.reportUser",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.addRole": {
+   "action": "room.addRole",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.batchGetRoomInfos": {
+   "action": "room.batchGetRoomInfos",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.collectRoom": {
+   "action": "room.collectRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.createRoomEx": {
+   "action": "room.createRoomEx",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.delRole": {
+   "action": "room.delRole",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.discoverRoom": {
+   "action": "room.discoverRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.gameRank": {
+   "action": "room.gameRank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getActivityGames": {
+   "action": "room.getActivityGames",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getActivityGamesV2": {
+   "action": "room.getActivityGamesV2",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getApplyMicList": {
+   "action": "room.getApplyMicList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getBlackList": {
+   "action": "room.getBlackList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getCallFansList": {
+   "action": "room.getCallFansList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getCoinFlowRank": {
+   "action": "room.getCoinFlowRank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getCoinFlowTotalRank": {
+   "action": "room.getCoinFlowTotalRank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getCountryListV2": {
+   "action": "room.getCountryListV2",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getCountryRoomListV2": {
+   "action": "room.getCountryRoomListV2",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getHotvalAndMedal": {
+   "action": "room.getHotvalAndMedal",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getMyCollectRoomList": {
+   "action": "room.getMyCollectRoomList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getMyRoom": {
+   "action": "room.getMyRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getMyRoomList": {
+   "action": "room.getMyRoomList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getRecommendRoomV3": {
+   "action": "room.getRecommendRoomV3",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getRoomCharmRank": {
+   "action": "room.getRoomCharmRank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getRoomInfo": {
+   "action": "room.getRoomInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getRoomManageList": {
+   "action": "room.getRoomManageList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getRoomModelConfig": {
+   "action": "room.getRoomModelConfig",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getSendGiftRankV2": {
+   "action": "room.getSendGiftRankV2",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getTop3RankDataV2": {
+   "action": "room.getTop3RankDataV2",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getTopicRandom": {
+   "action": "room.getTopicRandom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getUserCharmRankV2": {
+   "action": "room.getUserCharmRankV2",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getUserContributeRank": {
+   "action": "room.getUserContributeRank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getUserOnlineList": {
+   "action": "room.getUserOnlineList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getUserOnlineListV2": {
+   "action": "room.getUserOnlineListV2",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.getWealthInfo": {
+   "action": "room.getWealthInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.inviteFriends": {
+   "action": "room.inviteFriends",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.luckyGiftRank": {
+   "action": "room.luckyGiftRank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.shareReport": {
+   "action": "room.shareReport",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.updateRoomImg": {
+   "action": "room.updateRoomImg",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.updateRoomInfo": {
+   "action": "room.updateRoomInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "room.userLoginRecommendRoom": {
+   "action": "room.userLoginRecommendRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "search.friendSearch": {
+   "action": "search.friendSearch",
+   "category": "Search",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "search.recommend": {
+   "action": "search.recommend",
+   "category": "Search",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "search.roomSearch": {
+   "action": "search.roomSearch",
+   "category": "Search",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "search.userSearch": {
+   "action": "search.userSearch",
+   "category": "Search",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "task.getSignInListV3": {
+   "action": "task.getSignInListV3",
+   "category": "Task",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "task.giveBeans": {
+   "action": "task.giveBeans",
+   "category": "Task",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "task.signInV3": {
+   "action": "task.signInV3",
+   "category": "Task",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.bashGetIsSubscribe": {
+   "action": "user.bashGetIsSubscribe",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.batchGetUserinfoV2": {
+   "action": "user.batchGetUserinfoV2",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getCountryConfig": {
+   "action": "user.getCountryConfig",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getCountryList": {
+   "action": "user.getCountryList",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getFansList": {
+   "action": "user.getFansList",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getFriendList": {
+   "action": "user.getFriendList",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getGiftWallList": {
+   "action": "user.getGiftWallList",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getIsSubscribe": {
+   "action": "user.getIsSubscribe",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getNewUserPrizes": {
+   "action": "user.getNewUserPrizes",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getRecommendUser": {
+   "action": "user.getRecommendUser",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getSensitivePath": {
+   "action": "user.getSensitivePath",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getSubcribeList": {
+   "action": "user.getSubcribeList",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getUinfoV2": {
+   "action": "user.getUinfoV2",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getUserIdentity": {
+   "action": "user.getUserIdentity",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getUserImSendStatus": {
+   "action": "user.getUserImSendStatus",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getUserinfo": {
+   "action": "user.getUserinfo",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.getWhiteList": {
+   "action": "user.getWhiteList",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.onlineUser": {
+   "action": "user.onlineUser",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.recommendUser": {
+   "action": "user.recommendUser",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.registerFinish": {
+   "action": "user.registerFinish",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.setCountry": {
+   "action": "user.setCountry",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.subcribe": {
+   "action": "user.subcribe",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.supporter": {
+   "action": "user.supporter",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.unbind": {
+   "action": "user.unbind",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.unsubcribe": {
+   "action": "user.unsubcribe",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.updateAlias": {
+   "action": "user.updateAlias",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.updateCountry": {
+   "action": "user.updateCountry",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.updateLang": {
+   "action": "user.updateLang",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.updateUInfo": {
+   "action": "user.updateUInfo",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.uploadAvatar": {
+   "action": "user.uploadAvatar",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "user.visitors": {
+   "action": "user.visitors",
+   "category": "User",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "wallet.getWalletInfo": {
+   "action": "wallet.getWalletInfo",
+   "category": "wallet",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Anchor.inviteJoinGuildRes": {
+   "action": "Action/Anchor.inviteJoinGuildRes",
+   "category": "Guild",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/BDCenter.inviteGuildRes": {
+   "action": "Action/BDCenter.inviteGuildRes",
+   "category": "Guild",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/BDCenter.inviteUserRes": {
+   "action": "Action/BDCenter.inviteUserRes",
+   "category": "Guild",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/ChargeGiftBag.getGiftBagStatus": {
+   "action": "Action/ChargeGiftBag.getGiftBagStatus",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.createGameRoom": {
+   "action": "Action/Game.createGameRoom",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.getGameRoomId": {
+   "action": "Action/Game.getGameRoomId",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.getGameRoomRank": {
+   "action": "Action/Game.getGameRoomRank",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.getGamerInfo": {
+   "action": "Action/Game.getGamerInfo",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.getOnlinePlayers": {
+   "action": "Action/Game.getOnlinePlayers",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.getSignInTable": {
+   "action": "Action/Game.getSignInTable",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.hotGames": {
+   "action": "Action/Game.hotGames",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.hotGamesHourly": {
+   "action": "Action/Game.hotGamesHourly",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.rankingOverview": {
+   "action": "Action/Game.rankingOverview",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Game.signIn": {
+   "action": "Action/Game.signIn",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/GameMall.exchangeProduct": {
+   "action": "Action/GameMall.exchangeProduct",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/GameMall.getMallProduct": {
+   "action": "Action/GameMall.getMallProduct",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/HiddenSettings.getHiddenSettings": {
+   "action": "Action/HiddenSettings.getHiddenSettings",
+   "category": "Settings",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/HiddenSettings.updateHiddenSettings": {
+   "action": "Action/HiddenSettings.updateHiddenSettings",
+   "category": "Settings",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/IMSvc.getQuickChatMsg": {
+   "action": "Action/IMSvc.getQuickChatMsg",
+   "category": "IM",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/JoyPlay.getUidAndToken": {
+   "action": "Action/JoyPlay.getUidAndToken",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveLuckyBags.fetchBagInfos": {
+   "action": "Action/LiveLuckyBags.fetchBagInfos",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveLuckyBags.getBag": {
+   "action": "Action/LiveLuckyBags.getBag",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.acceptPk": {
+   "action": "Action/LivePk.acceptPk",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.breakOffPk": {
+   "action": "Action/LivePk.breakOffPk",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.cancelPkMatch": {
+   "action": "Action/LivePk.cancelPkMatch",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.friendList": {
+   "action": "Action/LivePk.friendList",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.getPkInfo": {
+   "action": "Action/LivePk.getPkInfo",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.invitePk": {
+   "action": "Action/LivePk.invitePk",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.matchLivePk": {
+   "action": "Action/LivePk.matchLivePk",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.recently": {
+   "action": "Action/LivePk.recently",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.refusePk": {
+   "action": "Action/LivePk.refusePk",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LivePk.startLivePk": {
+   "action": "Action/LivePk.startLivePk",
+   "category": "PK",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRocketGift.gifts": {
+   "action": "Action/LiveRocketGift.gifts",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRocketGift.roomGifts": {
+   "action": "Action/LiveRocketGift.roomGifts",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.addRole": {
+   "action": "Action/LiveRoom.addRole",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.blockade": {
+   "action": "Action/LiveRoom.blockade",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.closeLive": {
+   "action": "Action/LiveRoom.closeLive",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.collectRoom": {
+   "action": "Action/LiveRoom.collectRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.createRoom": {
+   "action": "Action/LiveRoom.createRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.delRole": {
+   "action": "Action/LiveRoom.delRole",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.facePropList": {
+   "action": "Action/LiveRoom.facePropList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.getCoinFlowRank": {
+   "action": "Action/LiveRoom.getCoinFlowRank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.getLiveInfo": {
+   "action": "Action/LiveRoom.getLiveInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.getMyCollectRoomList": {
+   "action": "Action/LiveRoom.getMyCollectRoomList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.getRoomExtraInfo": {
+   "action": "Action/LiveRoom.getRoomExtraInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.getRoomInfo": {
+   "action": "Action/LiveRoom.getRoomInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.getUserContributeRank": {
+   "action": "Action/LiveRoom.getUserContributeRank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.getUserOnlineList": {
+   "action": "Action/LiveRoom.getUserOnlineList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.heartbeat": {
+   "action": "Action/LiveRoom.heartbeat",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.joinRoom": {
+   "action": "Action/LiveRoom.joinRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.kickUser": {
+   "action": "Action/LiveRoom.kickUser",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.recommend": {
+   "action": "Action/LiveRoom.recommend",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.sendLiveGift": {
+   "action": "Action/LiveRoom.sendLiveGift",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.setTextConfig": {
+   "action": "Action/LiveRoom.setTextConfig",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.updateRoom": {
+   "action": "Action/LiveRoom.updateRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.updateRoomImg": {
+   "action": "Action/LiveRoom.updateRoomImg",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoom.whichRoom": {
+   "action": "Action/LiveRoom.whichRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoomBomb.getBombConfig": {
+   "action": "Action/LiveRoomBomb.getBombConfig",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoomBomb.getRoomPrizeRecord": {
+   "action": "Action/LiveRoomBomb.getRoomPrizeRecord",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoomLevel.getRoomLevelInfo": {
+   "action": "Action/LiveRoomLevel.getRoomLevelInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoomLevel.getRoomLevelPrize": {
+   "action": "Action/LiveRoomLevel.getRoomLevelPrize",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveRoomLevel.getTaskList": {
+   "action": "Action/LiveRoomLevel.getTaskList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LiveSearch.roomSearch": {
+   "action": "Action/LiveSearch.roomSearch",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LuckyDraw.drawPrizesPreview": {
+   "action": "Action/LuckyDraw.drawPrizesPreview",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LuckyNumber.getConfig": {
+   "action": "Action/LuckyNumber.getConfig",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/LuckyNumber.setConfig": {
+   "action": "Action/LuckyNumber.setConfig",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/MiniGame.getUidAndToken": {
+   "action": "Action/MiniGame.getUidAndToken",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/MiniGame.getUidAndTokenByAmg": {
+   "action": "Action/MiniGame.getUidAndTokenByAmg",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/MiniGame.getUidAndTokenByYomi": {
+   "action": "Action/MiniGame.getUidAndTokenByYomi",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/MiniGame.getUidAndTokenV2": {
+   "action": "Action/MiniGame.getUidAndTokenV2",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/MiniGame.tokenDestroy": {
+   "action": "Action/MiniGame.tokenDestroy",
+   "category": "Game",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Noble.getBirthdayInfo": {
+   "action": "Action/Noble.getBirthdayInfo",
+   "category": "Noble",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Noble.receiveBirthdayPresent": {
+   "action": "Action/Noble.receiveBirthdayPresent",
+   "category": "Noble",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Noble.sendHorn": {
+   "action": "Action/Noble.sendHorn",
+   "category": "Noble",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/Noble.shareMoment": {
+   "action": "Action/Noble.shareMoment",
+   "category": "Noble",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RadioRoomPk.rank": {
+   "action": "Action/RadioRoomPk.rank",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RocketGift.gifts": {
+   "action": "Action/RocketGift.gifts",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RocketGift.roomGifts": {
+   "action": "Action/RocketGift.roomGifts",
+   "category": "Gift",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomAct.getActInfoById": {
+   "action": "Action/RoomAct.getActInfoById",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomAct.joinAct": {
+   "action": "Action/RoomAct.joinAct",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.batchGetUserInfo": {
+   "action": "Action/RoomApi.batchGetUserInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.blockade": {
+   "action": "Action/RoomApi.blockade",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.cancelCallFans": {
+   "action": "Action/RoomApi.cancelCallFans",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.disableMic": {
+   "action": "Action/RoomApi.disableMic",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.divideGroup": {
+   "action": "Action/RoomApi.divideGroup",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.getDynamicKey": {
+   "action": "Action/RoomApi.getDynamicKey",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.heartbeat": {
+   "action": "Action/RoomApi.heartbeat",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.inviteJoinMic": {
+   "action": "Action/RoomApi.inviteJoinMic",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.joinMic": {
+   "action": "Action/RoomApi.joinMic",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.joinRoom": {
+   "action": "Action/RoomApi.joinRoom",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.kickUser": {
+   "action": "Action/RoomApi.kickUser",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.lockMic": {
+   "action": "Action/RoomApi.lockMic",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.mute": {
+   "action": "Action/RoomApi.mute",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.notifyUpdateUInfo": {
+   "action": "Action/RoomApi.notifyUpdateUInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.quitMic": {
+   "action": "Action/RoomApi.quitMic",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.sendGift": {
+   "action": "Action/RoomApi.sendGift",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.sendLuckyNum": {
+   "action": "Action/RoomApi.sendLuckyNum",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.setCharmConfig": {
+   "action": "Action/RoomApi.setCharmConfig",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.setTextConfig": {
+   "action": "Action/RoomApi.setTextConfig",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.startCallFans": {
+   "action": "Action/RoomApi.startCallFans",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.startTimingPKGroup": {
+   "action": "Action/RoomApi.startTimingPKGroup",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.stopTimingPKGroup": {
+   "action": "Action/RoomApi.stopTimingPKGroup",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomApi.switchMic": {
+   "action": "Action/RoomApi.switchMic",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomBomb.getBombConfig": {
+   "action": "Action/RoomBomb.getBombConfig",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomBomb.getRoomPrizeRecord": {
+   "action": "Action/RoomBomb.getRoomPrizeRecord",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomLevel.getRoomLevelInfo": {
+   "action": "Action/RoomLevel.getRoomLevelInfo",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomLevel.getRoomLevelPrize": {
+   "action": "Action/RoomLevel.getRoomLevelPrize",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/RoomLevel.getTaskList": {
+   "action": "Action/RoomLevel.getTaskList",
+   "category": "Room",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/SuperManage.ban": {
+   "action": "Action/SuperManage.ban",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/SuperManage.behaviorBan": {
+   "action": "Action/SuperManage.behaviorBan",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/SuperManage.deleteSong": {
+   "action": "Action/SuperManage.deleteSong",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/SuperManage.getUserBehaviorBanInfo": {
+   "action": "Action/SuperManage.getUserBehaviorBanInfo",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/SuperManage.resetLiveRoom": {
+   "action": "Action/SuperManage.resetLiveRoom",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/SuperManage.resetRoom": {
+   "action": "Action/SuperManage.resetRoom",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/SuperManage.resetUser": {
+   "action": "Action/SuperManage.resetUser",
+   "category": "Moderation",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/UsersRoamMsg.getIMNum": {
+   "action": "Action/UsersRoamMsg.getIMNum",
+   "category": "IM",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "Action/UsersRoamMsg.getRelationIMNum": {
+   "action": "Action/UsersRoamMsg.getRelationIMNum",
+   "category": "IM",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": true,
+   "request_fields": [
+    "action",
+    "token",
+    "uid",
+    "_login_uid",
+    "lang",
+    "ua",
+    "deviceid",
+    "sign",
+    "timestamp"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "/api.php": {
+   "action": "/api.php",
+   "category": "api",
+   "endpoint": "/api.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_GetCountry.php": {
+   "action": "api_GetCountry.php",
+   "category": "api_GetCountry",
+   "endpoint": "/api/GetCountry.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_GetUserSig.php": {
+   "action": "api_GetUserSig.php",
+   "category": "api_GetUserSig",
+   "endpoint": "/api/GetUserSig.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_bind_facebook.php": {
+   "action": "api_bind_facebook.php",
+   "category": "api_bind_facebook",
+   "endpoint": "/api/bind_facebook.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_bind_google.php": {
+   "action": "api_bind_google.php",
+   "category": "api_bind_google",
+   "endpoint": "/api/bind_google.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_sms_kit_bind_mobile_by_sms_kit.php": {
+   "action": "api_sms_kit_bind_mobile_by_sms_kit.php",
+   "category": "api_sms_kit_bind_mobile_by_sms_kit",
+   "endpoint": "/api/sms_kit/bind_mobile_by_sms_kit.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_sms_kit_register_user_by_sms_kit.php": {
+   "action": "api_sms_kit_register_user_by_sms_kit.php",
+   "category": "api_sms_kit_register_user_by_sms_kit",
+   "endpoint": "/api/sms_kit/register_user_by_sms_kit.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_sms_kit_update_passwd_by_sms_kit.php": {
+   "action": "api_sms_kit_update_passwd_by_sms_kit.php",
+   "category": "api_sms_kit_update_passwd_by_sms_kit",
+   "endpoint": "/api/sms_kit/update_passwd_by_sms_kit.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_v1_report_single": {
+   "action": "api_v1_report_single",
+   "category": "api_v1_report_single",
+   "endpoint": "/api/v1/report/single",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "api_v1_upload_applog": {
+   "action": "api_v1_upload_applog",
+   "category": "api_v1_upload_applog",
+   "endpoint": "/api/v1/upload/applog",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "googleplay_getOrder.php": {
+   "action": "googleplay_getOrder.php",
+   "category": "googleplay_getOrder",
+   "endpoint": "/googleplay/getOrder.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "googleplay_getReceipt.php": {
+   "action": "googleplay_getReceipt.php",
+   "category": "googleplay_getReceipt",
+   "endpoint": "/googleplay/getReceipt.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "googleplay_productList.php": {
+   "action": "googleplay_productList.php",
+   "category": "googleplay_productList",
+   "endpoint": "/googleplay/productList.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "googleplaySub_getSubOrder.php": {
+   "action": "googleplaySub_getSubOrder.php",
+   "category": "googleplaySub_getSubOrder",
+   "endpoint": "/googleplaySub/getSubOrder.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "googleplaySub_getSubReceipt.php": {
+   "action": "googleplaySub_getSubReceipt.php",
+   "category": "googleplaySub_getSubReceipt",
+   "endpoint": "/googleplaySub/getSubReceipt.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "googleplaySub_subProductList.php": {
+   "action": "googleplaySub_subProductList.php",
+   "category": "googleplaySub_subProductList",
+   "endpoint": "/googleplaySub/subProductList.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "/html/changePhone/index.php": {
+   "action": "/html/changePhone/index.php",
+   "category": "index",
+   "endpoint": "/html/changePhone/index.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "/html/mobiChecker/index.php": {
+   "action": "/html/mobiChecker/index.php",
+   "category": "index",
+   "endpoint": "/html/mobiChecker/index.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "/index.php": {
+   "action": "/index.php",
+   "category": "index",
+   "endpoint": "/index.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "/share_bottle/index.php": {
+   "action": "/share_bottle/index.php",
+   "category": "index",
+   "endpoint": "/share_bottle/index.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  },
+  "/share_room/index.php": {
+   "action": "/share_room/index.php",
+   "category": "index",
+   "endpoint": "/share_room/index.php",
+   "method": "POST",
+   "encrypted": false,
+   "request_fields": [
+    "mobile",
+    "password",
+    "deviceid",
+    "token"
+   ],
+   "response_fields": [],
+   "source": "decoded"
+  }
+ }
+}

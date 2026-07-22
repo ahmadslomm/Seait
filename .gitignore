@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+unknown-apis.log
+mobile/.dart_tool/
+mobile/build/
+tools/*.json
