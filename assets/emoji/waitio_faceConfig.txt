@@ -1,0 +1,79 @@
+{
+    "config": {
+        "matchSing": [
+            {
+                "faceGroup": {
+                    "groupId": 1,
+                    "pageRowCount": 3,
+                    "pageColumnCount": 5,
+                    "height": 52,
+                    "width": 52,
+                    "package":"com.waig.nalo"
+                },
+                "faceItem": [
+                    {
+                        "faceId": 11,
+                        "name": "face_11",
+                        "filter": "",
+                        "actionUrls": [
+                            "waitio_face_11.svga"
+                        ],
+                        "iconUrl": "waitio_face_11",
+                        "delayEnabled": false,
+                        "positionRandom": 0,
+                        "images": "images"
+                    }
+                ]
+            }
+        ],
+        "room2": [
+            {
+                "faceGroup": {
+                    "groupId": 1,
+                    "pageRowCount": 3,
+                    "pageColumnCount": 5,
+                    "height": 53,
+                    "width": 53
+                },
+                "faceItem": [
+                    {
+                        "faceId": 11,
+                        "name": "face_11",
+                        "filter": "",
+                        "actionUrls": [
+                            "waitio_face_11.svga"
+                        ],
+                        "iconUrl": "waitio_face_11",
+                        "delayEnabled": false,
+                        "positionRandom": 0,
+                        "images": "images"
+                    },
+                    {
+                        "faceId": 58,
+                        "name": "face_58",
+                        "filter": "",
+                        "actionUrls": [
+                            "waitio_welcome.svga"
+                        ],
+                        "iconUrl": "waitio_welcome",
+                        "delayEnabled": false,
+                        "positionRandom": 0,
+                        "images": "images"
+                    },
+                    {
+                        "faceId": 59,
+                        "name": "face_59",
+                        "filter": "",
+                        "actionUrls": [
+                            "waitio_goodbye.svga"
+                        ],
+                        "iconUrl": "waitio_goodbye",
+                        "delayEnabled": false,
+                        "positionRandom": 0,
+                        "images": "images"
+                    }
+                ]
+            }
+        ]
+    }
+}

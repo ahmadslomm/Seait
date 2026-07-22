@@ -69,7 +69,7 @@ class _RoomState extends ConsumerState<RoomScreen> {
     IconButton(icon: const Icon(Icons.more_horiz, color: Colors.white70), onPressed: () => _roomInfo(c)),
   ]));
   Widget _banner() => Container(margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), padding: const EdgeInsets.all(8),
-    decoration: BoxDecoration(gradient: ZC.coinGrad, borderRadius: BorderRadius.circular(20)),
+    decoration: BoxDecoration(gradient: ZGrad.coin, borderRadius: BorderRadius.circular(20)),
     child: Row(children: [const Icon(Icons.card_giftcard, color: Colors.brown), const SizedBox(width: 8), Expanded(child: Text(giftBanner!, style: const TextStyle(color: Colors.brown, fontWeight: FontWeight.bold)))]));
   Widget _chatFeed() => Container(height: 120, padding: const EdgeInsets.symmetric(horizontal: 12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     const Row(children: [Text('All', style: TextStyle(color: Colors.white)), SizedBox(width: 16), Text('Message', style: TextStyle(color: ZC.textLo)), SizedBox(width: 16), Text('Gift', style: TextStyle(color: ZC.textLo))]),

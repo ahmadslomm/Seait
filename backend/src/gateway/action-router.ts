@@ -53,6 +53,7 @@ export class ActionRouter {
       avatarFrame: u.avatarFrame, carFrame: u.carFrame, chatBubble: u.chatBubble, infoBgImg: u.infoBgImg,
       constellation: u.constellation, isAnchor: u.isAnchor, isPresident: u.isPresident, noble_level: u.noble_level,
       active_level: u.active_level, gameLv: u.gameLv, svip: u.svip, isBanned: u.isBanned, nationalFlag: p?.nationalFlag,
+      coins: String(w?.coins ?? 0), diamonds: String(w?.diamonds ?? 0), gold: String(w?.gold ?? 0),
       fans: String(p?.fans ?? 0), subs: String(p?.subs ?? 0), gifts: String(p?.gifts ?? 0), beans: String(w?.beans ?? 0),
       photos: String(p?.photos ?? 0), songs: String(p?.songs ?? 0), days: String(p?.days ?? 0), cost: String(p?.cost ?? 0),
       levelName: p?.levelName, medal: p?.medals ?? [], user_label: p?.user_label ?? [], actTitles: p?.actTitles ?? [],

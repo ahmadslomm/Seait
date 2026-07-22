@@ -45,7 +45,7 @@ class MeScreen extends ConsumerWidget {
     Padding(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8), child: Row(children: [
       _stat('${u.fans}', 'Followers'), _stat('${u.following}', 'Following'), _stat('${u.gifts}', 'Gifts'), _stat('100', 'Visitors')])),
     Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: InkWell(onTap: () => c.push('/vip'),
-      child: Container(padding: const EdgeInsets.all(16), decoration: BoxDecoration(gradient: ZC.vipGrad,
+      child: Container(padding: const EdgeInsets.all(16), decoration: BoxDecoration(gradient: ZGrad.vip,
         borderRadius: BorderRadius.circular(16), border: Border.all(color: ZC.gold, width: 1.5),
         boxShadow: const [BoxShadow(color: Color(0x557B2FF7), blurRadius: 14, offset: Offset(0, 6))]),
       child: Row(children: [
@@ -66,10 +66,13 @@ class MeScreen extends ConsumerWidget {
     Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Container(
       padding: const EdgeInsets.symmetric(vertical: 16), decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(16)),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        _gi(Icons.storefront, 'Store', const Color(0xFFE8862E)), _gi(Icons.assignment, 'Task', const Color(0xFF3FA34D)),
-        _gi(Icons.event_available, 'Check in', ZC.purple2), _gi(Icons.backpack, 'Backpack', ZC.gold)]))),
+        _gi(c, Icons.storefront, 'Store', const Color(0xFFE8862E), null),
+        _gi(c, Icons.assignment, 'Task', const Color(0xFF3FA34D), '/tasks'),
+        _gi(c, Icons.event_available, 'Check in', ZC.purple2, '/tasks'),
+        _gi(c, Icons.backpack, 'Backpack', ZC.gold, '/backpack')]))),
     const SizedBox(height: 12),
     _tile(c, Icons.favorite, 'Cp space', '/cp'), _tile(c, Icons.workspace_premium, 'My level', '/level'),
+    _tile(c, Icons.groups, 'Guild', '/guild'), _tile(c, Icons.business_center, 'Agency', '/agency'),
     _tile(c, Icons.trending_up, 'My income', null), _tile(c, Icons.military_tech, 'Badge', null),
     _tile(c, Icons.feedback, 'Feedback', null), _tile(c, Icons.settings, 'Settings', null),
     const SizedBox(height: 20),
@@ -78,11 +81,13 @@ class MeScreen extends ConsumerWidget {
   Widget _stat(String v, String l) => Expanded(child: Column(children: [
     Text(v, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
     Text(l, style: const TextStyle(color: ZC.textLo, fontSize: 12))]));
-  Widget _gi(IconData i, String l, Color color) => Column(children: [
-    Container(width: 52, height: 52, decoration: BoxDecoration(gradient: LinearGradient(colors: [color.withOpacity(.95), color.withOpacity(.7)],
-      begin: Alignment.topLeft, end: Alignment.bottomRight), borderRadius: BorderRadius.circular(14)),
-      child: Icon(i, color: Colors.white, size: 26)), const SizedBox(height: 6),
-    Text(l, style: const TextStyle(color: Colors.white, fontSize: 12))]);
+  Widget _gi(BuildContext c, IconData i, String l, Color color, String? route) => InkWell(
+    onTap: route == null ? null : () => c.push(route),
+    child: Column(children: [
+      Container(width: 52, height: 52, decoration: BoxDecoration(gradient: LinearGradient(colors: [color.withOpacity(.95), color.withOpacity(.7)],
+        begin: Alignment.topLeft, end: Alignment.bottomRight), borderRadius: BorderRadius.circular(14)),
+        child: Icon(i, color: Colors.white, size: 26)), const SizedBox(height: 6),
+      Text(l, style: const TextStyle(color: Colors.white, fontSize: 12))]));
   Widget _tile(BuildContext c, IconData i, String t, String? route) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
     child: InkWell(onTap: route == null ? null : () => c.push(route), borderRadius: BorderRadius.circular(12),

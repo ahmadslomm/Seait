@@ -15,7 +15,7 @@ class VipScreen extends StatelessWidget {
     appBar: AppBar(backgroundColor: Colors.transparent, title: const Text('VIP Center')),
     body: ListView(padding: const EdgeInsets.all(16), children: [
       // current VIP header
-      Container(padding: const EdgeInsets.all(20), decoration: BoxDecoration(gradient: ZC.vipGrad, borderRadius: BorderRadius.circular(18), border: Border.all(color: ZC.gold, width: 2)),
+      Container(padding: const EdgeInsets.all(20), decoration: BoxDecoration(gradient: ZGrad.vip, borderRadius: BorderRadius.circular(18), border: Border.all(color: ZC.gold, width: 2)),
         child: Column(children: [
           const VipMedallion(s: 90),
           const Text('VIP 5', style: TextStyle(color: ZC.gold2, fontSize: 30, fontWeight: FontWeight.bold)),
@@ -29,7 +29,7 @@ class VipScreen extends StatelessWidget {
       for (int lv = 1; lv <= 5; lv++) Container(margin: const EdgeInsets.only(bottom: 12), padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(14), border: Border.all(color: lv == 5 ? ZC.gold : Colors.white12)),
         child: Row(children: [
-          Container(width: 44, height: 44, decoration: BoxDecoration(gradient: ZC.vipGrad, shape: BoxShape.circle), child: Center(child: Text('$lv', style: const TextStyle(color: ZC.gold2, fontWeight: FontWeight.bold, fontSize: 18)))),
+          Container(width: 44, height: 44, decoration: BoxDecoration(gradient: ZGrad.vip, shape: BoxShape.circle), child: Center(child: Text('$lv', style: const TextStyle(color: ZC.gold2, fontWeight: FontWeight.bold, fontSize: 18)))),
           const SizedBox(width: 12),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text('VIP $lv', style: const TextStyle(color: ZC.gold2, fontSize: 16, fontWeight: FontWeight.bold)),

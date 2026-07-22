@@ -14,7 +14,7 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0,
         title: const TabBar(isScrollable: true, indicatorColor: ZC.gold, labelColor: Colors.white, unselectedLabelColor: ZC.textLo,
           tabs: [Tab(text: 'Mine'), Tab(text: 'Popular'), Tab(text: 'Discover')]),
-        actions: const [Icon(Icons.search, color: ZC.textLo), SizedBox(width: 16)]),
+        actions: [IconButton(icon: const Icon(Icons.search, color: ZC.textLo), onPressed: () => c.push('/search')), const SizedBox(width: 8)]),
       body: TabBarView(children: [ _roomList(ref, sub: true), _popular(ref), _discover() ])));
   }
   Widget _roomList(WidgetRef ref, {bool sub = false}) {
@@ -32,12 +32,12 @@ class HomeScreen extends ConsumerWidget {
     ]);
   }
   Widget _popular(WidgetRef ref) => Column(children: [
-    Container(margin: const EdgeInsets.all(12), height: 90, decoration: BoxDecoration(gradient: ZC.vipGrad, borderRadius: BorderRadius.circular(14)),
+    Container(margin: const EdgeInsets.all(12), height: 90, decoration: BoxDecoration(gradient: ZGrad.vip, borderRadius: BorderRadius.circular(14)),
       child: const Center(child: Text('Welcome to Zaffalive', style: TextStyle(color: ZC.gold2, fontSize: 20, fontWeight: FontWeight.bold)))),
     Expanded(child: _roomList(ref)),
   ]);
   Widget _discover() => ListView(padding: const EdgeInsets.all(12), children: [
-    Container(height: 80, decoration: BoxDecoration(gradient: ZC.coinGrad, borderRadius: BorderRadius.circular(14)), child: const Center(child: Text('Gift Wall', style: TextStyle(color: Colors.brown, fontSize: 18, fontWeight: FontWeight.bold)))),
+    Container(height: 80, decoration: BoxDecoration(gradient: ZGrad.coin, borderRadius: BorderRadius.circular(14)), child: const Center(child: Text('Gift Wall', style: TextStyle(color: Colors.brown, fontSize: 18, fontWeight: FontWeight.bold)))),
     const SizedBox(height: 12),
     const Text('Event', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
     for (final e in ['Official Events', 'Room Events', 'My Events']) Card(color: ZC.card, child: ListTile(title: Text(e, style: const TextStyle(color: Colors.white)), trailing: const Icon(Icons.chevron_right, color: ZC.textLo))),
@@ -57,5 +57,5 @@ class _RoomCard extends StatelessWidget { final RoomModel r; const _RoomCard(thi
         Padding(padding: const EdgeInsets.fromLTRB(8, 6, 8, 2), child: Text(r.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600))),
         Padding(padding: const EdgeInsets.only(left: 8, bottom: 8), child: Row(children: [const Icon(Icons.local_fire_department, size: 14, color: ZC.gold), Text(' ${r.onlineNum}', style: const TextStyle(color: ZC.textLo, fontSize: 12))])),
       ])));
-  Widget _ph(RoomModel r) => Container(decoration: const BoxDecoration(gradient: ZC.vipGrad), child: Center(child: Text('${r.seatCount} mic', style: const TextStyle(color: Colors.white70))));
+  Widget _ph(RoomModel r) => Container(decoration: const BoxDecoration(gradient: ZGrad.vip), child: Center(child: Text('${r.seatCount} mic', style: const TextStyle(color: Colors.white70))));
 }

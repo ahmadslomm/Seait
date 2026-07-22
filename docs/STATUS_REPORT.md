@@ -62,3 +62,20 @@ Real components: CoinIcon / DiamondIcon / VipMedallion (from **cropped real app 
 
 ### Unknown at runtime
 Elements/fields without a native handler are hit through the backend **fallback logger** (`unknown-apis.log`) as the app calls them — so missing APIs/fields surface live.
+
+---
+
+## UI phase 2 — full screen set + central design system
+
+### Central Design System (req 6 — no hardcoded values in pages)
+- **`core/theme.dart`**: `ZC` (colors), `ZGrad` (gradients), `ZSpace` (spacing), `ZRadius`, `ZShadow`, `ZType` (typography), `ZTheme`.
+- **`ui/components.dart`**: `ZPage`, `ZCard`, `SectionHeader`, `ZListTile`, `SectionTabs`, `ZProgress`, `EmptyState`, `GiftCell`, `BalancePill`, `WalletCard`, `CoinIcon`/`DiamondIcon`/`VipMedallion` (real art), `ZBadge`, `AvatarFrame`, `RoomSeat`, `RankingItem`. Screens compose these — colors/sizes only via tokens.
+
+### All screens (req 2) — real Flutter + API-bound (no mock)
+Wallet, Backpack/Mine (Frame/Ride/Entry/Bubble/Profile-Card tabs), Live, Message, Search, Moment, CP, Guild, Agency, Noble/VIP, My-level, Tasks — plus Home + Voice Room + Me. Each binds to a provider:
+- `meProvider` → `user.getUserinfo` (Profile, Wallet coins/diamonds, VIP/Noble, Wealth/Charm, CP, Guild — all from the real seeded account).
+- `roomsProvider` → `room.getRecommendRoomV2`; `giftsProvider` → `gift.getGiftList`; `rankProvider` → `gift.songGiftRank`.
+- `actionProvider(family)` → calls ANY action (moment.recomV3, mall.getMyProduct, LiveRoom.recommend, notice.checkNotice, task.getSignInListV3, BDCenter.*, …). **Unknown/unimplemented actions return empty and the backend fallback-logger records request+fields** — nothing guessed (req 3,4).
+
+### Assets extracted (req 5)
+`assets/{svga(45),pag(18),images,emoji,ui}` pulled from the app + cropped real art (coin/diamond/VIP medallion). Registered in `pubspec.yaml`.
