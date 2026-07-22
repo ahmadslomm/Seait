@@ -42,9 +42,25 @@ async function main() {
   // --- VIP / Noble levels 1-5 ---
   for (const lv of [1,2,3,4,5]) await db.vipLevel.upsert({ where:{ level:lv }, update:{}, create:{ level:lv, name:`VIP ${lv}`, type:'vip', privileges:[`badge`,`frame`,`entry`,`chatBubble`].slice(0,lv) }});
   for (const lv of [1,2,3,4,5]) await db.nobleLevel.upsert({ where:{ level:lv }, update:{}, create:{ level:lv, name:['Knight','Baron','Viscount','Earl','King'][lv-1], horn:lv, privileges:[`entry`,`horn`,`badge`,`fly`,`throne`].slice(0,lv) }});
-  // --- Sample gifts (wire real svga/pag later) ---
-  const gifts=[['Rose',10,1,0],['Lucky Bag',99,1,1],['CP Heart',520,2,1],['Rocket',5000,2,2],['Sports Car',9999,2,2]];
-  let gid=1; for (const [name,price,ct,anim] of gifts as any) await db.gift.upsert({ where:{ gift_id:gid }, update:{}, create:{ gift_id:gid++, name, price, coin_type:ct, anim_type:anim, fullscreen:price>=5000, active:true }});
+  // --- Gifts wired to real extracted SVGA/PAG (assets/svga, assets/pag).
+  //     anim_type: 0 image  1 svga  2 pag.  Empty anim_url => client logs it to
+  //     unknown-gifts.log (Rose has no extracted art — exercises that path).
+  //     [gift_id, name, price, coin_type, anim_type, anim_url, category]
+  const gifts:any[] = [
+    [1, 'Rose',           10,    1, 0, '',                                              0],
+    [2, 'Lucky Bag',      99,    1, 1, 'assets/svga/kroom/waitio_lucky_gift.svga',      1],
+    [3, 'Firework',       199,   1, 1, 'assets/svga/kroom/waitio_lucky_gift_winning.svga', 1],
+    [4, 'Golden Medal',   300,   1, 1, 'assets/svga/medal/waitio_xunzhangguang.svga',   4],
+    [5, 'CP Heart',       520,   2, 2, 'assets/pag/cp/waitio_cp_heart.pag',             3],
+    [6, 'Bomb',           888,   1, 2, 'assets/pag/bomb/waitio_bomb_anim_lv3.pag',      0],
+    [7, 'Rocket',         5000,  2, 1, 'assets/svga/rocket/waitio_room_rocket.svga',    2],
+    [8, 'Sports Car',     9999,  2, 1, 'assets/svga/rocket/waitio_rocket1.svga',        2],
+    [9, 'Crown of Glory', 14999, 2, 1, 'assets/svga/rocket/waitio_rocket_top1.svga',    2],
+    [10,'Angel Scepter',  19999, 2, 1, 'assets/svga/rocket/waitio_rocket_top2.svga',    2],
+  ];
+  for (const [gid,name,price,ct,anim,url,cat] of gifts) await db.gift.upsert({
+    where:{ gift_id:gid }, update:{ anim_type:anim, anim_url:url, category:cat, fullscreen:price>=5000 },
+    create:{ gift_id:gid, name, price, coin_type:ct, anim_type:anim, anim_url:url, category:cat, fullscreen:price>=5000, active:true }});
   // --- Sample rooms ---
   for (let i=1;i<=6;i++) await db.room.upsert({ where:{ rid:i }, update:{}, create:{ rid:i, owner_uid:uid, name:`Room ${i}`, roomType:i%3, seatCount:[5,10,15,21,30][i%5], onlineNum:10+i*3, roomLevel:i }});
   // --- Ranking sample ---

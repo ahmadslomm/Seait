@@ -74,6 +74,7 @@ class MeScreen extends ConsumerWidget {
     _tile(c, Icons.favorite, 'Cp space', '/cp'), _tile(c, Icons.workspace_premium, 'My level', '/level'),
     _tile(c, Icons.groups, 'Guild', '/guild'), _tile(c, Icons.business_center, 'Agency', '/agency'),
     _tile(c, Icons.trending_up, 'My income', null), _tile(c, Icons.military_tech, 'Badge', null),
+    _tile(c, Icons.animation, 'Gift Studio', '/gift-studio'),
     _tile(c, Icons.feedback, 'Feedback', null), _tile(c, Icons.settings, 'Settings', null),
     const SizedBox(height: 20),
   ]));

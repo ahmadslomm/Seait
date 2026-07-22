@@ -10,6 +10,7 @@ import 'screens/guild_screen.dart';
 import 'screens/agency_screen.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/search_screen.dart';
+import 'screens/gift_studio_screen.dart';
 
 final router = GoRouter(initialLocation: '/', routes: [
   GoRoute(path: '/', builder: (c, s) => const Shell()),
@@ -22,5 +23,6 @@ final router = GoRouter(initialLocation: '/', routes: [
   GoRoute(path: '/agency', builder: (c, s) => const AgencyScreen()),
   GoRoute(path: '/tasks', builder: (c, s) => const TasksScreen()),
   GoRoute(path: '/search', builder: (c, s) => const SearchScreen()),
+  GoRoute(path: '/gift-studio', builder: (c, s) => const GiftStudioScreen()),
   GoRoute(path: '/room/:rid', builder: (c, s) => RoomScreen(rid: int.parse(s.pathParameters['rid']!))),
 ]);

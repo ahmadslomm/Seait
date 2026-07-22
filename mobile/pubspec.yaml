@@ -11,10 +11,20 @@ dependencies:
   socket_io_client: ^2.0.3
   cached_network_image: ^3.3.1
   google_fonts: ^6.2.1
+  svgaplayer_flutter: ^2.2.0   # SVGA gift animations (same format nalo/HelloYo use)
+  pag: ^1.3.4                  # libpag — PAG bomb/combo animations
+  path_provider: ^2.1.2        # unknown-gifts.log location
 flutter:
   uses-material-design: true
   assets:
-    - ../assets/svga/
-    - ../assets/pag/
-    - ../assets/images/
     - ../assets/ui/
+    - ../assets/images/
+    - ../assets/emoji/
+    - ../assets/svga/cp/
+    - ../assets/svga/gift/
+    - ../assets/svga/kroom/
+    - ../assets/svga/medal/
+    - ../assets/svga/rocket/
+    - ../assets/pag/bomb/
+    - ../assets/pag/cp/
+    - ../assets/pag/gift/
