@@ -63,11 +63,11 @@ class ZProgress extends StatelessWidget { final double value; final String? labe
 
 /// Async wrapper: shows loader/error/data consistently for API-bound screens.
 class ZAsync<T> extends StatelessWidget {
-  final AsyncValueLike<T> value; final Widget Function(T) build; const ZAsync(this.value, this.build, {super.key});
+  final AsyncValueLike<T> value; final Widget Function(T) builder; const ZAsync(this.value, this.builder, {super.key});
   @override Widget build(BuildContext c) => value.when(
     loading: () => const Center(child: CircularProgressIndicator(color: ZC.purple)),
     error: (e) => EmptyState(icon: Icons.cloud_off, text: 'API: $e'),
-    data: build);
+    data: builder);
 }
 /// tiny adapter so ZAsync doesn't import riverpod
 class AsyncValueLike<T> { final T? _d; final Object? _e; final bool _loading;
@@ -75,7 +75,7 @@ class AsyncValueLike<T> { final T? _d; final Object? _e; final bool _loading;
   const AsyncValueLike.error(Object e) : _d = null, _e = e, _loading = false;
   const AsyncValueLike.loading() : _d = null, _e = null, _loading = true;
   R when<R>({required R Function() loading, required R Function(Object) error, required R Function(T) data}) =>
-    _loading ? loading() : (_e != null ? error(_e!) : data(_d as T)); }
+    _loading ? loading() : (_e != null ? error(_e) : data(_d as T)); }
 
 class EmptyState extends StatelessWidget { final IconData icon; final String text; final Widget? action;
   const EmptyState({super.key, this.icon = Icons.pets, required this.text, this.action});
@@ -86,7 +86,7 @@ class EmptyState extends StatelessWidget { final IconData icon; final String tex
 // ---------------- domain widgets ----------------
 class ZBadge extends StatelessWidget { final String text; final Color color; final IconData? icon; const ZBadge(this.text, this.color, {super.key, this.icon});
   @override Widget build(BuildContext c) => Container(padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-    decoration: BoxDecoration(color: color.withOpacity(.9), borderRadius: BorderRadius.circular(9), boxShadow: [BoxShadow(color: color.withOpacity(.4), blurRadius: 6)]),
+    decoration: BoxDecoration(color: color.withValues(alpha: .9), borderRadius: BorderRadius.circular(9), boxShadow: [BoxShadow(color: color.withValues(alpha: .4), blurRadius: 6)]),
     child: Row(mainAxisSize: MainAxisSize.min, children: [if (icon != null) ...[Icon(icon, size: 11, color: ZC.textHi), const SizedBox(width: 2)], Text(text, style: ZType.badge)])); }
 
 class AvatarFrame extends StatelessWidget { final String avatarUrl; final String? frameUrl; final double size;

@@ -50,7 +50,7 @@ class _GiftStageState extends ConsumerState<GiftStage> with SingleTickerProvider
             child: DecoratedBox(
               decoration: BoxDecoration(
                 gradient: RadialGradient(
-                  colors: [ZC.purple.withOpacity(.30), Colors.transparent],
+                  colors: [ZC.purple.withValues(alpha: .30), Colors.transparent],
                   radius: .9,
                 ),
               ),
@@ -71,7 +71,7 @@ class _GiftStageState extends ConsumerState<GiftStage> with SingleTickerProvider
               final v = _flash.value;
               // 0 → peak at 30% → fade out
               final o = v == 0 ? 0.0 : (v < .3 ? v / .3 * .5 : (1 - v) / .7 * .5);
-              return Container(color: Colors.white.withOpacity(o.clamp(0.0, 0.5)));
+              return Container(color: Colors.white.withValues(alpha: o.clamp(0.0, 0.5)));
             },
           ),
         ),
@@ -115,7 +115,7 @@ class _EntranceBannerState extends State<_EntranceBanner> with SingleTickerProvi
           decoration: BoxDecoration(
             gradient: ZGrad.vip,
             borderRadius: BorderRadius.circular(28),
-            border: Border.all(color: ZC.gold.withOpacity(.7)),
+            border: Border.all(color: ZC.gold.withValues(alpha: .7)),
             boxShadow: const [BoxShadow(color: Color(0x66E9B949), blurRadius: 14)],
           ),
           child: Row(mainAxisSize: MainAxisSize.min, children: [

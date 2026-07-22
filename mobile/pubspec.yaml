@@ -12,8 +12,15 @@ dependencies:
   cached_network_image: ^3.3.1
   google_fonts: ^6.2.1
   svgaplayer_flutter: ^2.2.0   # SVGA gift animations (same format nalo/HelloYo use)
-  pag: ^1.3.4                  # libpag — PAG bomb/combo animations
+  pag: ^1.0.7                  # libpag — PAG bomb/combo animations
   path_provider: ^2.1.2        # unknown-gifts.log location
+# svgaplayer_flutter pins http ^0.13 while google_fonts/cache_manager need ^1.x.
+# Both only use http.get + bodyBytes (unchanged across 0.13→1.x), so align on 1.x.
+dependency_overrides:
+  http: ^1.2.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 flutter:
   uses-material-design: true
   assets:

@@ -90,7 +90,7 @@ class _RoomState extends ConsumerState<RoomScreen> {
     Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(20)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [const CircleAvatar(radius: 12, backgroundColor: ZC.card), const SizedBox(width: 6), Text('Room:${widget.rid}', style: const TextStyle(color: Colors.white, fontSize: 12))])),
     const SizedBox(width: 8),
-    Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3), decoration: BoxDecoration(color: ZC.purple.withOpacity(.4), borderRadius: BorderRadius.circular(12)),
+    Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3), decoration: BoxDecoration(color: ZC.purple.withValues(alpha: .4), borderRadius: BorderRadius.circular(12)),
       child: const Text('Ranking 99+', style: TextStyle(color: ZC.gold, fontSize: 11))),
     const Spacer(),
     const Icon(Icons.person, color: Colors.white70, size: 18), const Text(' 1', style: TextStyle(color: Colors.white70)),
@@ -176,7 +176,7 @@ class _GiftPanelState extends ConsumerState<GiftPanel> {
     final on = _sel == g.giftId;
     return InkWell(onTap: () => setState(() => _sel = g.giftId), child: Container(
       decoration: BoxDecoration(
-        color: on ? ZC.purple.withOpacity(.25) : Colors.transparent,
+        color: on ? ZC.purple.withValues(alpha: .25) : Colors.transparent,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: on ? ZC.gold : Colors.transparent)),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [

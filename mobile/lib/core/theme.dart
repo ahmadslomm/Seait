@@ -69,6 +69,6 @@ class ZTheme {
     colorScheme: const ColorScheme.dark(primary: ZC.purple, secondary: ZC.gold, surface: ZC.card),
     textTheme: GoogleFonts.cairoTextTheme(ThemeData.dark().textTheme),
     appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, elevation: 0),
-    tabBarTheme: const TabBarTheme(indicatorColor: ZC.gold, labelColor: ZC.textHi, unselectedLabelColor: ZC.textLo),
+    tabBarTheme: const TabBarThemeData(indicatorColor: ZC.gold, labelColor: ZC.textHi, unselectedLabelColor: ZC.textLo),
   );
 }

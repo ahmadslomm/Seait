@@ -4,4 +4,7 @@ dist/
 unknown-apis.log
 mobile/.dart_tool/
 mobile/build/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+unknown-gifts.log
 tools/*.json

@@ -43,7 +43,7 @@ class MeScreen extends ConsumerWidget {
       Positioned(right: 6, top: 30, child: const VipMedallion(s: 150)),
     ]),
     Padding(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8), child: Row(children: [
-      _stat('${u.fans}', 'Followers'), _stat('${u.following}', 'Following'), _stat('${u.gifts}', 'Gifts'), _stat('100', 'Visitors')])),
+      _stat('${u.fans}', 'Followers'), _stat('${u.following}', 'Following'), _stat('${u.gifts}', 'Gifts'), _stat('${u.beans}', 'Visitors')])),
     Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: InkWell(onTap: () => c.push('/vip'),
       child: Container(padding: const EdgeInsets.all(16), decoration: BoxDecoration(gradient: ZGrad.vip,
         borderRadius: BorderRadius.circular(16), border: Border.all(color: ZC.gold, width: 1.5),
@@ -59,9 +59,9 @@ class MeScreen extends ConsumerWidget {
           child: const Text('My Benefits', style: TextStyle(color: ZC.gold2, fontWeight: FontWeight.bold)))])))),
     const SizedBox(height: 12),
     Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Row(children: [
-      Expanded(child: WalletCard(label: 'Coins', value: '89', onTap: () => c.push('/wallet'))),
+      Expanded(child: WalletCard(label: 'Coins', value: '${u.coins}', onTap: () => c.push('/wallet'))),
       const SizedBox(width: 12),
-      Expanded(child: WalletCard(label: 'Diamonds', value: '57551', diamond: true, onTap: () => c.push('/wallet')))])),
+      Expanded(child: WalletCard(label: 'Diamonds', value: '${u.diamonds}', diamond: true, onTap: () => c.push('/wallet')))])),
     const SizedBox(height: 12),
     Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Container(
       padding: const EdgeInsets.symmetric(vertical: 16), decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(16)),
@@ -85,7 +85,7 @@ class MeScreen extends ConsumerWidget {
   Widget _gi(BuildContext c, IconData i, String l, Color color, String? route) => InkWell(
     onTap: route == null ? null : () => c.push(route),
     child: Column(children: [
-      Container(width: 52, height: 52, decoration: BoxDecoration(gradient: LinearGradient(colors: [color.withOpacity(.95), color.withOpacity(.7)],
+      Container(width: 52, height: 52, decoration: BoxDecoration(gradient: LinearGradient(colors: [color.withValues(alpha: .95), color.withValues(alpha: .7)],
         begin: Alignment.topLeft, end: Alignment.bottomRight), borderRadius: BorderRadius.circular(14)),
         child: Icon(i, color: Colors.white, size: 26)), const SizedBox(height: 6),
       Text(l, style: const TextStyle(color: Colors.white, fontSize: 12))]));

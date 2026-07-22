@@ -3,10 +3,8 @@ import 'package:pag/pag.dart';
 
 /// PAG renderer — plays a `.pag` file via libpag (Tencent), the same engine the
 /// original app uses for its bomb / combo-band animations. Asset or network url.
-/// [repeat] = 1 plays once then [onDone]; 0 loops forever.
-///
-/// NB: PAGView sizes to its parent, so width/height are applied via a SizedBox
-/// wrapper. Network uses `PAGView.url` (not `.network`).
+/// [repeat] = 1 plays once then [onDone]; 0 loops forever. On load failure the
+/// `defaultBuilder` fires [onDone] so the queue keeps moving (req: fallback).
 class PagRenderer extends StatelessWidget {
   final String url;         // '../assets/pag/...' or 'http...'
   final int repeat;
@@ -19,17 +17,12 @@ class PagRenderer extends StatelessWidget {
   Widget build(BuildContext context) {
     final count = repeat == 0 ? PAGView.REPEAT_COUNT_LOOP : repeat;
     void end() => onDone?.call();
-    Widget view;
-    try {
-      view = url.startsWith('http')
-          ? PAGView.url(url, repeatCount: count, autoPlay: true, onAnimationEnd: end)
-          : PAGView.asset(url, repeatCount: count, autoPlay: true, onAnimationEnd: end);
-    } catch (_) {
-      // plugin/asset unavailable → skip cleanly, keep the queue alive.
+    Widget fallback(BuildContext _) {
       WidgetsBinding.instance.addPostFrameCallback((_) => onDone?.call());
       return const SizedBox.shrink();
     }
-    if (width == null && height == null) return view;
-    return SizedBox(width: width, height: height, child: view);
+    return url.startsWith('http')
+        ? PAGView.network(url, width: width, height: height, repeatCount: count, autoPlay: true, onAnimationEnd: end, defaultBuilder: fallback)
+        : PAGView.asset(url, width: width, height: height, repeatCount: count, autoPlay: true, onAnimationEnd: end, defaultBuilder: fallback);
   }
 }

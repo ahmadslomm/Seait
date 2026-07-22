@@ -132,9 +132,9 @@ class _GiftPlayerState extends State<GiftPlayer> with TickerProviderStateMixin {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [ZC.purple.withOpacity(.85), ZC.card.withOpacity(.85)]),
+                gradient: LinearGradient(colors: [ZC.purple.withValues(alpha: .85), ZC.card.withValues(alpha: .85)]),
                 borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: ZC.gold.withOpacity(.5)),
+                border: Border.all(color: ZC.gold.withValues(alpha: .5)),
               ),
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 SizedBox(width: 40, height: 40, child: _renderer(e.def, w: 40, h: 40)),
