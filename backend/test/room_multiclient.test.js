@@ -100,6 +100,24 @@ const seatOf = (state, uid) => (state.seats || []).find(s => s.uid === uid);
     await onA;
   });
 
+  await step('room_state decorates OCCUPIED seats with a profile', async () => {
+    // Regression: a client joining an already-populated room used to receive raw
+    // seats with no nick/avatar, so occupied seats rendered as empty "No.N".
+    const onB = next(B, 'seat_update', d => d.seatNo === 8 && d.uid === B_UID);
+    B.emit('seat_update', { rid: RID, uid: B_UID, seatNo: 8 });
+    await onB;
+    const C = await connect();                    // a THIRD client joining late
+    const st = next(C, 'room_state');
+    C.emit('room_join', { rid: RID, uid: 999002, seatCount: 10 });
+    const s = await st;
+    const seat8 = (s.seats || []).find(x => x.seatNo === 8);
+    C.close();
+    if (!seat8 || !seat8.uid) throw new Error('seat 8 not occupied in room_state');
+    if (!seat8.profile || !seat8.profile.nick) throw new Error('room_state seat carried no profile');
+    B.emit('seat_leave', { rid: RID, uid: B_UID });
+    return `nick=${seat8.profile.nick}`;
+  });
+
   // ── chat both ways ──────────────────────────────────────────────
   await step('A -> B chat carries nick and role', async () => {
     const onB = next(B, 'chat', d => Number(d.uid) === A_UID);

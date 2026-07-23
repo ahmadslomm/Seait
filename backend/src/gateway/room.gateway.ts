@@ -109,7 +109,11 @@ export class RoomGateway implements OnGatewayDisconnect {
       rid: r.rid,
       seatCount: r.seatCount,
       ownerUid: r.ownerUid,
-      seats: r.seats,
+      // Decorate occupied seats with their profile. seat_update already does
+      // this, but room_state did not — so a client joining an ALREADY POPULATED
+      // room rendered occupied seats as empty "No.N" placeholders.
+      seats: await Promise.all(r.seats.map(async s =>
+        s.uid ? { ...s, profile: await this.profile(s.uid) } : s)),
       members: [...r.members.values()],
       admins: [...r.admins],
       muted: [...r.muted],

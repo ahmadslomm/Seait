@@ -245,7 +245,10 @@ class _RoomState extends ConsumerState<RoomScreen> {
   Widget _seat(dynamic s, int i, double d, [Map owner = const {}]) {
     final m = (s is Map) ? s : const {};
     final host = i == 0;
-    final src = (host && m['uid'] == null && owner.isNotEmpty) ? owner : m;
+    // The seat's occupant profile arrives nested under 'profile' (room_state and
+    // seat_update both decorate it); fall back to the flat map for older shapes.
+    final prof = (m['profile'] is Map) ? m['profile'] as Map : m;
+    final src = (host && m['uid'] == null && owner.isNotEmpty) ? owner : prof;
     final uid = src['uid'] ?? m['uid'];
     return RoomSeat(
       no: i + 1,
