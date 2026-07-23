@@ -175,14 +175,18 @@ class RoomSeat extends StatelessWidget {
         if (speaking) Container(width: d + 10, height: d + 10, decoration: BoxDecoration(shape: BoxShape.circle,
           border: Border.all(color: ZC.gold, width: 2.5),
           boxShadow: [BoxShadow(color: ZC.gold.withValues(alpha: .45), blurRadius: 10)])),
+        // outer gloss ring — the original seat is a double-ringed glass bubble
+        Container(width: d + 6, height: d + 6, decoration: BoxDecoration(shape: BoxShape.circle,
+          border: Border.all(color: Colors.white.withValues(alpha: .22), width: 1.2))),
         // seat disc
         Container(width: d, height: d, decoration: BoxDecoration(shape: BoxShape.circle,
           color: Colors.white.withValues(alpha: .10),
-          border: Border.all(color: Colors.white.withValues(alpha: .45), width: 1.2)),
+          border: Border.all(color: Colors.white.withValues(alpha: .55), width: 1.4)),
           child: avatarUrl != null && avatarUrl!.startsWith('http')
             ? ClipOval(child: CachedNetworkImage(imageUrl: avatarUrl!, fit: BoxFit.cover,
-                errorWidget: (_, __, ___) => Icon(Icons.chair, color: Colors.white70, size: d * .5)))
-            : Icon(locked ? Icons.lock : Icons.chair, color: Colors.white.withValues(alpha: .85), size: d * .5)),
+                errorWidget: (_, __, ___) => Icon(Icons.weekend_outlined, color: Colors.white70, size: d * .52)))
+            : Icon(locked ? Icons.lock_outline : Icons.weekend_outlined,
+                color: Colors.white.withValues(alpha: .9), size: d * .52)),
         // avatar decoration frame sits OUTSIDE the disc, like the original
         if (frameUrl != null && frameUrl!.startsWith('http'))
           IgnorePointer(child: CachedNetworkImage(imageUrl: frameUrl!, width: d * 1.5, height: d * 1.5,

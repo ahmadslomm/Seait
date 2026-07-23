@@ -91,6 +91,11 @@ class _RoomState extends ConsumerState<RoomScreen> {
     final theme = ['arabian', 'galaxy', 'stage'][(int.tryParse('${room['roomType'] ?? 0}') ?? 0) % 3];
     final width = MediaQuery.of(c).size.width;
     final seatD = width * 0.107;   // measured from the original: Ø ≈ 10.7% of width
+    // Owner shown in cell 0 (original always renders the room owner there).
+    final ownerUid = int.tryParse('${room['owner_uid'] ?? ''}') ?? 0;
+    final ownerRec = ownerUid == 0 ? const {} :
+      (ref.watch(actionProvider((action: 'user.getUserinfo',
+        params: {'uid': ownerUid, 'toUid': ownerUid}))).asData?.value as Map? ?? const {});
 
     return Scaffold(
       body: Stack(children: [
@@ -114,7 +119,7 @@ class _RoomState extends ConsumerState<RoomScreen> {
               crossAxisCount: cols, shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               childAspectRatio: .78, mainAxisSpacing: 2, crossAxisSpacing: 2,
-              children: [for (int i = 0; i < seats.length; i++) _seat(seats[i], i, seatD)])),
+              children: [for (int i = 0; i < seats.length; i++) _seat(seats[i], i, seatD, ownerRec)])),
           _chatFeed(),
           _bottomBar(c),
         ])),
@@ -123,17 +128,21 @@ class _RoomState extends ConsumerState<RoomScreen> {
     );
   }
 
-  /// One grid cell. Index 0 is the host/owner chair in the original layout.
-  Widget _seat(dynamic s, int i, double d) {
+  /// One grid cell. Index 0 is the host/owner chair: the original always shows
+  /// the room OWNER there (avatar + decoration frame + name), even before anyone
+  /// takes a mic, so fall back to the owner record for that cell.
+  Widget _seat(dynamic s, int i, double d, [Map owner = const {}]) {
     final m = (s is Map) ? s : const {};
-    final uid = m['uid'];
+    final host = i == 0;
+    final src = (host && m['uid'] == null && owner.isNotEmpty) ? owner : m;
+    final uid = src['uid'] ?? m['uid'];
     return RoomSeat(
       no: i + 1,
       diameter: d,
-      host: i == 0,
-      avatarUrl: '${m['avatar'] ?? ''}'.isEmpty ? null : '${m['avatar']}',
-      frameUrl: '${m['avatarFrame'] ?? ''}'.isEmpty ? null : '${m['avatarFrame']}',
-      name: '${m['nick'] ?? ''}',
+      host: host,
+      avatarUrl: '${src['avatar'] ?? ''}'.isEmpty ? null : '${src['avatar']}',
+      frameUrl: '${src['avatarFrame'] ?? ''}'.isEmpty ? null : '${src['avatarFrame']}',
+      name: '${src['nick'] ?? ''}',
       charm: int.tryParse('${m['charmValue'] ?? 0}') ?? 0,
       micOff: (int.tryParse('${m['micState'] ?? 0}') ?? 0) == 1,
       locked: (int.tryParse('${m['lock'] ?? 0}') ?? 0) == 1,
