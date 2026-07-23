@@ -61,10 +61,13 @@ s.on('connect', () => {
 s.on('user_enter', d => {
   if (Number(d.uid) !== UID) return;
   if (Date.now() - joinedAt < SETTLE_MS) return log('ignoring own join echo');
-  if (fired) return;
-  fired = true;
+  if (running) return;
+  if (Date.now() - lastRun < COOLDOWN_MS) return;
+  running = true;
   log('APP DETECTED in room — starting transition sequence');
-  run().catch(e => log('driver error', e));
+  run()
+    .catch(e => log('driver error', e))
+    .finally(() => { running = false; lastRun = Date.now(); });
 });
 
 // Echo back what the server broadcasts, so the driver log can be lined up
