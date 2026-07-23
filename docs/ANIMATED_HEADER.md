@@ -61,3 +61,58 @@ This needs two new dependencies (`archive`, `video_player`), a GLSL shader
 asset, a download/cache layer and its own emulator verification pass. It was
 scoped but deliberately left unimplemented rather than half-landed — the
 current header keeps the flat gradient, which is visually wrong but stable.
+
+---
+
+# Implementation attempt (r-t4) — BLOCKED, and why
+
+Status: **module built and proven to download/unpack, but the compositing step
+cannot work with `video_player`. Disabled by default.**
+
+## What works (verified on device, run r-t4)
+
+`DecorationCache` fetches the CDN zip, unpacks the mp4 and caches it. Confirmed
+in logcat on the emulator:
+
+```
+I flutter : [decoration] unpacked 66c2c58d993e82bd54736a53446d6994.mp4
+            -> /data/user/0/com.example.seait/files/decorations/4de44b0d…mp4
+```
+
+0 crashes. So download → unzip → cache → `VideoPlayerController.file` is sound.
+
+## What does not work
+
+Two compositing approaches were tried; **both fail for the same root cause**.
+
+1. **FragmentShader sampling the video.** Impossible: `video_player` never
+   exposes a `ui.Image`, so there is nothing to bind to a shader sampler.
+2. **Two-layer draw + `ColorFilter` luminance→alpha + `BlendMode.dstIn`.**
+   Compiles and runs, but renders a **black box**.
+
+Root cause: on Android `video_player` draws through a **platform texture**. Those
+pixels are composited by the platform, not by Skia, so Flutter cannot read them
+back. Any operation needing readback — `saveLayer`, `BlendMode`, `ColorFiltered`,
+shader sampling — silently fails to see the video content.
+
+This is a property of textured platform views, not a bug in the code above.
+
+## Viable routes (not attempted)
+
+1. **Decode frames to `ui.Image` yourself** (ffmpeg-kit or a platform channel),
+   then either shader-composite or `drawImage` per frame. Full control; heaviest.
+2. **Convert the mp4 offline to SVGA or PAG** and reuse the renderers this app
+   already has — both draw into Skia and support real alpha. Cheapest path to a
+   correct result; needs an offline conversion step per decoration.
+3. **Pre-multiply offline into an animated WebP/APNG** and play as an image
+   sequence. Simple, but larger files and no hardware video decode.
+
+Route 2 fits this codebase best: `SvgaRenderer`/`PagRenderer` are already wired,
+tested and proven on device.
+
+## Current state
+
+`kAnimatedHeader = bool.fromEnvironment('ANIMATED_HEADER')` defaults **false**,
+so the Me header keeps the static gradient. The module stays in
+`lib/decoration/` because the download/cache half is correct and reusable; only
+the compositing half is blocked.

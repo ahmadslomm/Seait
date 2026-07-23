@@ -6,6 +6,7 @@ import '../core/theme.dart';
 import '../providers.dart';
 import '../models/user.dart';
 import '../ui/components.dart';
+import '../core/config.dart';
 import '../decoration/alpha_video_view.dart';
 
 /// Me / Profile — reproduces screenshot 193434, wired to REAL user.getUserinfo.
@@ -31,9 +32,10 @@ class MeScreen extends ConsumerWidget {
       // gives infoBgImg as a CDN zip holding an RGB+alpha mp4 — AlphaVideoView
       // unpacks and composites it, falling back to the gradient while it loads
       // or if anything fails.
-      SizedBox(height: 178, width: double.infinity, child: u.infoBgImg.startsWith('http')
-        ? AlphaVideoView(url: u.infoBgImg, fallback: const _HeaderGradient())
-        : const _HeaderGradient()),
+      SizedBox(height: 178, width: double.infinity,
+        child: (kAnimatedHeader && u.infoBgImg.startsWith('http'))
+          ? AlphaVideoView(url: u.infoBgImg, fallback: const _HeaderGradient())
+          : const _HeaderGradient()),
       Positioned(left: 16, top: 54, child: Row(children: [
         Text(u.nick.isEmpty ? 'ZaffaLive' : u.nick, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
         const SizedBox(width: 6), const Icon(Icons.edit, color: ZC.textLo, size: 16)])),

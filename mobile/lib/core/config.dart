@@ -10,3 +10,9 @@ class Cfg {
 /// Defaults to FALSE, so a normal release build has these paths tree-shaken out
 /// entirely — they only exist when built with --dart-define=DEMO_TRIGGERS=true.
 const bool kDemoTriggers = bool.fromEnvironment('DEMO_TRIGGERS');
+
+/// Animated profile header (infoBgImg RGB+alpha video). OFF by default: see
+/// docs/ANIMATED_HEADER.md — video_player draws via a platform texture whose
+/// pixels Skia cannot read back, so the alpha composite yields a black box.
+/// Enable only for experiments with --dart-define=ANIMATED_HEADER=true.
+const bool kAnimatedHeader = bool.fromEnvironment('ANIMATED_HEADER');
