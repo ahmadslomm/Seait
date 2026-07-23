@@ -14,7 +14,10 @@ import '../gift_engine/animation_manager.dart';
 /// Voice Room — reproduces the app's live room: dynamic seat grid (5/10/15/21/30),
 /// gift banner, chat (All/Message/Gift), bottom bar, gift panel. Real-time via RoomSocket.
 class RoomScreen extends ConsumerStatefulWidget {
-  final int rid; const RoomScreen({super.key, required this.rid});
+  final int rid;
+  /// QA-only: force the decorative win plate on (see kDemoTriggers).
+  final bool demoBanner;
+  const RoomScreen({super.key, required this.rid, this.demoBanner = false});
   @override ConsumerState<RoomScreen> createState() => _RoomState();
 }
 
@@ -40,6 +43,10 @@ class _RoomState extends ConsumerState<RoomScreen> {
 
   @override void initState() {
     super.initState();
+    // Development trigger only — compiled out of normal release builds.
+    if (kDemoTriggers && widget.demoBanner) {
+      giftBanner = 'اونــلاين sends Lucky Bag  ·  100 times returns 4500 coins';
+    }
     // Load the REAL gift catalog (gift.getGiftList) into the engine.
     ref.read(giftsProvider.future).then((g) { _engine.clear(); _engine.loadCatalog(g); }).catchError((_) {});
     socket.connect();

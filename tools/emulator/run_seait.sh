@@ -121,6 +121,8 @@ open "/gift-studio"; tapf 62 25; shot 26_entrance 3
 
 say "voice room"
 open "/room/1"; shot 30_room 8
+# deterministic decorative-overlay check (QA build only)
+open "/room/1?demoBanner=1"; shot 34_room_banner 6
 tapf 95 95;     shot 31_gift_panel 4
 tapf 20 45;     shot 32_gift_selected 2
 tapf 88 92;     shot 33_room_gift_sent 3

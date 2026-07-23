@@ -24,5 +24,9 @@ final router = GoRouter(initialLocation: '/', routes: [
   GoRoute(path: '/tasks', builder: (c, s) => const TasksScreen()),
   GoRoute(path: '/search', builder: (c, s) => const SearchScreen()),
   GoRoute(path: '/gift-studio', builder: (c, s) => const GiftStudioScreen()),
-  GoRoute(path: '/room/:rid', builder: (c, s) => RoomScreen(rid: int.parse(s.pathParameters['rid']!))),
+  // ?demoBanner=1 forces the decorative win plate on for QA. The flag is only
+  // honoured when built with --dart-define=DEMO_TRIGGERS=true (see kDemoTriggers).
+  GoRoute(path: '/room/:rid', builder: (c, s) => RoomScreen(
+    rid: int.parse(s.pathParameters['rid']!),
+    demoBanner: s.uri.queryParameters['demoBanner'] == '1')),
 ]);
