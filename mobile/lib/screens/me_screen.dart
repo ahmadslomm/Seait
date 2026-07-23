@@ -29,13 +29,20 @@ class MeScreen extends ConsumerWidget {
   Widget _body(BuildContext c, UserModel u) => SingleChildScrollView(child: Column(children: [
     Stack(clipBehavior: Clip.none, children: [
       // Header: the original plays the user's animated decoration here. The API
-      // gives infoBgImg as a CDN zip holding an RGB+alpha mp4 — AlphaVideoView
-      // unpacks and composites it, falling back to the gradient while it loads
-      // or if anything fails.
-      SizedBox(height: 178, width: double.infinity,
-        child: (kAnimatedHeader && u.infoBgImg.startsWith('http'))
-          ? AlphaVideoView(url: u.infoBgImg, fallback: const _HeaderGradient())
-          : const _HeaderGradient()),
+      // hands back infoBgImg as a CDN zip holding an RGB+alpha mp4, which Flutter
+      // cannot alpha-composite from video_player (platform texture — see
+      // docs/ANIMATED_HEADER.md). The bundle is converted offline into an
+      // animated WebP with real alpha, which Skia composites correctly.
+      SizedBox(height: 178, width: double.infinity, child: Stack(fit: StackFit.expand, children: [
+        const _HeaderGradient(),
+        if (u.infoBgImg.isNotEmpty)
+          Image.asset('assets/ui/header_deco_vip5.webp',
+            fit: BoxFit.cover, alignment: Alignment.topCenter,
+            errorBuilder: (_, __, ___) => const SizedBox.shrink()),
+        // experimental direct-video path, off unless ANIMATED_HEADER=true
+        if (kAnimatedHeader && u.infoBgImg.startsWith('http'))
+          AlphaVideoView(url: u.infoBgImg, fallback: const SizedBox.shrink()),
+      ])),
       Positioned(left: 16, top: 54, child: Row(children: [
         Text(u.nick.isEmpty ? 'ZaffaLive' : u.nick, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
         const SizedBox(width: 6), const Icon(Icons.edit, color: ZC.textLo, size: 16)])),
