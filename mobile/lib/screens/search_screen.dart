@@ -16,9 +16,15 @@ class SearchScreen extends ConsumerWidget {
         const SectionHeader('People you may like'),
         rec.when(loading: () => const Center(child: CircularProgressIndicator(color: ZC.purple)),
           error: (e,_) => EmptyState(icon: Icons.cloud_off, text: 'API: $e'),
-          data: (d) { final list = (d is List) ? d : []; return list.isEmpty
-            ? const Padding(padding: EdgeInsets.all(ZSpace.lg), child: Text('(no suggestions — logged)', style: TextStyle(color: ZC.textLo)))
-            : Column(children: [for (final u in list) ZListTile(Icons.person, '$u')]); }),
+          data: (d) {
+            // The action may return a bare list or {list:[...]} — accept both,
+            // and render user records as cards (never the raw Map).
+            final raw = (d is Map) ? (d['list'] ?? d['users'] ?? const []) : d;
+            final list = (raw is List) ? raw.whereType<Map>().toList() : const <Map>[];
+            return list.isEmpty
+              ? const Padding(padding: EdgeInsets.all(ZSpace.lg), child: Text('(no suggestions — logged)', style: TextStyle(color: ZC.textLo)))
+              : Column(children: [for (final u in list) UserResultTile(u)]);
+          }),
       ]));
   }
 }

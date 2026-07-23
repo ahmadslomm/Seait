@@ -68,6 +68,8 @@ class _RoomState extends ConsumerState<RoomScreen> {
   void _sendGift(GiftDef def, int qty) {
     socket.sendGift(widget.rid, Cfg.myUid, 0, def.giftId, qty, def.price);
     _engine.receive(GiftEvent(def: def, senderUid: Cfg.myUid, senderName: 'Me', roomId: widget.rid, count: qty));
+    // Mirror the original's win/gift plate above the seats.
+    setState(() => giftBanner = 'Me sends ${def.name} x$qty  ·  returns ${def.price * qty} coins');
   }
 
   /// Column count comes from the room's own seat count — the original lays 5/10/15
@@ -108,7 +110,9 @@ class _RoomState extends ConsumerState<RoomScreen> {
               gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
                 colors: [Color(0xFF3A1D6E), Color(0xFF1A0B2E)]))))),
       Positioned.fill(child: Container(color: const Color(0x442A1148))), // legibility scrim
-      SafeArea(child: Column(children: [
+      // Positioned.fill: the seat grid is shrink-wrapped, so without this the
+      // Column sizes to its children and leaves dead space under the bottom bar.
+      Positioned.fill(child: SafeArea(child: Column(children: [
           _topBar(c, room),
           if (giftBanner != null) _banner(),
           // Seat grid — host occupies cell 0 exactly like the original; every
@@ -119,9 +123,9 @@ class _RoomState extends ConsumerState<RoomScreen> {
               physics: const NeverScrollableScrollPhysics(),
               childAspectRatio: .78, mainAxisSpacing: 2, crossAxisSpacing: 2,
               children: [for (int i = 0; i < seats.length; i++) _seat(seats[i], i, seatD, ownerRec)])),
-          _chatFeed(),
+          Expanded(child: _chatFeed()),
           _bottomBar(c),
-        ])),
+        ]))),
       const Positioned.fill(child: GiftStage()), // 5-layer gift overlay
       ]),
     );
@@ -166,10 +170,28 @@ class _RoomState extends ConsumerState<RoomScreen> {
     IconButton(icon: const Icon(Icons.share, color: Colors.white70, size: 20), padding: EdgeInsets.zero, constraints: _tightBtn, onPressed: () {}),
     IconButton(icon: const Icon(Icons.more_horiz, color: Colors.white70, size: 20), padding: EdgeInsets.zero, constraints: _tightBtn, onPressed: () => _roomInfo(c)),
   ]));
-  Widget _banner() => Container(margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), padding: const EdgeInsets.all(8),
-    decoration: BoxDecoration(gradient: ZGrad.coin, borderRadius: BorderRadius.circular(20)),
-    child: Row(children: [const Icon(Icons.card_giftcard, color: Colors.brown), const SizedBox(width: 8), Expanded(child: Text(giftBanner!, style: const TextStyle(color: Colors.brown, fontWeight: FontWeight.bold)))]));
-  Widget _chatFeed() => Container(height: 120, padding: const EdgeInsets.symmetric(horizontal: 12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  /// Lucky-win / gift banner using the original ornate gold plate, with the
+  /// "N Times" medallion and the lucky-bag charm layered on top. Falls back to
+  /// the coin gradient if the artwork is unavailable.
+  Widget _banner() => Container(
+    margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+    height: 46,
+    child: Stack(alignment: Alignment.center, children: [
+      Positioned.fill(child: Image.asset('assets/ui/banner_gold.webp', fit: BoxFit.fill,
+        errorBuilder: (_, __, ___) => DecoratedBox(decoration: BoxDecoration(
+          gradient: ZGrad.coin, borderRadius: BorderRadius.circular(20))))),
+      Padding(padding: const EdgeInsets.symmetric(horizontal: 10), child: Row(children: [
+        Image.asset('assets/ui/lucky_bag.webp', width: 30, height: 30,
+          errorBuilder: (_, __, ___) => const Icon(Icons.card_giftcard, color: Colors.brown, size: 20)),
+        const SizedBox(width: 6),
+        Expanded(child: Text(giftBanner ?? '', maxLines: 2, overflow: TextOverflow.ellipsis,
+          style: const TextStyle(color: Color(0xFF5B3A12), fontSize: 11, fontWeight: FontWeight.w700))),
+        Image.asset('assets/ui/times_100.webp', height: 34,
+          errorBuilder: (_, __, ___) => const SizedBox.shrink()),
+      ])),
+    ]));
+
+  Widget _chatFeed() => Container(padding: const EdgeInsets.symmetric(horizontal: 12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     const Row(children: [Text('All', style: TextStyle(color: Colors.white)), SizedBox(width: 16), Text('Message', style: TextStyle(color: ZC.textLo)), SizedBox(width: 16), Text('Gift', style: TextStyle(color: ZC.textLo))]),
     Expanded(child: ListView(children: [for (final m in chat.reversed.take(6).toList().reversed) Padding(padding: const EdgeInsets.symmetric(vertical: 2), child: Text('u${m['uid']}: ${m['text']}', style: const TextStyle(color: ZC.textLo, fontSize: 12)))])),
   ]));

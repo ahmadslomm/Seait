@@ -210,6 +210,61 @@ class RoomSeat extends StatelessWidget {
   }
 }
 
+/// A user result row (search / suggestions / member lists).
+///
+/// Takes a raw user record straight from the API and renders the fields that
+/// are actually present — never the Map itself. Missing fields are simply
+/// omitted rather than printed as "null".
+class UserResultTile extends StatelessWidget {
+  final Map user;
+  final VoidCallback? onTap;
+  const UserResultTile(this.user, {super.key, this.onTap});
+
+  String _s(String k) { final v = user[k]; return v == null ? '' : '$v'; }
+
+  @override Widget build(BuildContext c) {
+    final avatar = _s('avatar');
+    final nick = _s('nick');
+    final uid = _s('uid');
+    final sign = _s('sign').replaceAll('\n', ' ').trim();
+    final flag = _s('nationalFlag');
+    final sex = int.tryParse(_s('sex')) ?? 0;
+    final age = _s('age');
+    final wealth = int.tryParse(_s('wealthLv')) ?? 0;
+    final noble = int.tryParse(_s('noble_level')) ?? 0;
+
+    return Padding(padding: const EdgeInsets.symmetric(horizontal: ZSpace.lg, vertical: 5),
+      child: ZCard(onTap: onTap, padding: const EdgeInsets.all(ZSpace.md), child: Row(children: [
+        CircleAvatar(radius: 24, backgroundColor: ZC.bg2,
+          backgroundImage: avatar.startsWith('http') ? CachedNetworkImageProvider(avatar) : null,
+          child: avatar.startsWith('http') ? null : const Icon(Icons.person, color: ZC.textLo)),
+        const SizedBox(width: ZSpace.md),
+        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+          Row(children: [
+            Flexible(child: Text(nick.isEmpty ? 'U$uid' : nick, maxLines: 1, overflow: TextOverflow.ellipsis,
+              style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600))),
+            if (flag.startsWith('http')) Padding(padding: const EdgeInsets.only(left: 6),
+              child: ClipRRect(borderRadius: BorderRadius.circular(2),
+                child: CachedNetworkImage(imageUrl: flag, width: 18, height: 12, fit: BoxFit.cover,
+                  errorWidget: (_, __, ___) => const SizedBox.shrink()))),
+          ]),
+          const SizedBox(height: 3),
+          Row(children: [
+            if (uid.isNotEmpty) Text('ID:$uid', style: ZType.label.copyWith(fontSize: 11)),
+            if (age.isNotEmpty && age != '0') ...[const SizedBox(width: 6),
+              Icon(sex == 2 ? Icons.female : Icons.male, size: 12, color: sex == 2 ? ZC.pink : ZC.purple2),
+              Text(age, style: ZType.label.copyWith(fontSize: 11))],
+            if (wealth > 0) ...[const SizedBox(width: 6), ZBadge('W$wealth', const Color(0xFFB03A5B))],
+            if (noble > 0) ...[const SizedBox(width: 4), NobleEmblem(noble, s: 16)],
+          ]),
+          if (sign.isNotEmpty) Padding(padding: const EdgeInsets.only(top: 3),
+            child: Text(sign, maxLines: 1, overflow: TextOverflow.ellipsis, style: ZType.label.copyWith(fontSize: 11))),
+        ])),
+        const Icon(Icons.chevron_right, color: ZC.textLo, size: 20),
+      ])));
+  }
+}
+
 class RankingItem extends StatelessWidget { final int rank; final String name; final int score; final String? avatarUrl;
   const RankingItem({super.key, required this.rank, required this.name, required this.score, this.avatarUrl});
   @override Widget build(BuildContext c) => Padding(padding: const EdgeInsets.symmetric(horizontal: ZSpace.md, vertical: 6), child: Row(children: [
