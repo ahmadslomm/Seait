@@ -1,3 +1,7 @@
+// Load .env before anything reads process.env. Prisma reads .env itself for
+// CLI commands, but the Nest app did not — so AGORA_* (and any future
+// server config) were silently undefined at runtime.
+import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
