@@ -1,3 +1,4 @@
+import '../core/media.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
@@ -77,7 +78,7 @@ class _GiftPlayerState extends State<GiftPlayer> with TickerProviderStateMixin {
   Widget _iconFallback(GiftDef d) => Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           d.icon.startsWith('http')
-              ? Image.network(d.icon, width: 64, height: 64, errorBuilder: (_, __, ___) => const Icon(Icons.card_giftcard, color: ZC.gold, size: 56))
+              ? Image.network(Media.url(d.icon) ?? '', width: 64, height: 64, errorBuilder: (_, __, ___) => const Icon(Icons.card_giftcard, color: ZC.gold, size: 56))
               : const Icon(Icons.card_giftcard, color: ZC.gold, size: 56),
         ]),
       );

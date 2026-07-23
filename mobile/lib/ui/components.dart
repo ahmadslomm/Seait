@@ -1,3 +1,4 @@
+import '../core/media.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../core/theme.dart';
@@ -92,9 +93,10 @@ class ZBadge extends StatelessWidget { final String text; final Color color; fin
 class AvatarFrame extends StatelessWidget { final String avatarUrl; final String? frameUrl; final double size;
   const AvatarFrame({super.key, required this.avatarUrl, this.frameUrl, this.size = 48});
   @override Widget build(BuildContext c) => SizedBox(width: size * 1.4, height: size * 1.4, child: Stack(alignment: Alignment.center, children: [
-    ClipOval(child: CachedNetworkImage(imageUrl: avatarUrl, width: size, height: size, fit: BoxFit.cover,
+    ClipOval(child: CachedNetworkImage(imageUrl: Media.url(avatarUrl) ?? '', width: size, height: size, fit: BoxFit.cover,
       errorWidget: (_, __, ___) => CircleAvatar(radius: size / 2, backgroundColor: ZC.card, child: const Icon(Icons.person, color: ZC.textLo)))),
-    if (frameUrl != null && frameUrl!.endsWith('.png')) CachedNetworkImage(imageUrl: frameUrl!, width: size * 1.4, height: size * 1.4)])); }
+    if (Media.has(frameUrl)) CachedNetworkImage(imageUrl: Media.url(frameUrl)!, width: size * 1.4, height: size * 1.4,
+      errorWidget: (_, __, ___) => const SizedBox.shrink())])); }
 
 /// Coins / Diamonds card — uses the ORIGINAL app's card artwork as the
 /// background (gold silk for coins, violet silk for diamonds) with the gradient
@@ -182,14 +184,14 @@ class RoomSeat extends StatelessWidget {
         Container(width: d, height: d, decoration: BoxDecoration(shape: BoxShape.circle,
           color: Colors.white.withValues(alpha: .10),
           border: Border.all(color: Colors.white.withValues(alpha: .55), width: 1.4)),
-          child: avatarUrl != null && avatarUrl!.startsWith('http')
-            ? ClipOval(child: CachedNetworkImage(imageUrl: avatarUrl!, fit: BoxFit.cover,
+          child: Media.has(avatarUrl)
+            ? ClipOval(child: CachedNetworkImage(imageUrl: Media.url(avatarUrl)!, fit: BoxFit.cover,
                 errorWidget: (_, __, ___) => Icon(Icons.weekend_outlined, color: Colors.white70, size: d * .52)))
             : Icon(locked ? Icons.lock_outline : Icons.weekend_outlined,
                 color: Colors.white.withValues(alpha: .9), size: d * .52)),
         // avatar decoration frame sits OUTSIDE the disc, like the original
-        if (frameUrl != null && frameUrl!.startsWith('http'))
-          IgnorePointer(child: CachedNetworkImage(imageUrl: frameUrl!, width: d * 1.5, height: d * 1.5,
+        if (Media.has(frameUrl))
+          IgnorePointer(child: CachedNetworkImage(imageUrl: Media.url(frameUrl)!, width: d * 1.5, height: d * 1.5,
             fit: BoxFit.contain, errorWidget: (_, __, ___) => const SizedBox.shrink())),
         if (micOff) Positioned(right: d * .16, bottom: d * .16,
           child: CircleAvatar(radius: d * .16, backgroundColor: Colors.black54,
@@ -236,16 +238,16 @@ class UserResultTile extends StatelessWidget {
     return Padding(padding: const EdgeInsets.symmetric(horizontal: ZSpace.lg, vertical: 5),
       child: ZCard(onTap: onTap, padding: const EdgeInsets.all(ZSpace.md), child: Row(children: [
         CircleAvatar(radius: 24, backgroundColor: ZC.bg2,
-          backgroundImage: avatar.startsWith('http') ? CachedNetworkImageProvider(avatar) : null,
-          child: avatar.startsWith('http') ? null : const Icon(Icons.person, color: ZC.textLo)),
+          backgroundImage: Media.has(avatar) ? CachedNetworkImageProvider(Media.url(avatar)!) : null,
+          child: Media.has(avatar) ? null : const Icon(Icons.person, color: ZC.textLo)),
         const SizedBox(width: ZSpace.md),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
           Row(children: [
             Flexible(child: Text(nick.isEmpty ? 'U$uid' : nick, maxLines: 1, overflow: TextOverflow.ellipsis,
               style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600))),
-            if (flag.startsWith('http')) Padding(padding: const EdgeInsets.only(left: 6),
+            if (Media.has(flag)) Padding(padding: const EdgeInsets.only(left: 6),
               child: ClipRRect(borderRadius: BorderRadius.circular(2),
-                child: CachedNetworkImage(imageUrl: flag, width: 18, height: 12, fit: BoxFit.cover,
+                child: CachedNetworkImage(imageUrl: Media.url(flag)!, width: 18, height: 12, fit: BoxFit.cover,
                   errorWidget: (_, __, ___) => const SizedBox.shrink()))),
           ]),
           const SizedBox(height: 3),

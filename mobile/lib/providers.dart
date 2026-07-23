@@ -1,3 +1,4 @@
+import 'core/media.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/api.dart';
@@ -78,14 +79,20 @@ final userInfoProvider = FutureProvider.family<Map, int>((ref, uid) async {
   return (d is Map) ? d : const {};
 });
 
-/// Server-driven art overrides. The backend may return a {logicalKey: url} map
-/// (future Theme/Background Manager); applying it re-points any asset slot with
-/// no code change. Unknown actions resolve empty and are fallback-logged, so
-/// this is a no-op until the endpoint exists.
+/// Server-driven art overrides — app.getThemeAssets.
+///
+/// Returns {logicalKey: path} plus `assetBase`. Applying it re-points any asset
+/// slot with no code change, which is how the Theme/Background Manager will
+/// deliver skins. assetBase is installed into [Media] FIRST, because every
+/// relative path in the map — and every image field in every other response —
+/// is resolved against it; applying overrides before the base would produce
+/// urls pointing at the wrong host for one frame.
 final assetOverridesProvider = FutureProvider<Map<String, dynamic>>((ref) async {
   try {
     final d = await ref.read(apiProvider).call('app.getThemeAssets');
     final m = (d is Map) ? Map<String, dynamic>.from(d) : <String, dynamic>{};
+    Media.setBase(m['assetBase'] as String?);
+    m.remove('assetBase'); // a base is not an art slot
     if (m.isNotEmpty) Assets.applyOverrides(m);
     return m;
   } catch (_) {

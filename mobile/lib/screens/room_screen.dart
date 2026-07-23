@@ -1,3 +1,4 @@
+import '../core/media.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -197,8 +198,8 @@ class _RoomState extends ConsumerState<RoomScreen> {
       body: Stack(children: [
       // Backdrop: the room's own cover art when the API supplies one, otherwise
       // the bundled theme selected by the room's type (never a fixed index).
-      Positioned.fill(child: cover.startsWith('http')
-        ? CachedNetworkImage(imageUrl: cover, fit: BoxFit.cover,
+      Positioned.fill(child: Media.has(cover)
+        ? CachedNetworkImage(imageUrl: Media.url(cover)!, fit: BoxFit.cover,
             errorWidget: (_, __, ___) => _backdrop(theme))
         : _backdrop(theme)),
       Positioned.fill(child: Container(color: const Color(0x442A1148))), // legibility scrim
@@ -228,8 +229,10 @@ class _RoomState extends ConsumerState<RoomScreen> {
   Widget _backdrop(String theme) {
     final a = Assets.roomBackdrop(theme);
     // A server override is a url; the bundled default is an asset key.
-    if (Assets.isRemote(a)) {
-      return CachedNetworkImage(imageUrl: a!, fit: BoxFit.cover,
+    // A server override may be an absolute url or a relative catalogue path;
+    // Media.url resolves both. Bundled defaults stay asset keys.
+    if (a != null && !a.startsWith('assets/')) {
+      return CachedNetworkImage(imageUrl: Media.url(a)!, fit: BoxFit.cover,
         errorWidget: (_, __, ___) => _gradient());
     }
     return Image.asset(a ?? '', fit: BoxFit.cover, errorBuilder: (_, __, ___) => _gradient());
@@ -515,8 +518,8 @@ class _GiftPanelState extends ConsumerState<GiftPanel> {
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: on ? ZC.gold : Colors.transparent)),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Expanded(child: g.icon.startsWith('http')
-          ? Image.network(g.icon, errorBuilder: (_, __, ___) => const Icon(Icons.card_giftcard, color: ZC.gold, size: 30))
+        Expanded(child: Media.has(g.icon)
+          ? Image.network(Media.url(g.icon)!, errorBuilder: (_, __, ___) => const Icon(Icons.card_giftcard, color: ZC.gold, size: 30))
           : Icon(Icons.card_giftcard, color: g.priority.rank >= GiftPriority.legendary.rank ? ZC.gold2 : ZC.gold, size: 30)),
         Text(g.name, style: const TextStyle(color: Colors.white, fontSize: 11), overflow: TextOverflow.ellipsis, maxLines: 1),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [

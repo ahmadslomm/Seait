@@ -1,3 +1,4 @@
+import '../core/media.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -52,7 +53,7 @@ class _RoomCard extends StatelessWidget { final RoomModel r; const _RoomCard(thi
     child: Container(decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(14)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
-          child: r.cover.isNotEmpty ? CachedNetworkImage(imageUrl: r.cover, fit: BoxFit.cover, width: double.infinity, errorWidget: (_, __, ___) => _ph(r))
+          child: Media.has(r.cover) ? CachedNetworkImage(imageUrl: Media.url(r.cover)!, fit: BoxFit.cover, width: double.infinity, errorWidget: (_, __, ___) => _ph(r))
             : _ph(r))),
         Padding(padding: const EdgeInsets.fromLTRB(8, 6, 8, 2), child: Text(r.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600))),
         Padding(padding: const EdgeInsets.only(left: 8, bottom: 8), child: Row(children: [const Icon(Icons.local_fire_department, size: 14, color: ZC.gold), Text(' ${r.onlineNum}', style: const TextStyle(color: ZC.textLo, fontSize: 12))])),

@@ -1,3 +1,4 @@
+import '../core/media.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -63,7 +64,7 @@ class MeScreen extends ConsumerWidget {
         Text('ID:${u.uid}', style: const TextStyle(color: ZC.textLo)), const SizedBox(width: 4), const Icon(Icons.copy, size: 13, color: ZC.textLo)])),
       Positioned(left: 16, top: 124, child: Row(children: [
         if (u.nationalFlag.isNotEmpty) Padding(padding: const EdgeInsets.only(right: 6),
-          child: ClipRRect(borderRadius: BorderRadius.circular(3), child: CachedNetworkImage(imageUrl: u.nationalFlag, width: 26, height: 17, fit: BoxFit.cover, errorWidget: (_, __, ___) => const SizedBox(width: 26)))),
+          child: ClipRRect(borderRadius: BorderRadius.circular(3), child: CachedNetworkImage(imageUrl: Media.url(u.nationalFlag) ?? '', width: 26, height: 17, fit: BoxFit.cover, errorWidget: (_, __, ___) => const SizedBox(width: 26)))),
         // original app art for the wealth / charm / active / noble badges
         ZBadge('W${u.wealthLv}', const Color(0xFFB03A5B), icon: Icons.shield), const SizedBox(width: 5),
         ZBadge('${u.charmLv + 12}', const Color(0xFF1E9E9E), icon: Icons.spa), const SizedBox(width: 5),
