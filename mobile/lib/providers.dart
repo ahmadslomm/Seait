@@ -35,6 +35,15 @@ final roomInfoProvider = FutureProvider.family<Map, int>((ref, rid) async {
   return const {};
 });
 
+/// Any user's profile, keyed by uid. Keyed by an int on purpose: family keys are
+/// compared with ==, and a Map literal is never equal to itself across rebuilds,
+/// so keying on a params map would re-create the provider every frame and never
+/// resolve.
+final userInfoProvider = FutureProvider.family<Map, int>((ref, uid) async {
+  final d = await ref.read(apiProvider).call('user.getUserinfo', params: {'uid': uid, 'toUid': uid});
+  return (d is Map) ? d : const {};
+});
+
 /// Gifts — gift.getGiftList.
 final giftsProvider = FutureProvider<List>((ref) async {
   final d = await ref.read(apiProvider).call('gift.getGiftList');

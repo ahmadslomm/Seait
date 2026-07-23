@@ -93,9 +93,8 @@ class _RoomState extends ConsumerState<RoomScreen> {
     final seatD = width * 0.107;   // measured from the original: Ø ≈ 10.7% of width
     // Owner shown in cell 0 (original always renders the room owner there).
     final ownerUid = int.tryParse('${room['owner_uid'] ?? ''}') ?? 0;
-    final ownerRec = ownerUid == 0 ? const {} :
-      (ref.watch(actionProvider((action: 'user.getUserinfo',
-        params: {'uid': ownerUid, 'toUid': ownerUid}))).asData?.value as Map? ?? const {});
+    final ownerRec = ownerUid == 0 ? const {}
+      : (ref.watch(userInfoProvider(ownerUid)).asData?.value ?? const {});
 
     return Scaffold(
       body: Stack(children: [
