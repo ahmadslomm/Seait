@@ -35,10 +35,14 @@ class MeScreen extends ConsumerWidget {
       // animated WebP with real alpha, which Skia composites correctly.
       SizedBox(height: 178, width: double.infinity, child: Stack(fit: StackFit.expand, children: [
         const _HeaderGradient(),
+        // The decoration is a tall portrait piece; cover-ing it into a short wide
+        // header zooms into a meaningless sliver. Fit its width and pull the
+        // decorative arch (crown + winged horses) into view instead, and keep it
+        // subtle so it frames the header rather than darkening it.
         if (u.infoBgImg.isNotEmpty)
-          Image.asset('assets/ui/header_deco_vip5.webp',
-            fit: BoxFit.cover, alignment: Alignment.topCenter,
-            errorBuilder: (_, __, ___) => const SizedBox.shrink()),
+          Opacity(opacity: .75, child: Image.asset('assets/ui/header_deco_vip5.webp',
+            fit: BoxFit.fitWidth, alignment: const Alignment(0, -0.72),
+            errorBuilder: (_, __, ___) => const SizedBox.shrink())),
         // experimental direct-video path, off unless ANIMATED_HEADER=true
         if (kAnimatedHeader && u.infoBgImg.startsWith('http'))
           AlphaVideoView(url: u.infoBgImg, fallback: const SizedBox.shrink()),
