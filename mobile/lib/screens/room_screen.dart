@@ -192,8 +192,10 @@ class _RoomState extends ConsumerState<RoomScreen> {
           errorBuilder: (_, __, ___) => const Icon(Icons.card_giftcard, color: Colors.brown, size: 20)),
         const SizedBox(width: 6),
         Expanded(child: Text(text, maxLines: 2, overflow: TextOverflow.ellipsis,
-          style: const TextStyle(color: Color(0xFF5B3A12), fontSize: 11, fontWeight: FontWeight.w700))),
-        Image.asset('assets/ui/times_100.webp', height: 34,
+          style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w700,
+            shadows: [Shadow(color: Color(0xCC3A1200), blurRadius: 3, offset: Offset(0, 1))]))),
+        const SizedBox(width: 4),
+        Image.asset('assets/ui/times_100.webp', height: 30,
           errorBuilder: (_, __, ___) => const SizedBox.shrink()),
       ])),
     ]));
