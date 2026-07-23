@@ -29,6 +29,7 @@ type Room = {
   members: Map<number, Profile>;   // everyone currently in the room
   admins: Set<number>;
   muted: Set<number>;              // text-muted by staff
+  micRequests: Set<number>;        // listeners waiting for a seat
 };
 
 /**
@@ -60,6 +61,7 @@ export class RoomGateway implements OnGatewayDisconnect {
       members: new Map(),
       admins: new Set(),
       muted: new Set(),
+      micRequests: new Set(),
     };
     // room staff from the DB (role != 'member')
     const staff = await this.prisma.roomMember.findMany({ where: { rid } }).catch(() => []);
@@ -245,8 +247,38 @@ export class RoomGateway implements OnGatewayDisconnect {
   @SubscribeMessage('mic_request')
   async onMicRequest(@MessageBody() d: any) {
     const rid = Number(d?.rid), uid = Number(d?.uid);
+    const r = await this.ensure(rid);
     const p = await this.profile(uid);
+    r.micRequests.add(uid);
     this.server.to(this.rm(rid)).emit('mic_request', { ...p, seatNo: Number(d?.seatNo ?? -1) });
+  }
+
+  /** Staff grant a pending request: seats the user (first free seat if none given). */
+  @SubscribeMessage('mic_approve')
+  async onMicApprove(@MessageBody() d: any, @ConnectedSocket() c: Socket) {
+    const rid = Number(d?.rid), uid = Number(d?.uid), target = Number(d?.targetUid);
+    const r = await this.ensure(rid);
+    if (!this.isStaff(r, uid)) return this.deny(c, 'mic_approve', 'not_permitted');
+    let no = Number(d?.seatNo);
+    const free = r.seats.find(s => !s.uid && s.lock === 0);
+    const seat = Number.isInteger(no) && no >= 0 ? r.seats[no] : free;
+    if (!seat || seat.uid || seat.lock === 1) return this.deny(c, 'mic_approve', 'no_free_seat');
+    for (const s of r.seats) if (s.uid === target) { s.uid = null; this.server.to(this.rm(rid)).emit('seat_update', s); }
+    seat.uid = target;
+    seat.micState = 0;
+    r.micRequests.delete(target);
+    this.server.to(this.rm(rid)).emit('mic_approved', { uid: target, seatNo: seat.seatNo });
+    this.server.to(this.rm(rid)).emit('seat_update', { ...seat, profile: await this.profile(target) });
+  }
+
+  /** Staff decline a pending request. */
+  @SubscribeMessage('mic_reject')
+  async onMicReject(@MessageBody() d: any, @ConnectedSocket() c: Socket) {
+    const rid = Number(d?.rid), uid = Number(d?.uid), target = Number(d?.targetUid);
+    const r = await this.ensure(rid);
+    if (!this.isStaff(r, uid)) return this.deny(c, 'mic_reject', 'not_permitted');
+    r.micRequests.delete(target);
+    this.server.to(this.rm(rid)).emit('mic_rejected', { uid: target });
   }
 
   // ── chat ──────────────────────────────────────────────────────────
