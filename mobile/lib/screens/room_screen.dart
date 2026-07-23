@@ -29,6 +29,10 @@ class _RoomState extends ConsumerState<RoomScreen> {
   final chat = <Map>[];
   String? giftBanner;
   bool _joined = false;
+  String myRole = 'user';          // assigned by the server on join
+  List<Map> users = [];            // live occupant list
+  final _chatCtl = TextEditingController();
+  bool get isStaff => myRole == 'owner' || myRole == 'admin';
 
   GiftEngine get _engine => ref.read(giftEngineProvider);
 
@@ -47,10 +51,28 @@ class _RoomState extends ConsumerState<RoomScreen> {
     // Load the REAL gift catalog (gift.getGiftList) into the engine.
     ref.read(giftsProvider.future).then((g) { _engine.clear(); _engine.loadCatalog(g); }).catchError((_) {});
     socket.connect();
-    socket.on('room_state', (d) { if (d?['seats'] != null) setState(() => seats = d['seats']); });
-    socket.on('seat_update', (s) => setState(() { if (s['seatNo'] < seats.length) seats[s['seatNo']] = s; }));
-    socket.on('mic_status', (s) => setState(() { if (s['seatNo'] < seats.length) seats[s['seatNo']] = s; }));
-    socket.on('chat', (d) => setState(() => chat.add(Map<String, dynamic>.from(d))));
+    socket.on('room_state', (d) {
+      if (d is! Map) return;
+      setState(() {
+        if (d['seats'] != null) seats = d['seats'];
+        if (d['members'] != null) users = List<Map>.from((d['members'] as List).whereType<Map>());
+      });
+    });
+    socket.on('role', (d) { if (d is Map && d['uid'] == Cfg.myUid) setState(() => myRole = '${d['role']}'); });
+    socket.on('users_update', (d) { if (d is Map && d['users'] is List) {
+      setState(() => users = List<Map>.from((d['users'] as List).whereType<Map>())); } });
+    socket.on('seat_update', (s) => setState(() { if (s is Map && s['seatNo'] < seats.length) seats[s['seatNo']] = s; }));
+    socket.on('mic_status', (s) => setState(() { if (s is Map && s['seatNo'] < seats.length) seats[s['seatNo']] = s; }));
+    socket.on('speaking', (d) { if (d is Map) { final n = d['seatNo']; if (n is int && n < seats.length) {
+      setState(() => seats[n] = {...(seats[n] as Map), 'speaking': d['speaking'] == true}); } } });
+    socket.on('chat', (d) { if (d is Map) setState(() {
+      chat.add(Map<String, dynamic>.from(d)); if (chat.length > 200) chat.removeAt(0); }); });
+    // A denied request comes back from the server — surface it rather than fail silently.
+    socket.on('action_denied', (d) { if (d is Map && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('${d['action']}: ${d['reason']}'), duration: const Duration(seconds: 2))); } });
+    socket.on('user_leave', (d) { if (d is Map) setState(() => users.removeWhere((u) => u['uid'] == d['uid'])); });
+    socket.on('user_kicked', (d) { if (d is Map && d['uid'] == Cfg.myUid && mounted) Navigator.of(context).maybePop(); });
     // Gift events (room broadcast) → animation engine (req 4).
     void onGift(d) {
       if (d is Map) {
@@ -60,12 +82,30 @@ class _RoomState extends ConsumerState<RoomScreen> {
     }
     socket.on('gift_received', onGift);
     socket.on('gift_broadcast', onGift);
-    // VIP/noble entrance (Layer 5).
-    socket.on('user_enter', (d) { if (d is Map && (int.tryParse('${d['noble_level'] ?? 0}') ?? 0) > 0) {
-      _engine.showEntrance(EntranceEvent(uid: int.tryParse('${d['uid']}') ?? 0, name: '${d['nick'] ?? ''}', avatar: '${d['avatar'] ?? ''}', nobleLevel: int.tryParse('${d['noble_level']}') ?? 0));
-    }});
+    // Entry effect (gift-engine Layer 5). The server now sends the full profile,
+    // so the banner shows the real nick/avatar and only nobles trigger an effect.
+    socket.on('user_enter', (d) {
+      if (d is! Map) return;
+      final uid = int.tryParse('${d['uid']}') ?? 0;
+      final nick = '${d['nick'] ?? 'U$uid'}';
+      setState(() {
+        users.removeWhere((u) => u['uid'] == uid);
+        users.add(Map<String, dynamic>.from(d));
+        chat.add({'system': true, 'nick': nick, 'text': 'entered the room'});
+      });
+      final noble = int.tryParse('${d['noble_level'] ?? 0}') ?? 0;
+      if (noble > 0) {
+        _engine.showEntrance(EntranceEvent(uid: uid, name: nick,
+          avatar: '${d['avatar'] ?? ''}', nobleLevel: noble));
+      }
+    });
   }
-  @override void dispose() { socket.dispose(); super.dispose(); }
+  @override void dispose() {
+    socket.leave(widget.rid, Cfg.myUid);
+    _chatCtl.dispose();
+    socket.dispose();
+    super.dispose();
+  }
 
   /// Send locally (optimistic) + over the socket. The engine plays it instantly
   /// (like nalo/HelloYo), and the server broadcast reflects it to others.
@@ -171,7 +211,11 @@ class _RoomState extends ConsumerState<RoomScreen> {
       micOff: (int.tryParse('${m['micState'] ?? 0}') ?? 0) == 1,
       locked: (int.tryParse('${m['lock'] ?? 0}') ?? 0) == 1,
       speaking: m['speaking'] == true,
-      onTap: uid == null ? () => socket.takeSeat(widget.rid, i, Cfg.myUid) : null,
+      onTap: uid == null
+        ? () => socket.takeSeat(widget.rid, i, Cfg.myUid)
+        : (uid == Cfg.myUid
+            ? () => socket.leaveSeat(widget.rid, Cfg.myUid)      // stand up
+            : (isStaff ? _showUsers : null)),                     // moderate
     );
   }
 
@@ -214,16 +258,139 @@ class _RoomState extends ConsumerState<RoomScreen> {
       ])),
     ]));
 
-  Widget _chatFeed() => Container(padding: const EdgeInsets.symmetric(horizontal: 12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-    const Row(children: [Text('All', style: TextStyle(color: Colors.white)), SizedBox(width: 16), Text('Message', style: TextStyle(color: ZC.textLo)), SizedBox(width: 16), Text('Gift', style: TextStyle(color: ZC.textLo))]),
-    Expanded(child: ListView(children: [for (final m in chat.reversed.take(6).toList().reversed) Padding(padding: const EdgeInsets.symmetric(vertical: 2), child: Text('u${m['uid']}: ${m['text']}', style: const TextStyle(color: ZC.textLo, fontSize: 12)))])),
-  ]));
+  /// My current seat (-1 when listening) and mic state, used by the bottom bar.
+  int _mySeat() {
+    for (final s in seats) { if (s is Map && s['uid'] == Cfg.myUid) return s['seatNo'] as int; }
+    return -1;
+  }
+  int _myMicState() {
+    final n = _mySeat();
+    if (n < 0 || n >= seats.length) return 0;
+    return int.tryParse('${(seats[n] as Map)['micState'] ?? 0}') ?? 0;
+  }
+
+  /// Live chat feed. Each line shows the sender's name plus their VIP / wealth
+  /// badges, exactly like the original, and system lines (joins) are dimmed.
+  Widget _chatFeed() => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10),
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Row(children: [
+        const Text('All', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
+        const SizedBox(width: 16), const Text('Message', style: TextStyle(color: ZC.textLo)),
+        const SizedBox(width: 16), const Text('Gift', style: TextStyle(color: ZC.textLo)),
+        const Spacer(),
+        InkWell(onTap: _showUsers, child: Row(children: [
+          const Icon(Icons.people_outline, size: 15, color: ZC.textLo),
+          Text(' ${users.length}', style: const TextStyle(color: ZC.textLo, fontSize: 12))])),
+      ]),
+      const SizedBox(height: 4),
+      Expanded(child: ListView.builder(
+        reverse: true,
+        padding: EdgeInsets.zero,
+        itemCount: chat.length,
+        itemBuilder: (_, i) => _chatLine(chat[chat.length - 1 - i]),
+      )),
+    ]));
+
+  Widget _chatLine(Map m) {
+    if (m['system'] == true) {
+      return Padding(padding: const EdgeInsets.symmetric(vertical: 2),
+        child: Text('${m['nick']} ${m['text']}',
+          style: const TextStyle(color: ZC.gold, fontSize: 11, fontStyle: FontStyle.italic)));
+    }
+    final noble = int.tryParse('${m['noble_level'] ?? 0}') ?? 0;
+    final wealth = int.tryParse('${m['wealthLv'] ?? 0}') ?? 0;
+    final role = '${m['role'] ?? 'user'}';
+    return Padding(padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: 4, children: [
+        if (role != 'user') ZBadge(role == 'owner' ? 'OWNER' : 'ADMIN',
+          role == 'owner' ? ZC.gold : ZC.purple2),
+        if (wealth > 0) ZBadge('W$wealth', const Color(0xFFB03A5B)),
+        if (noble > 0) NobleEmblem(noble, s: 14),
+        Text('${m['nick'] ?? 'U${m['uid']}'}:',
+          style: const TextStyle(color: ZC.gold2, fontSize: 12, fontWeight: FontWeight.w600)),
+        Text('${m['text'] ?? ''}', style: const TextStyle(color: Colors.white, fontSize: 12)),
+      ]));
+  }
+
+  /// Occupant list with the moderation actions the server will accept for my role.
+  void _showUsers() => showModalBottomSheet(context: context, backgroundColor: ZC.bg2,
+    builder: (_) => SafeArea(child: Column(mainAxisSize: MainAxisSize.min, children: [
+      Padding(padding: const EdgeInsets.all(12),
+        child: Row(children: [
+          Text('In room (${users.length})', style: ZType.section),
+          const Spacer(),
+          Text('you: $myRole', style: ZType.label)])),
+      Flexible(child: ListView(shrinkWrap: true, children: [
+        for (final u in users) ListTile(
+          dense: true,
+          leading: CircleAvatar(radius: 16, backgroundColor: ZC.card,
+            backgroundImage: '${u['avatar'] ?? ''}'.startsWith('http')
+              ? NetworkImage('${u['avatar']}') : null,
+            child: '${u['avatar'] ?? ''}'.startsWith('http') ? null
+              : const Icon(Icons.person, size: 16, color: ZC.textLo)),
+          title: Text('${u['nick'] ?? 'U${u['uid']}'}',
+            style: const TextStyle(color: Colors.white, fontSize: 14)),
+          subtitle: Text('${u['role'] ?? 'user'}', style: ZType.label.copyWith(fontSize: 11)),
+          trailing: _userActions(u),
+        )])),
+    ])));
+
+  /// Only render actions my role is allowed to perform; the server re-checks.
+  Widget? _userActions(Map u) {
+    final target = int.tryParse('${u['uid']}') ?? 0;
+    if (target == Cfg.myUid || !isStaff) return null;
+    final targetRole = '${u['role'] ?? 'user'}';
+    if (targetRole == 'owner') return null;
+    return PopupMenuButton<String>(
+      color: ZC.bg2, icon: const Icon(Icons.more_horiz, color: ZC.textLo, size: 18),
+      onSelected: (v) {
+        switch (v) {
+          case 'mute':   socket.muteUser(widget.rid, Cfg.myUid, target, true); break;
+          case 'unmute': socket.muteUser(widget.rid, Cfg.myUid, target, false); break;
+          case 'off':    socket.leaveSeat(widget.rid, Cfg.myUid, targetUid: target); break;
+          case 'kick':   socket.kickUser(widget.rid, Cfg.myUid, target); break;
+          case 'admin':  socket.setAdmin(widget.rid, Cfg.myUid, target, targetRole != 'admin'); break;
+        }
+        Navigator.of(context).maybePop();
+      },
+      itemBuilder: (_) => [
+        const PopupMenuItem(value: 'mute', child: Text('Mute', style: TextStyle(color: Colors.white))),
+        const PopupMenuItem(value: 'unmute', child: Text('Unmute', style: TextStyle(color: Colors.white))),
+        const PopupMenuItem(value: 'off', child: Text('Remove from seat', style: TextStyle(color: Colors.white))),
+        // owner-only entries
+        if (myRole == 'owner')
+          PopupMenuItem(value: 'admin', child: Text(targetRole == 'admin' ? 'Revoke admin' : 'Make admin',
+            style: const TextStyle(color: Colors.white))),
+        if (myRole == 'owner')
+          const PopupMenuItem(value: 'kick', child: Text('Kick', style: TextStyle(color: ZC.danger))),
+      ]);
+  }
+
+  void _sendChat() {
+    final t = _chatCtl.text.trim();
+    if (t.isEmpty) return;
+    socket.chat(widget.rid, Cfg.myUid, t);
+    _chatCtl.clear();
+  }
+
   Widget _bottomBar(BuildContext c) => Padding(padding: const EdgeInsets.all(8), child: Row(children: [
-    Expanded(child: Container(height: 40, padding: const EdgeInsets.symmetric(horizontal: 14), alignment: Alignment.centerLeft,
-      decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(20)), child: const Text('Say Hi', style: TextStyle(color: ZC.textLo)))),
-    IconButton(icon: const Icon(Icons.emoji_emotions_outlined, color: Colors.white), onPressed: () {}),
-    IconButton(icon: const Icon(Icons.mic, color: Colors.white), onPressed: () => socket.setMic(widget.rid, 0, 0)),
-    IconButton(icon: const Icon(Icons.sports_esports, color: Colors.white), onPressed: () {}),
+    // Live composer — sends through the socket; the server rejects it with
+    // action_denied ("muted") when staff have muted me.
+    Expanded(child: Container(height: 40, padding: const EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(20)),
+      child: TextField(controller: _chatCtl, textInputAction: TextInputAction.send,
+        onSubmitted: (_) => _sendChat(), style: const TextStyle(color: Colors.white, fontSize: 13),
+        decoration: const InputDecoration(border: InputBorder.none, isDense: true,
+          hintText: 'Say Hi', hintStyle: TextStyle(color: ZC.textLo))))),
+    IconButton(icon: const Icon(Icons.send, color: Colors.white), onPressed: _sendChat),
+    // Mic toggles my own seat; when I'm only listening it asks staff for a mic.
+    IconButton(
+      icon: Icon(_mySeat() < 0 ? Icons.pan_tool_alt_outlined
+              : (_myMicState() == 1 ? Icons.mic_off : Icons.mic), color: Colors.white),
+      onPressed: () => _mySeat() < 0
+        ? socket.requestMic(widget.rid, Cfg.myUid)
+        : socket.setMic(widget.rid, _mySeat(), _myMicState() == 1 ? 0 : 1, Cfg.myUid)),
     IconButton(icon: const Icon(Icons.card_giftcard, color: ZC.gold), onPressed: () => _giftPanel(c)),
   ]));
 
