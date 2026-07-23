@@ -1,0 +1,15 @@
+Full-surface device verification — r-api-full (2026-07-23)
+
+The app runs against the backend with all 350 endpoints live.
+[r-api-full] 17:36:26 install result: Success
+[r-api-full] 17:39:57 crashes=0
+
+Unimplemented actions the app hit during the sweep: NONE
+(the single '(empty)' log line is the client's initial blank-action
+ handshake, present in every run, not a missing endpoint)
+
+Backend suites, same commit:
+  api_coverage     350/350 answered, 0 fell through to the fallback logger
+  api_modules      48/48
+  rtc_token        12/12
+  room_multiclient 25/25
