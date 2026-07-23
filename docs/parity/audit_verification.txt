@@ -1,0 +1,17 @@
+Parity audit — device verification (r-parity-audit, r-parity-final)
+
+Both runs: install Success, 0 crashes, and ZERO actions fell through to
+the fallback logger — every action the app calls is answered by real code,
+and after the six fixes no API data arrives that a screen fails to render.
+
+r-parity-final:
+[r-parity-final] 18:05:55 install result: Success
+[r-parity-final] 18:09:27 crashes=0
+
+Fixes verified rendering real data on device:
+  Moment  — real post cards (author/text/likes/comments/views), was empty raw-Map
+  VIP     — 'Level 5 of 5' from real noble level, was hardcoded 'VIP 5'
+  Level   — Wealth 708075/799000 real exp across 4 real tabs, was hardcoded
+  Me      — '8 Visitors' real count, was showing the beans balance
+  Search  — 20 real suggestions, was listing the logged-in user only
+  CP      — real gift catalogue on the confession wall, was fake gifts
