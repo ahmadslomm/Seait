@@ -1,7 +1,47 @@
-# API cloning — batch 1 report
+# API cloning report — 350 / 350
 
-_2026-07-23. Scope: inventory the original app's API surface, rebuild it on the
-new backend, point the app at it, and remove hardcoded data._
+_2026-07-23. Scope: inventory the original app's API surface, rebuild all of it
+on the new backend, point the app at it, and remove hardcoded data._
+
+## Final coverage
+
+**350 / 350 endpoints implemented.** Verified by `test/api_coverage.test.js`,
+which fires every endpoint through the real gateway (actions encrypted, HTTP
+routes direct) and asserts none falls through to the fallback logger:
+
+```
+transport errors:        0
+missing http/h5 routes:  0
+fell through to logger:  0
+PASS: 350/350 endpoints answered by real code
+```
+
+Reached in five batches: batch 1 (119) covered the actively-used surface; batches
+2–5 completed the rest by priority — Room APIs, advanced room, PK, games, moment,
+bottle, then everything remaining.
+
+### Deliberate stubs — implemented, but no real integration behind them
+
+These respond (the route exists, the client's call resolves) but cannot do the
+real thing without a third-party service that is not wired up. Each returns an
+explicit `not_configured`, never a fake success — a forged Google Play receipt
+would grant currency for an unverified purchase, which is worse than an error.
+
+| Endpoint(s) | Missing service | Behaviour |
+|---|---|---|
+| `googleplay_getReceipt`, `googleplaySub_getSubReceipt`, `getOrder` | Google Play billing | `billing_not_configured` |
+| `api_sms_kit_*`, `login.call` | SMS provider | `sms_provider_not_configured` |
+| `api/GetUserSig`, `Action/Api.GetUserSig` | Tencent IM | `im_provider_not_configured` (our IM is the room socket) |
+| `api_bind_google`, `api_bind_facebook` | OAuth apps | `google_oauth` / `facebook_oauth` not configured |
+| `googleplay_productList`, `api_GetCountry` | — | **answered for real** from our own catalogue/country data |
+
+The 22 H5 activity pages render a themed "not configured" page rather than 404,
+so the client's web view resolves and closes cleanly instead of showing a
+browser error. The original HTML was never recovered.
+
+---
+_The sections below are the original batch-1 report, retained for the reasoning
+behind the inventory method and the architecture._
 
 ## Where the numbers come from
 
