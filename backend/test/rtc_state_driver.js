@@ -42,7 +42,15 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 // settle window so we only trigger on the APP arriving.
 const SETTLE_MS = 4000;
 let joinedAt = 0;
-let fired = false;
+let running = false;
+let lastRun = 0;
+
+// Re-arm rather than latch. The app's socket reconnects (and a leftover
+// instance from a previous run does too), so the FIRST user_enter is not
+// reliably this run's app entering the room. A one-shot trigger spends the
+// sequence on that and the run yields nothing. Re-running on every arrival,
+// with a cooldown, means the real entry always gets its own sequence.
+const COOLDOWN_MS = 45000;
 
 s.on('connect', () => {
   log(`connected; joining room ${RID} as uid ${UID} (driver session)`);

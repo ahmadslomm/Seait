@@ -1,0 +1,30 @@
+=== driver (controller clock) ===
+15:00:48 +   0.0s connected; joining room 1 as uid 1278472 (driver session)
+15:00:48 +   0.0s ignoring own join echo
+15:02:08 +  79.7s APP DETECTED in room — starting transition sequence
+15:02:14 +  85.7s STEP 1/4 sit on seat 3 -> expect setPublisher(true)
+15:02:14 +  85.7s <- seat_update seat=3 uid=1278472 mic=0
+15:02:20 +  91.8s STEP 2/4 mute that seat -> expect setMuted(true)
+15:02:20 +  91.8s <- mic_status seat=3 uid=1278472 mic=1
+15:02:26 +  97.8s STEP 3/4 unmute that seat -> expect setMuted(false)
+15:02:26 +  97.8s <- mic_status seat=3 uid=1278472 mic=0
+15:02:32 + 103.8s STEP 4/4 stand up -> expect setPublisher(false)
+15:02:32 + 103.8s <- seat_update seat=3 uid=null mic=0
+15:02:38 + 109.8s sequence complete — leaving driver connected until timeout
+
+=== app reaction (worker clock, ~6s behind) ===
+07-23 15:02:03.156  3036  3036 I flutter : [rtc] joined seait_room_1 as publisher
+07-23 15:02:07.917  3036  3036 I flutter : [rtc] setPublisher(true) engine=true
+07-23 15:02:13.925  3036  3036 I flutter : [rtc] setMuted(true) engine=true
+07-23 15:02:19.931  3036  3036 I flutter : [rtc] setMuted(false) engine=true
+07-23 15:02:25.934  3036  3036 I flutter : [rtc] setPublisher(false) engine=true
+
+=== native Agora SDK return codes ===
+api name RtcEngine_setClientRole_3426fa6 result 0
+api name RtcEngine_joinChannel_cdbb747 result 0
+api name RtcEngine_setClientRole_3426fa6 result 0
+api name RtcEngine_updateChannelMediaOptions_7bfc1d7 result 0
+api name RtcEngine_muteLocalAudioStream_5039d15 result 0
+api name RtcEngine_muteLocalAudioStream_5039d15 result 0
+api name RtcEngine_setClientRole_3426fa6 result 0
+api name RtcEngine_updateChannelMediaOptions_7bfc1d7 result 0
