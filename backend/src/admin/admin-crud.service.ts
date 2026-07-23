@@ -81,6 +81,10 @@ export class AdminCrudService {
     const data: any = {};
     for (const f of e.fields) {
       if (f.type === 'readonly') continue;
+      // The primary key is set once, at create. Letting an update change it
+      // would move the row to a new id — orphaning every reference (a gift_id is
+      // what the client sends to gift it) — so it is never writable on update.
+      if (!forCreate && f.name === e.id) continue;
       let v = this.coerce(f, body[f.name]);
       if (v === undefined && forCreate && f.default !== undefined) v = this.coerce(f, f.default);
       // A required field that is still absent on create is a client error (400),

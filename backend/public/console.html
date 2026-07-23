@@ -277,8 +277,13 @@ async function openForm(key,id){
   let h=`<h3>${id!=null?'Edit':'New'} — ${esc(ent.label)}</h3>`;
   for(const f of ent.fields){
     if(f.type==='readonly') continue;
-    if(id!=null && (f.name===ent.id) && !ent.fields.find(x=>x.name===ent.id).help) { /* still show id read-only-ish */ }
     const v=data[f.name]!==undefined?data[f.name]:(f.default!==undefined?f.default:'');
+    // The primary key is fixed after create; show it disabled on edit so it is
+    // clear it cannot change (the server refuses to change it regardless).
+    if(id!=null && f.name===ent.id){
+      h+=`<label>${esc(f.label||f.name)}</label><input value="${esc(v)}" disabled style="opacity:.6">`;
+      continue;
+    }
     h+=`<label>${esc(f.label||f.name)}${f.required?' *':''}</label>`;
     if(f.type==='bool'){
       h+=`<select data-f="${f.name}"><option value="true"${v===true||v==='true'?' selected':''}>Yes</option><option value="false"${!(v===true||v==='true')?' selected':''}>No</option></select>`;
