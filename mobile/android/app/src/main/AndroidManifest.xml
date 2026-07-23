@@ -4,6 +4,11 @@
          blocks by default — both are required for the real API to work. -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- Agora RTC: mic capture plus the radio/audio state it inspects. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-feature android:name="android.hardware.microphone" android:required="false"/>
     <application
         android:label="seait"
         android:name="${applicationName}"

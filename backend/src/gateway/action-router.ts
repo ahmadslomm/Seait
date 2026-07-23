@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { ok, err, ActionReq } from '../common/envelope';
 import catalog from '../actions.catalog.json';
+import { RtcService } from '../rtc/rtc.service';
 import { UnknownActionLogger } from '../fallback/logger';
 
 /** Routes an api.php `action` to its handler. Implemented handlers return real data;
@@ -9,7 +10,7 @@ import { UnknownActionLogger } from '../fallback/logger';
 @Injectable()
 export class ActionRouter {
   private log = new Logger('ActionRouter');
-  constructor(private prisma: PrismaService, private unknown: UnknownActionLogger) {}
+  constructor(private prisma: PrismaService, private unknown: UnknownActionLogger, private rtc: RtcService) {}
   readonly total = (catalog as any)._total;
 
   async route(req: ActionReq): Promise<any> {
@@ -34,6 +35,17 @@ export class ActionRouter {
     'room.getRecommendRoomV2': async () => ok({ list: await this.rooms() }),
     'room.batchGetRoomInfos':  async () => ok(await this.rooms()),
     'gift.getGiftList':        async () => ok(await this.prisma.gift.findMany({ where:{ active:true } })),
+    // RTC credentials. `publisher` is decided by the CALLER's seat state on the
+    // server side, so a listener can never be handed a publisher token.
+    'rtc.getToken':            async (p:any) => {
+      const rid = Number(p?.rid || 0);
+      const uid = Number(p?.uid || p?._login_uid || 0);
+      if (!rid || !uid) return ok({ error:'rid_and_uid_required' });
+      const seat = await this.prisma.seat.findFirst({ where:{ rid, uid } }).catch(()=>null);
+      const room = await this.prisma.room.findUnique({ where:{ rid } }).catch(()=>null);
+      const publisher = !!seat || room?.owner_uid === uid;
+      return ok(this.rtc.issue(rid, uid, publisher));
+    },
     'gift.getCommonGift':      async () => ok(await this.prisma.gift.findMany({ where:{ active:true }, take:8 })),
     'mall.getMallProductV2':   async () => ok([]),
     'moment.recomV3':          async () => ok({ list:[] }),

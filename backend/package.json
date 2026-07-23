@@ -9,7 +9,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "seed": "ts-node prisma/seed.ts",
-    "test:room": "node test/room_multiclient.test.js"
+    "test:room": "node test/room_multiclient.test.js",
+    "test:rtc": "node test/rtc_token.test.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.0",
@@ -18,6 +19,7 @@
     "@nestjs/platform-socket.io": "^10.3.0",
     "@nestjs/websockets": "^10.3.0",
     "@prisma/client": "^5.14.0",
+    "agora-token": "^2.0.5",
     "rxjs": "^7.8.1",
     "socket.io": "^4.7.5"
   },

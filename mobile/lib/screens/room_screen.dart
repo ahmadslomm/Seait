@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 import '../core/theme.dart';
 import '../core/asset_registry.dart';
 import '../core/room_socket.dart';
+import '../core/rtc_service.dart';
 import '../core/config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../ui/components.dart';
 import '../providers.dart';
+import '../core/api.dart';
 import '../gift_engine/gift_engine.dart';
 import '../gift_engine/gift_models.dart';
 import '../gift_engine/animation_manager.dart';
@@ -24,6 +26,8 @@ class RoomScreen extends ConsumerStatefulWidget {
 
 class _RoomState extends ConsumerState<RoomScreen> {
   final socket = RoomSocket();
+  final rtc = RtcService();
+  bool _rtcReady = false;
   int seatCount = 0;              // authoritative value arrives from room data
   List seats = [];
   final chat = <Map>[];
@@ -43,7 +47,11 @@ class _RoomState extends ConsumerState<RoomScreen> {
       seatCount = n;
       seats = List.generate(n, (i) => {'seatNo': i, 'uid': null, 'micState': 0, 'charmValue': 0});
     });
-    if (!_joined) { socket.join(widget.rid, Cfg.myUid, seatCount: n); _joined = true; }
+    if (!_joined) {
+      socket.join(widget.rid, Cfg.myUid, seatCount: n);
+      _joined = true;
+      _joinRtc();
+    }
   }
 
   @override void initState() {
@@ -61,8 +69,20 @@ class _RoomState extends ConsumerState<RoomScreen> {
     socket.on('role', (d) { if (d is Map && d['uid'] == Cfg.myUid) setState(() => myRole = '${d['role']}'); });
     socket.on('users_update', (d) { if (d is Map && d['users'] is List) {
       setState(() => users = List<Map>.from((d['users'] as List).whereType<Map>())); } });
-    socket.on('seat_update', (s) => setState(() { if (s is Map && s['seatNo'] < seats.length) seats[s['seatNo']] = s; }));
-    socket.on('mic_status', (s) => setState(() { if (s is Map && s['seatNo'] < seats.length) seats[s['seatNo']] = s; }));
+    socket.on('seat_update', (s) {
+      if (s is! Map) return;
+      setState(() { if (s['seatNo'] < seats.length) seats[s['seatNo']] = s; });
+      // Taking or leaving a seat promotes/demotes the audio role live.
+      if (s['uid'] == Cfg.myUid) rtc.setPublisher(true);
+      else if (_seatOfUid(Cfg.myUid) < 0) rtc.setPublisher(false);
+    });
+    socket.on('mic_status', (s) {
+      if (s is! Map) return;
+      setState(() { if (s['seatNo'] < seats.length) seats[s['seatNo']] = s; });
+      // Mirror MY seat's mic state onto the real audio stream. The Room Engine
+      // stays authoritative; RTC only follows it.
+      if (s['uid'] == Cfg.myUid) rtc.setMuted(s['micState'] == 1);
+    });
     socket.on('speaking', (d) { if (d is Map) { final n = d['seatNo']; if (n is int && n < seats.length) {
       setState(() => seats[n] = {...(seats[n] as Map), 'speaking': d['speaking'] == true}); } } });
     socket.on('chat', (d) { if (d is Map) setState(() {
@@ -100,7 +120,34 @@ class _RoomState extends ConsumerState<RoomScreen> {
       }
     });
   }
+  /// Fetch server-minted credentials and join the audio channel. The backend
+  /// decides publisher vs subscriber from seat state, so this cannot self-promote.
+  Future<void> _joinRtc() async {
+    try {
+      final d = await ref.read(apiProvider)
+          .call('rtc.getToken', params: {'rid': widget.rid, 'uid': Cfg.myUid});
+      if (d is! Map) return;
+      final creds = RtcCredentials.fromApi(d);
+      rtc.onSpeaking = (uid, speaking) {
+        // uid 0 is me; relay over the socket so every client shows the halo.
+        final myUid = uid == 0 ? Cfg.myUid : uid;
+        final seat = _seatOfUid(myUid);
+        if (seat >= 0) socket.setSpeaking(widget.rid, seat, speaking);
+      };
+      final okJoin = await rtc.join(creds);
+      if (mounted) setState(() => _rtcReady = okJoin);
+    } catch (e) {
+      debugPrint('[room] rtc setup failed: $e');
+    }
+  }
+
+  int _seatOfUid(int uid) {
+    for (final s in seats) { if (s is Map && s['uid'] == uid) return s['seatNo'] as int; }
+    return -1;
+  }
+
   @override void dispose() {
+    rtc.leave();
     socket.leave(widget.rid, Cfg.myUid);
     _chatCtl.dispose();
     socket.dispose();
@@ -231,6 +278,10 @@ class _RoomState extends ConsumerState<RoomScreen> {
     Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3), decoration: BoxDecoration(color: ZC.purple.withValues(alpha: .4), borderRadius: BorderRadius.circular(12)),
       child: const Text('Ranking 99+', style: TextStyle(color: ZC.gold, fontSize: 11))),
     const Spacer(),
+    // live voice indicator: filled when the audio channel is actually joined
+    Icon(_rtcReady ? Icons.graphic_eq : Icons.volume_off,
+      color: _rtcReady ? ZC.gold : Colors.white38, size: 16),
+    const SizedBox(width: 6),
     const Icon(Icons.person, color: Colors.white70, size: 18), const Text(' 1', style: TextStyle(color: Colors.white70)),
     IconButton(icon: const Icon(Icons.share, color: Colors.white70, size: 20), padding: EdgeInsets.zero, constraints: _tightBtn, onPressed: () {}),
     IconButton(icon: const Icon(Icons.more_horiz, color: Colors.white70, size: 20), padding: EdgeInsets.zero, constraints: _tightBtn, onPressed: () => _roomInfo(c)),

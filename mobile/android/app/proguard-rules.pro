@@ -14,3 +14,8 @@
 # SVGA player uses reflection for its proto-decoded models.
 -keep class com.opensource.svgaplayer.** { *; }
 -dontwarn com.opensource.svgaplayer.**
+
+# Agora RTC resolves classes from native code; R8 cannot see those references.
+# Same failure mode that removed org.libpag.TraceImage and crashed libpag.
+-keep class io.agora.**{ *; }
+-dontwarn io.agora.**
