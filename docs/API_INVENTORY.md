@@ -1,6 +1,6 @@
 # API inventory — original app vs new backend
 
-Generated 2026-07-23T17:27:33.955Z
+Generated 2026-07-23T17:56:22.124Z
 
 - **350** distinct endpoints across **94** modules
 - **350** implemented (100.0%)

@@ -75,7 +75,10 @@ class MeScreen extends ConsumerWidget {
       Positioned(right: 6, top: 24, child: VipMedallion(s: MediaQuery.of(c).size.width * .30)),
     ]),
     Padding(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8), child: Row(children: [
-      _stat('${u.fans}', 'Followers'), _stat('${u.following}', 'Following'), _stat('${u.gifts}', 'Gifts'), _stat('${u.beans}', 'Visitors')])),
+      // The 4th stat is VISITORS (الزائرين) — it was showing the beans balance,
+      // which is a different number entirely. Now reads the real visitor count.
+      _stat('${u.visitors}', 'Visitors'), _stat('${u.gifts}', 'Gifts'),
+      _stat('${u.following}', 'Following'), _stat('${u.fans}', 'Followers')])),
     Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: InkWell(onTap: () => c.push('/vip'),
       child: Container(padding: const EdgeInsets.all(16), decoration: BoxDecoration(gradient: ZGrad.vip,
         borderRadius: BorderRadius.circular(16), border: Border.all(color: ZC.gold, width: 1.5),

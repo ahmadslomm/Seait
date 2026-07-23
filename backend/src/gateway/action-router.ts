@@ -105,11 +105,6 @@ export class ActionRouter {
       return ok(this.rtc.issue(rid, uid, publisher));
     },
     'gift.getCommonGift':      async () => ok(await this.prisma.gift.findMany({ where:{ active:true }, take:8 })),
-    // Moments have no table yet, so the feed is genuinely empty rather than
-    // stubbed. Left here deliberately: removing it would send the action to the
-    // unknown-action logger and make a working-but-empty screen look broken.
-    // Tracked as remaining work in docs/API_INVENTORY.md.
-    'moment.recomV3':          async () => ok({ list:[] }),
     'gift.songGiftRank':       async () => ok(await this.rank('gift')),
     'couple.cpRank':           async () => ok(await this.rank('cp')),
   };
@@ -123,7 +118,15 @@ export class ActionRouter {
     // Guild screen always rendered "No guild" despite the user being in one.
     const gm = await this.prisma.guildMember.findFirst({ where:{ uid }, include:{ guild:true } });
     const wealth = await this.prisma.wealth.findUnique({ where:{ uid } });
+    // Visitor count for the Me header's الزائرين stat. The screen was showing
+    // the beans balance under a "Visitors" label — wrong data. Count the visit
+    // rows so it reflects reality; user.visitors lists them, this is the total.
+    const visitors = await this.prisma.friend.count({ where:{ target_uid: uid, type:'visit' } }).catch(()=>0);
     return {
+      visitors: String(visitors),
+      // vip_level is distinct from noble_level; the VIP centre reads this and
+      // was previously hardcoded to 5. Surface both so no screen has to guess.
+      vip_level: u.vip?.vip_level ?? 0,
       uid: String(u.uid), mobile: u.mobile, nick: u.nick, sex: String(u.sex), sign: u.sign, avatar: u.avatar,
       birthday: u.birthday, country: u.country, region: u.region, lang: u.lang, age: String(u.age),
       avatarFrame: u.avatarFrame, carFrame: u.carFrame, chatBubble: u.chatBubble, infoBgImg: u.infoBgImg,

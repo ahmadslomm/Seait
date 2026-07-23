@@ -8,7 +8,10 @@ import '../ui/components.dart';
 class SearchScreen extends ConsumerWidget {
   const SearchScreen({super.key});
   @override Widget build(BuildContext c, WidgetRef ref) {
-    final rec = ref.watch(actionProvider(ApiCall('user.batchGetUserinfoV2')));
+    // Suggestions previously came from user.batchGetUserinfoV2, which returns
+    // only the logged-in user — so "People you may like" listed yourself.
+    // getRecommendUser is the action that returns actual suggestions.
+    final rec = ref.watch(actionProvider(ApiCall('user.getRecommendUser', const {'page': 1})));
     return Scaffold(backgroundColor: ZC.bg, appBar: AppBar(title: Container(height: 38, padding: const EdgeInsets.symmetric(horizontal: ZSpace.md),
       decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(ZRadius.pill)),
       child: const Row(children: [Icon(Icons.search, color: ZC.textLo, size: 18), SizedBox(width: 6), Text('Search for users', style: TextStyle(color: ZC.textLo))]))),

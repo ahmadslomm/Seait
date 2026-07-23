@@ -84,6 +84,10 @@ export class FeedModule extends ApiModule {
 
   readonly handlers: Record<string, Handler> = {
     // ── moments ──
+    // recomV3 is the name the current app sends; recomV the older one. Both are
+    // the same recommended feed — aliased so the live client reaches real data
+    // (it previously hit an empty gateway stub of this name).
+    'moment.recomV3': async (r: ActionReq) => this.listMoments(r),
     'moment.recomV': async (r: ActionReq) => this.listMoments(r),
     'moment.history': async (r: ActionReq) => this.listMoments(r, { uid: Number(r.target_uid || this.uidOf(r)) }),
     'moment.hasHistory': async (r: ActionReq) => {
