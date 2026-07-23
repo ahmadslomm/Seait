@@ -83,6 +83,11 @@ const arr = v => Array.isArray(v) ? v : (v && Array.isArray(v.list) ? v.list : n
   check('buying a frame succeeds or reports a real reason',
     bought && (bought.code === 0 || bought.msg === 'insufficient_balance'),
     JSON.stringify(bought));
+  // The buy path is exercised only while the seeded account can still afford a
+  // frame; each run spends 2000 coins and there is no top-up ACTION to call, so
+  // after a few runs this block stops running and the assertion count drops.
+  // Saying so out loud beats a silently shrinking total.
+  if (bought.code !== 0) console.log(`    (skipping equip assertions: ${bought.msg})`);
   if (bought.code === 0) {
     const used = await call('mall.useProduct', { product_id: frame.product_id });
     check('equipping the frame succeeds', used && used.code === 0, JSON.stringify(used));
@@ -137,6 +142,26 @@ const arr = v => Array.isArray(v) ? v : (v && Array.isArray(v.list) ? v.list : n
   console.log('agency');
   const inv = await call('Action/BDCenter.inviteUserRes');
   check('invite poll answers with a defined state', inv && 'hasInvite' in inv, JSON.stringify(inv));
+
+  console.log('gifts');
+  const tabs = arr(await call('gift.getClientGiftTabs'));
+  check('gift tabs derived from categories in use', tabs && tabs.length > 0, `tabs=${tabs && tabs.length}`);
+  const before = await call('wallet.getWalletInfo');
+  const glist = await call('gift.getGiftList');
+  const g = (Array.isArray(glist) ? glist : glist.list)[0];
+  const sent = await call('gift.sendPrivateGift', { to_uid: OTHER, gift_id: g.gift_id, num: 2, rid: RID });
+  check('sending a gift succeeds', sent && sent.code === 0, JSON.stringify(sent).slice(0, 100));
+  check('the send response carries the new balance', sent && typeof sent.coins === 'string');
+  check('the sender was actually debited',
+    sent && Number(sent.coins) === Number(before.coins) - (Number(g.price) * 2),
+    `${before.coins} -> ${sent && sent.coins} for 2x${g.price}`);
+  const recv = arr(await call('gift.getReceieveGift', { uid: OTHER }));
+  check('the receiver sees it in their gift history', recv && recv.length > 0, `records=${recv && recv.length}`);
+  const map = arr(await call('gift.getUserGiftMap', { target_uid: OTHER }));
+  check('and it appears in their gift map', map && map.some(x => x.gift_id === g.gift_id));
+  const poor = await call('gift.sendPrivateGift', { to_uid: OTHER, gift_id: g.gift_id, num: 999999 });
+  check('an unaffordable gift is refused, not overdrawn',
+    poor && poor.code === 1 && poor.msg === 'insufficient_balance', JSON.stringify(poor));
 
   console.log('config');
   const cfg = await call('app.getConfig');

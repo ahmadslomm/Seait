@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-07-23T16:02:45.684Z",
+  "_generated": "2026-07-23T16:22:28.683Z",
   "_sources": {
     "catalog": "src/actions.catalog.json",
     "contract": "zaffa_recovery/COMPLETE_API_CONTRACT.json",
@@ -58,7 +58,7 @@
   },
   "totals": {
     "endpoints": 350,
-    "implemented": 105,
+    "implemented": 119,
     "observed_at_runtime": 6,
     "modules": 95,
     "model_classes": 244
@@ -396,7 +396,7 @@
     },
     "LiveRoom": {
       "total": 23,
-      "implemented": 8,
+      "implemented": 9,
       "observed": 1,
       "actions": [
         "Action/LiveRoom.addRole",
@@ -520,7 +520,7 @@
     },
     "RoomApi": {
       "total": 23,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/RoomApi.batchGetUserInfo",
@@ -694,7 +694,7 @@
     },
     "app": {
       "total": 8,
-      "implemented": 3,
+      "implemented": 4,
       "observed": 1,
       "actions": [
         "app.checkAppVersion",
@@ -785,7 +785,7 @@
     },
     "gift": {
       "total": 14,
-      "implemented": 3,
+      "implemented": 14,
       "observed": 0,
       "actions": [
         "gift.checkHasPacketGift",
@@ -3520,7 +3520,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4991,7 +4991,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -6342,7 +6342,7 @@
       "observed_calls": 10,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
       "extension": true,
       "evidence": "catalog only"
     },
@@ -7368,7 +7368,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7402,7 +7402,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7470,7 +7470,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7538,7 +7538,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7572,7 +7572,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7606,7 +7606,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7640,7 +7640,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7674,7 +7674,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7708,7 +7708,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7742,7 +7742,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7776,7 +7776,7 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },

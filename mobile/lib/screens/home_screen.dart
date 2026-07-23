@@ -1,11 +1,9 @@
-import '../core/media.dart';
+import '../ui/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import '../core/theme.dart';
 import '../providers.dart';
-import '../models/room.dart';
 
 /// Home — Mine / Popular / Discover tabs + room cards (room.getRecommendRoomV2).
 class HomeScreen extends ConsumerWidget {
@@ -29,7 +27,7 @@ class HomeScreen extends ConsumerWidget {
         data: (list) => list.isEmpty
           ? const Center(child: Text('No rooms yet', style: TextStyle(color: ZC.textLo)))
           : GridView.count(crossAxisCount: 2, padding: const EdgeInsets.all(12), childAspectRatio: .82, mainAxisSpacing: 12, crossAxisSpacing: 12,
-              children: list.map((r) => _RoomCard(r)).toList()))),
+              children: list.map((r) => RoomCard(r)).toList()))),
     ]);
   }
   Widget _popular(WidgetRef ref) => Column(children: [
@@ -48,15 +46,4 @@ class _Chip extends StatelessWidget { final String t; final bool on; const _Chip
   @override Widget build(BuildContext c) => Container(padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
     decoration: BoxDecoration(color: on ? ZC.purple : ZC.card, borderRadius: BorderRadius.circular(16)),
     child: Text(t, style: TextStyle(color: on ? Colors.white : ZC.textLo, fontSize: 13))); }
-class _RoomCard extends StatelessWidget { final RoomModel r; const _RoomCard(this.r);
-  @override Widget build(BuildContext c) => InkWell(onTap: () => c.push('/room/${r.rid}'),
-    child: Container(decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(14)),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
-          child: Media.has(r.cover) ? CachedNetworkImage(imageUrl: Media.url(r.cover)!, fit: BoxFit.cover, width: double.infinity, errorWidget: (_, __, ___) => _ph(r))
-            : _ph(r))),
-        Padding(padding: const EdgeInsets.fromLTRB(8, 6, 8, 2), child: Text(r.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600))),
-        Padding(padding: const EdgeInsets.only(left: 8, bottom: 8), child: Row(children: [const Icon(Icons.local_fire_department, size: 14, color: ZC.gold), Text(' ${r.onlineNum}', style: const TextStyle(color: ZC.textLo, fontSize: 12))])),
-      ])));
-  Widget _ph(RoomModel r) => Container(decoration: const BoxDecoration(gradient: ZGrad.vip), child: Center(child: Text('${r.seatCount} mic', style: const TextStyle(color: Colors.white70))));
-}
+

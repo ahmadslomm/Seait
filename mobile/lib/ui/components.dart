@@ -1,3 +1,5 @@
+import '../models/room.dart';
+import 'package:go_router/go_router.dart';
 import '../core/media.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -281,3 +283,33 @@ class GiftCell extends StatelessWidget { final String name; final int price; fin
     Expanded(child: Container(decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(ZRadius.sm)), child: const Icon(Icons.card_giftcard, color: ZC.gold, size: 30))),
     const SizedBox(height: 4), Text(name, style: ZType.label.copyWith(color: ZC.textHi, fontSize: 11), overflow: TextOverflow.ellipsis, maxLines: 1),
     BalancePill('$price', diamond: diamond)])); }
+
+
+/// Room tile used by every room list (Home, Live, search results).
+///
+/// Lives here rather than in one screen because the Live tab previously had no
+/// card at all and rendered `'$r'` — the raw Map — once the endpoint started
+/// returning data. One shared tile means a list screen cannot forget to have a
+/// renderer.
+class RoomCard extends StatelessWidget { final RoomModel r; const RoomCard(this.r, {super.key});
+  @override Widget build(BuildContext c) => InkWell(onTap: () => c.push('/room/${r.rid}'),
+    child: Container(decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(14)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Expanded(child: ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
+          child: Media.has(r.cover) ? CachedNetworkImage(imageUrl: Media.url(r.cover)!, fit: BoxFit.cover, width: double.infinity, errorWidget: (_, __, ___) => _ph(r))
+            : _ph(r))),
+        Padding(padding: const EdgeInsets.fromLTRB(8, 6, 8, 2), child: Text(r.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600))),
+        Padding(padding: const EdgeInsets.fromLTRB(8, 0, 8, 8), child: Row(children: [
+          const Icon(Icons.local_fire_department, size: 14, color: ZC.gold),
+          Text(' ${r.onlineNum}', style: const TextStyle(color: ZC.textLo, fontSize: 12)),
+          if (r.ownerNick.isNotEmpty) ...[
+            const SizedBox(width: 8),
+            Flexible(child: Text(r.ownerNick, maxLines: 1, overflow: TextOverflow.ellipsis,
+              style: const TextStyle(color: ZC.textLo, fontSize: 11))),
+          ],
+          if (r.country.isNotEmpty) Padding(padding: const EdgeInsets.only(left: 4),
+            child: Text(r.country, style: const TextStyle(color: ZC.textLo, fontSize: 10))),
+        ])),
+      ])));
+  Widget _ph(RoomModel r) => Container(decoration: const BoxDecoration(gradient: ZGrad.vip), child: Center(child: Text('${r.seatCount} mic', style: const TextStyle(color: Colors.white70))));
+}

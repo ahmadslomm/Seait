@@ -1,9 +1,9 @@
 # API inventory — original app vs new backend
 
-Generated 2026-07-23T16:02:45.684Z
+Generated 2026-07-23T16:22:28.683Z
 
 - **350** distinct endpoints across **95** modules
-- **105** implemented (30.0%)
+- **119** implemented (34.0%)
 - **6** confirmed called by the client at runtime
 - **244** recovered model classes available as shape evidence
 
@@ -19,15 +19,15 @@ Generated 2026-07-23T16:02:45.684Z
 |---|---:|---:|---:|
 | room | 48 | 23 | 0 |
 | user | 32 | 26 | 0 |
-| LiveRoom | 23 | 8 | 1 |
-| RoomApi | 23 | 0 | 0 |
-| gift | 14 | 3 | 0 |
+| LiveRoom | 23 | 9 | 1 |
+| RoomApi | 23 | 1 | 0 |
+| gift | 14 | 14 | 0 |
 | mall | 12 | 12 | 1 |
 | Game | 10 | 0 | 0 |
 | LivePk | 10 | 0 | 0 |
 | bottle | 10 | 0 | 0 |
 | moment | 9 | 1 | 0 |
-| app | 8 | 3 | 1 |
+| app | 8 | 4 | 1 |
 | SuperManage | 7 | 0 | 0 |
 | comment | 7 | 0 | 0 |
 | activity | 6 | 5 | 0 |
@@ -120,4 +120,3 @@ empty envelope, so each one is a screen that renders wrong today.
 
 | Action | Calls | Params observed |
 |---|---:|---|
-| `app.getThemeAssets` | 10 | — |

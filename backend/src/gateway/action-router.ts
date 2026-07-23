@@ -7,7 +7,7 @@ import { UnknownActionLogger } from '../fallback/logger';
 import { RoomGateway } from './room.gateway';
 import { ApiModule } from '../modules/module.base';
 import { UserModule, RoomModule, WalletModule, MallModule, TaskModule, NoticeModule,
-         ActivityModule, SearchModule, MedalModule, AgencyModule, ThemeModule } from '../modules';
+         ActivityModule, SearchModule, MedalModule, AgencyModule, ThemeModule, GiftModule } from '../modules';
 
 /** Routes an api.php `action` to its handler. Implemented handlers return real data;
  *  everything else is logged (fallback) so missing APIs surface at runtime. */
@@ -19,7 +19,7 @@ export class ActionRouter {
     private rtc: RtcService, private roomGw: RoomGateway,
     user: UserModule, room: RoomModule, wallet: WalletModule, mall: MallModule,
     task: TaskModule, notice: NoticeModule, activity: ActivityModule,
-    search: SearchModule, medal: MedalModule, agency: AgencyModule, theme: ThemeModule,
+    search: SearchModule, medal: MedalModule, agency: AgencyModule, theme: ThemeModule, gift: GiftModule,
   ) {
     // Domain modules own their actions; the router only dispatches. Merged once
     // at construction so lookup stays a single map read per request.
@@ -27,7 +27,7 @@ export class ActionRouter {
     // The gateway's own `handlers` win on a clash: a domain module must not be
     // able to silently take over an action the gateway already answers. A clash
     // is a mistake worth seeing, so it is logged rather than resolved quietly.
-    const mods: ApiModule[] = [user, room, wallet, mall, task, notice, activity, search, medal, agency, theme];
+    const mods: ApiModule[] = [user, room, wallet, mall, task, notice, activity, search, medal, agency, theme, gift];
     for (const m of mods) {
       for (const [action, fn] of Object.entries(m.handlers)) {
         if (this.moduleHandlers[action])
