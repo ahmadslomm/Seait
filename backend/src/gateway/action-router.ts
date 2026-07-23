@@ -5,19 +5,62 @@ import catalog from '../actions.catalog.json';
 import { RtcService } from '../rtc/rtc.service';
 import { UnknownActionLogger } from '../fallback/logger';
 import { RoomGateway } from './room.gateway';
+import { ApiModule } from '../modules/module.base';
+import { UserModule, RoomModule, WalletModule, MallModule, TaskModule, NoticeModule,
+         ActivityModule, SearchModule, MedalModule, AgencyModule } from '../modules';
 
 /** Routes an api.php `action` to its handler. Implemented handlers return real data;
  *  everything else is logged (fallback) so missing APIs surface at runtime. */
 @Injectable()
 export class ActionRouter {
   private log = new Logger('ActionRouter');
-  constructor(private prisma: PrismaService, private unknown: UnknownActionLogger, private rtc: RtcService, private roomGw: RoomGateway) {}
+  constructor(
+    private prisma: PrismaService, private unknown: UnknownActionLogger,
+    private rtc: RtcService, private roomGw: RoomGateway,
+    user: UserModule, room: RoomModule, wallet: WalletModule, mall: MallModule,
+    task: TaskModule, notice: NoticeModule, activity: ActivityModule,
+    search: SearchModule, medal: MedalModule, agency: AgencyModule,
+  ) {
+    // Domain modules own their actions; the router only dispatches. Merged once
+    // at construction so lookup stays a single map read per request.
+    //
+    // The gateway's own `handlers` win on a clash: a domain module must not be
+    // able to silently take over an action the gateway already answers. A clash
+    // is a mistake worth seeing, so it is logged rather than resolved quietly.
+    const mods: ApiModule[] = [user, room, wallet, mall, task, notice, activity, search, medal, agency];
+    for (const m of mods) {
+      for (const [action, fn] of Object.entries(m.handlers)) {
+        if (this.moduleHandlers[action])
+          this.log.warn(`duplicate handler for ${action} in ${m.constructor.name}`);
+        // The gateway wins the dispatch, so a module action with the same name
+        // never runs. That is almost always an old gateway stub left behind
+        // after the real implementation moved into a module — silence here cost
+        // one debugging round already, so it is loud.
+        if ((this.handlers as any)[action])
+          this.log.warn(`${m.constructor.name}.${action} is SHADOWED by a gateway handler and will never run`);
+        this.moduleHandlers[action] = fn;
+      }
+    }
+    this.log.log(`${Object.keys(this.moduleHandlers).length} module actions + ${Object.keys(this.handlers).length} gateway actions`);
+  }
+
+  /** Actions contributed by the domain modules. */
+  private moduleHandlers: Record<string, (r: ActionReq) => Promise<any>> = {};
+
+  /** Every action this backend answers — used by tests and the coverage report. */
+  get implementedActions(): string[] {
+    return [...new Set([...Object.keys(this.handlers), ...Object.keys(this.moduleHandlers)])].sort();
+  }
   readonly total = (catalog as any)._total;
 
   async route(req: ActionReq): Promise<any> {
     const a = req.action || '';
     const h = (this.handlers as any)[a];
     if (h) return h.call(this, req);
+    const m = this.moduleHandlers[a];
+    // Module handlers return response_data directly; wrap it in the envelope
+    // here so no domain module has to know the envelope shape.
+    if (m) return ok(await m(req));
     // known-but-unimplemented vs truly-unknown
     const known = !!(catalog as any).actions[a];
     this.unknown.record(a, req, known);
@@ -27,7 +70,13 @@ export class ActionRouter {
   handlers: Record<string, (r: ActionReq)=>Promise<any>> = {
     'preArea.getServer': async () => ok([await this.cfg('server')]),
     'app.getConfigV2':   async () => ok({ value: 0 }),
-    'app.getConfig':     async () => ok(await this.cfg('appConfig') ?? {}),
+    // assetBase is merged in rather than stored per-row: every catalogue path in
+    // the DB is relative, and this is what the client joins them to. Keeping it
+    // here means switching to a CDN is one Config row, not a data migration.
+    'app.getConfig':     async () => ok({
+      ...((await this.cfg('appConfig')) as object ?? {}),
+      assetBase: (await this.cfg('assetBase')) ?? '/assets/',
+    }),
     'app.commonConfig':  async () => ok(await this.cfg('common') ?? {}),
     'report.getReportConfig': async () => ok({ http_reportFeq:300, http_reportCnt:10, notReportFiles:[], ping_domain:[], roomImReportTimeout:5000,
         http_reportAction:['user.getUserinfo','user.batchGetUserinfoV2','room.getRecommendRoomV2','moment.recomV3'] }),
@@ -54,7 +103,10 @@ export class ActionRouter {
       return ok(this.rtc.issue(rid, uid, publisher));
     },
     'gift.getCommonGift':      async () => ok(await this.prisma.gift.findMany({ where:{ active:true }, take:8 })),
-    'mall.getMallProductV2':   async () => ok([]),
+    // Moments have no table yet, so the feed is genuinely empty rather than
+    // stubbed. Left here deliberately: removing it would send the action to the
+    // unknown-action logger and make a working-but-empty screen look broken.
+    // Tracked as remaining work in docs/API_INVENTORY.md.
     'moment.recomV3':          async () => ok({ list:[] }),
     'gift.songGiftRank':       async () => ok(await this.rank('gift')),
     'couple.cpRank':           async () => ok(await this.rank('cp')),

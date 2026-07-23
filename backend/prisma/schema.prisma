@@ -9,36 +9,36 @@ datasource db {
 }
 
 model User {
-  uid          Int      @id
-  mobile       String?
-  nick         String   @default("")
-  sex          Int      @default(0)
-  sign         String   @default("")
-  avatar       String   @default("")
-  avatarFrame  String   @default("")
-  carFrame     String   @default("")
-  chatBubble   String   @default("")
-  infoBgImg    String   @default("")
-  birthday     String?
-  country      String?
-  regCountry   String?
-  region       String?
-  lang         String?
-  age          Int      @default(0)
+  uid           Int      @id
+  mobile        String?
+  nick          String   @default("")
+  sex           Int      @default(0)
+  sign          String   @default("")
+  avatar        String   @default("")
+  avatarFrame   String   @default("")
+  carFrame      String   @default("")
+  chatBubble    String   @default("")
+  infoBgImg     String   @default("")
+  birthday      String?
+  country       String?
+  regCountry    String?
+  region        String?
+  lang          String?
+  age           Int      @default(0)
   constellation String?
-  audit_avatar Int      @default(0)
-  real_flag    Int      @default(0)
-  isAnchor     Boolean  @default(false)
-  isPresident  Boolean  @default(false)
-  noble_level  Int      @default(0)
-  active_level Int      @default(0)
-  gameLv       Int      @default(0)
-  svip         Int      @default(0)
-  isBanned     Int      @default(0)
-  createdAt    DateTime @default(now())
-  profile      Profile?
-  wallet       Wallet?
-  vip          UserVip?
+  audit_avatar  Int      @default(0)
+  real_flag     Int      @default(0)
+  isAnchor      Boolean  @default(false)
+  isPresident   Boolean  @default(false)
+  noble_level   Int      @default(0)
+  active_level  Int      @default(0)
+  gameLv        Int      @default(0)
+  svip          Int      @default(0)
+  isBanned      Int      @default(0)
+  createdAt     DateTime @default(now())
+  profile       Profile?
+  wallet        Wallet?
+  vip           UserVip?
 }
 
 model Profile {
@@ -158,6 +158,9 @@ model Room {
   onlineNum Int          @default(0)
   roomLevel Int          @default(0)
   status    Int          @default(1)
+  // room.getCountryRoomListV2 filters and groups on this; without it the
+  // country tabs on the Live screen have nothing to select by.
+  country   String       @default("")
   createdAt DateTime     @default(now())
   members   RoomMember[]
   seats     Seat[]
@@ -272,4 +275,146 @@ model Settings {
 model Config {
   key   String @id
   value Json
+}
+
+// ── catalogue ─────────────────────────────────────────────────────────
+// One table backs every cosmetic the app sells or grants: avatar frames,
+// chat bubbles, entry effects, ride/car animations, room backgrounds and
+// profile themes. The original app exposes these through several different
+// actions (mall.*, theme.*, noble frames, VIP frames) but they are the same
+// object with a different `type`, so they are unified here and the differing
+// actions are kept as thin views over this table. That is what makes them
+// manageable from one admin screen.
+model MallProduct {
+  product_id Int           @id @default(autoincrement())
+  type       String // frame | bubble | car | entry | room_bg | theme | medal
+  name       String
+  icon       String        @default("")
+  preview    String        @default("") // svga/pag/mp4 for animated items
+  price      Int           @default(0)
+  coin_type  Int           @default(1) // 1 coin, 2 diamond
+  duration   Int           @default(30) // days; 0 = permanent
+  category   Int           @default(0)
+  vip_only   Int           @default(0) // minimum vip level, 0 = anyone
+  noble_only Int           @default(0) // minimum noble level
+  sort       Int           @default(0)
+  active     Boolean       @default(true)
+  createdAt  DateTime      @default(now())
+  owners     UserProduct[]
+
+  @@index([type, active])
+}
+
+model UserProduct {
+  id         Int         @id @default(autoincrement())
+  uid        Int
+  product_id Int
+  equipped   Boolean     @default(false)
+  source     String      @default("buy") // buy | gift | grant | vip | noble
+  expireAt   DateTime? // null = permanent
+  createdAt  DateTime    @default(now())
+  product    MallProduct @relation(fields: [product_id], references: [product_id])
+
+  @@unique([uid, product_id])
+  @@index([uid, equipped])
+}
+
+// ── notices ───────────────────────────────────────────────────────────
+// notice.checkNotice returns unread COUNTS per category, which the client
+// renders as the red dots on the Message tab.
+model Notice {
+  id        Int      @id @default(autoincrement())
+  uid       Int
+  type      String // system | gift | follow | guild | activity
+  title     String   @default("")
+  body      String   @default("")
+  icon      String   @default("")
+  link      String   @default("")
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([uid, read])
+}
+
+// ── daily sign-in ─────────────────────────────────────────────────────
+model SignInReward {
+  day         Int    @id // 1..7
+  reward_type String @default("coin") // coin | diamond | product
+  reward_num  Int    @default(0)
+  product_id  Int?
+  icon        String @default("")
+}
+
+model UserSignIn {
+  id       Int      @id @default(autoincrement())
+  uid      Int
+  day      Int
+  ymd      String // YYYY-MM-DD, so a day can only be claimed once
+  signedAt DateTime @default(now())
+
+  @@unique([uid, ymd])
+  @@index([uid])
+}
+
+// ── activity banners ──────────────────────────────────────────────────
+model Banner {
+  id       Int       @id @default(autoincrement())
+  image    String
+  link     String    @default("")
+  position String    @default("home") // home | room | me
+  sort     Int       @default(0)
+  active   Boolean   @default(true)
+  startAt  DateTime?
+  endAt    DateTime?
+  clicks   Int       @default(0)
+
+  @@index([position, active])
+}
+
+// ── medals ────────────────────────────────────────────────────────────
+model Medal {
+  medal_id Int     @id @default(autoincrement())
+  name     String
+  icon     String  @default("")
+  desc     String  @default("")
+  sort     Int     @default(0)
+  active   Boolean @default(true)
+}
+
+model UserMedal {
+  id       Int       @id @default(autoincrement())
+  uid      Int
+  medal_id Int
+  adorned  Boolean   @default(false)
+  expireAt DateTime?
+  gotAt    DateTime  @default(now())
+
+  @@unique([uid, medal_id])
+}
+
+// ── room collections ──────────────────────────────────────────────────
+model RoomCollect {
+  id        Int      @id @default(autoincrement())
+  uid       Int
+  rid       Int
+  createdAt DateTime @default(now())
+
+  @@unique([uid, rid])
+  @@index([uid])
+}
+
+// ── agency / BD invites ───────────────────────────────────────────────
+// Action/BDCenter.inviteUserRes is polled by the client for the state of an
+// invitation it was shown.
+model AgencyInvite {
+  id          Int       @id @default(autoincrement())
+  agency_id   Int
+  uid         Int
+  status      Int       @default(0) // 0 pending, 1 accepted, 2 rejected, 3 expired
+  invitedBy   Int
+  createdAt   DateTime  @default(now())
+  respondedAt DateTime?
+
+  @@unique([agency_id, uid])
+  @@index([uid, status])
 }

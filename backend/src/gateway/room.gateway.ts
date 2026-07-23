@@ -100,6 +100,17 @@ export class RoomGateway implements OnGatewayDisconnect {
     return !!r && r.seats.some(s => s.uid === uid);
   }
 
+  /** Live seat occupancy, or null when the room has never been opened.
+   *
+   *  Same reasoning as isSeated: prisma.seat is not written on sit/stand, so an
+   *  HTTP caller reading it gets an all-empty room while people are visibly
+   *  sitting in it. Null (rather than an empty array) lets the caller tell
+   *  "nobody has opened this room" apart from "the room is empty right now". */
+  liveSeats(rid: number): Array<{ seatNo: number; uid: number | null; micState: number; lock: number; charmValue?: number }> | null {
+    const r = this.rooms.get(rid);
+    return r ? r.seats.map(s => ({ seatNo: s.seatNo, uid: s.uid, micState: s.micState, lock: s.lock })) : null;
+  }
+
   private roleOf(r: Room, uid: number): Role {
     if (uid === r.ownerUid) return 'owner';
     if (r.admins.has(uid)) return 'admin';
