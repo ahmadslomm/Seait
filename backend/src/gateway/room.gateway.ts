@@ -122,6 +122,82 @@ export class RoomGateway implements OnGatewayDisconnect {
 
   private rm(rid: number) { return `room_${rid}`; }
 
+  // ── HTTP bridge ───────────────────────────────────────────────────
+  // The original client drives mic and moderation over api.php, not the
+  // socket, so Action/RoomApi.* needs a way in. These mutate the same live
+  // state the socket handlers use and broadcast the same events — an HTTP kick
+  // must vacate the seat on every screen, not just in the database, or the
+  // victim stays visibly seated until someone reconnects.
+  //
+  // They are deliberately synchronous and permission-free: the caller
+  // (RoomApiModule) has already checked authority against the persisted roles.
+  // Re-checking here with different rules is how the two paths would drift.
+
+  /** Live room state, or null when nobody has opened the room. */
+  private live(rid: number): Room | null { return this.rooms.get(rid) ?? null; }
+
+  httpSeatTake(rid: number, uid: number, seatNo: number): boolean {
+    const r = this.live(rid); if (!r) return false;
+    const s = r.seats[seatNo]; if (!s || (s.uid && s.uid !== uid) || s.lock === 1) return false;
+    for (const x of r.seats) if (x.uid === uid && x.seatNo !== seatNo) {
+      x.uid = null; this.server.to(this.rm(rid)).emit('seat_update', x);
+    }
+    s.uid = uid; s.micState = 0;
+    void this.profile(uid).then(p => this.server.to(this.rm(rid)).emit('seat_update', { ...s, profile: p }));
+    return true;
+  }
+
+  httpSeatLeave(rid: number, uid: number): void {
+    const r = this.live(rid); if (!r) return;
+    for (const s of r.seats) if (s.uid === uid) {
+      s.uid = null; s.micState = 0;
+      this.server.to(this.rm(rid)).emit('seat_update', s);
+    }
+  }
+
+  httpSeatLock(rid: number, seatNo: number, lock: boolean): void {
+    const r = this.live(rid); if (!r) return;
+    const s = r.seats[seatNo]; if (!s) return;
+    s.lock = lock ? 1 : 0;
+    this.server.to(this.rm(rid)).emit('seat_update', s);
+  }
+
+  httpSetMic(rid: number, uid: number, off: boolean): void {
+    const r = this.live(rid); if (!r) return;
+    for (const s of r.seats) if (s.uid === uid) {
+      s.micState = off ? 1 : 0;
+      this.server.to(this.rm(rid)).emit('mic_status', s);
+    }
+  }
+
+  httpMute(rid: number, uid: number, on: boolean): void {
+    const r = this.live(rid); if (!r) return;
+    if (on) r.muted.add(uid); else r.muted.delete(uid);
+    this.server.to(this.rm(rid)).emit('user_muted', { uid, muted: on ? 1 : 0 });
+  }
+
+  httpKick(rid: number, uid: number): void {
+    const r = this.live(rid); if (!r) return;
+    this.server.to(this.rm(rid)).emit('user_kicked', { uid });
+    void this.exit(rid, uid);
+  }
+
+  httpProfileChanged(rid: number, uid: number): void {
+    // Drop the cached profile so the next read is fresh, then tell the room.
+    this.profiles.delete(uid);
+    void this.profile(uid).then(p => this.server.to(this.rm(rid)).emit('user_update', p));
+  }
+
+  httpSetAdmin(rid: number, uid: number, on: boolean): void {
+    const r = this.live(rid); if (!r) return;
+    if (on) r.admins.add(uid); else r.admins.delete(uid);
+    this.server.to(this.rm(rid)).emit('role', { uid, role: this.roleOf(r, uid) });
+  }
+
+  httpLuckyNumber(rid: number, uid: number, num: number): void {
+    this.server.to(this.rm(rid)).emit('lucky_number', { uid, num });
+  }
+
   private deny(c: Socket, action: string, reason: string) {
     c.emit('action_denied', { action, reason });
   }

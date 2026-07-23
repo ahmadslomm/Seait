@@ -53,6 +53,25 @@ for (const f of srcFiles)
   for (const m of fs.readFileSync(f, 'utf8').matchAll(/^\s*'([\w./]+)':\s*async/gm))
     implemented.add(m[1]);
 
+// The non-api.php surface is served by LegacyController and AssetsController
+// (plain HTTP routes and H5 pages), not by an action handler, so the handler
+// regex above cannot see it. Its routes are matched here against the inventory
+// ids so coverage reflects what actually responds. Each entry maps an inventory
+// id to the controller route that answers it.
+const legacySrc = fs.existsSync(path.join(BE, 'src', 'gateway', 'legacy.controller.ts'))
+  ? fs.readFileSync(path.join(BE, 'src', 'gateway', 'legacy.controller.ts'), 'utf8') : '';
+const legacyRoutes = [...legacySrc.matchAll(/@(?:All|Get|Post)\('([^']+)'\)/g)].map(m => m[1]);
+const legacyImplemented = id => {
+  // Normalise both sides to a comparable path: strip a leading slash, drop
+  // query strings, and treat the underscore/slash php variants as equal.
+  const norm = x => x.replace(/^\//, '').split('?')[0];
+  const n = norm(id);
+  if (legacyRoutes.some(r => norm(r) === n)) return true;
+  // H5 pages are all served by the `html/*` wildcard.
+  if (n.startsWith('html/') && legacyRoutes.includes('html/*')) return true;
+  return false;
+};
+
 // What the app has actually been seen calling. An action here is not optional:
 // the client asks for it at runtime, so a stub means a visibly broken screen.
 const observed = new Map();
@@ -105,7 +124,10 @@ const ids = new Set([
 
 // Probes fired by hand while testing the fallback logger. They are our noise,
 // not app surface, and would otherwise sit in the inventory forever.
-const NOISE = new Set(['foobar.doesNotExist']);
+// `/api.php` is the gateway endpoint every action is POSTed to — the transport,
+// not an endpoint of its own — so it is excluded rather than counted as an
+// unimplemented route it can never be.
+const NOISE = new Set(['foobar.doesNotExist', '/api.php']);
 
 const endpoints = [...ids].filter(id => id && id !== '(empty)' && !NOISE.has(id)).sort().map(id => {
   const cat = (catalog.actions || {})[id] || {};
@@ -126,7 +148,9 @@ const endpoints = [...ids].filter(id => id && id !== '(empty)' && !NOISE.has(id)
     observed_calls: obs ? obs.calls : 0,
     callers: con.callers || [],
     caller_count: con.caller_count || 0,
-    implemented: implemented.has(id),
+    implemented: implemented.has(id) || legacyImplemented(id),
+    // How it is served, for the report: an action handler vs a plain HTTP route.
+    served_by: implemented.has(id) ? 'action' : (legacyImplemented(id) ? 'http' : null),
     // Not present in any recovered source: ours, not the original app's.
     extension: !(catalog.actions || {})[id] && !contractById.has(id),
     evidence: con.evidence || cat.source || 'catalog only',

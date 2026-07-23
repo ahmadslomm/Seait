@@ -105,6 +105,9 @@ export class SearchModule extends ApiModule {
         })),
       };
     },
+    // The room-search entry point used from the Live tab; same query, kept
+    // under its own name for compatibility.
+    'Action/LiveSearch.roomSearch': async (r: ActionReq) => this.handlers['search.roomSearch'](r),
     'search.recommend': async (r: ActionReq) => {
       const rooms = await this.prisma.room.findMany({ where: { status: 1 }, orderBy: { onlineNum: 'desc' }, take: 10 });
       return { list: rooms.map(x => ({ rid: x.rid, roomName: x.name, cover: x.cover, onlineNum: x.onlineNum })) };

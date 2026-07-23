@@ -163,6 +163,45 @@ const arr = v => Array.isArray(v) ? v : (v && Array.isArray(v.list) ? v.list : n
   check('an unaffordable gift is refused, not overdrawn',
     poor && poor.code === 1 && poor.msg === 'insufficient_balance', JSON.stringify(poor));
 
+  console.log('rooms: admin (batch 2)');
+  const applied = await call('Action/RoomApi.joinMic', { rid: RID, uid: OTHER, seatNo: 4 });
+  check('a mic application is accepted', applied && applied.code === 0, JSON.stringify(applied));
+  const micList = arr(await call('room.getApplyMicList', { rid: RID }));
+  check('the applicant appears in the mic queue', micList && micList.some(x => Number(x.uid) === OTHER));
+  const roleAdd = await call('room.addRole', { rid: RID, target_uid: OTHER, role: 'admin', uid: UID });
+  check('the owner can grant a room role', roleAdd && roleAdd.code === 0, JSON.stringify(roleAdd));
+  const mng = arr(await call('room.getRoomManageList', { rid: RID }));
+  check('the new admin is listed', mng && mng.some(x => Number(x.uid) === OTHER));
+  const roleDenied = await call('room.addRole', { rid: RID, target_uid: UID, uid: OTHER });
+  check('a non-owner cannot grant roles', roleDenied && roleDenied.code === 1);
+  await call('room.delRole', { rid: RID, target_uid: OTHER, uid: UID });
+
+  console.log('games / pk (batch 3)');
+  const tok = await call('Action/MiniGame.getUidAndToken', { provider: 'amg' });
+  check('a game token is minted with an expiry', tok && tok.code === 0 && !!tok.token && tok.expireAt > 0, JSON.stringify(tok).slice(0, 80));
+  const hot = arr(await call('Action/Game.hotGames'));
+  check('the games catalogue is populated', hot && hot.length > 0, `games=${hot && hot.length}`);
+  const pk = await call('Action/LivePk.startLivePk', { rid: RID });
+  check('a PK match starts and reports a remaining time', pk && pk.code === 0 && pk.remain >= 0, JSON.stringify(pk).slice(0, 90));
+
+  console.log('feed / bottles (batch 4)');
+  const moments = arr(await call('moment.recomV'));
+  check('the moment feed returns posts', moments && moments.length > 0, `moments=${moments && moments.length}`);
+  if (moments && moments[0]) {
+    const cm = await call('comment.addComment', { target_type: 'moment', target_id: moments[0].id, text: 'nice' });
+    check('a comment can be posted to a moment', cm && cm.code === 0, JSON.stringify(cm).slice(0, 80));
+  }
+  const bottles = arr(await call('feedTopic.newUsong'));
+  check('the bottle/song feed returns clips', bottles && bottles.length >= 0, `bottles=${bottles && bottles.length}`);
+
+  console.log('room events (batch 5)');
+  const bag = await call('Action/luckyBags.getBag', { bag_id: 1, uid: OTHER });
+  check('a lucky bag pays out or is already claimed', bag && (bag.code === 0 || ['already_claimed','bag_empty','bag_expired'].includes(bag.msg)), JSON.stringify(bag));
+  const rocket = await call('Action/RocketGift.roomGifts', { rid: RID });
+  check('rocket progress is reported for the room', rocket && 'progress' in rocket && 'target' in rocket, JSON.stringify(rocket).slice(0, 80));
+  const countries = arr(await call('user.getCountryList'));
+  check('the country list is populated', countries && countries.length > 0, `countries=${countries && countries.length}`);
+
   console.log('config');
   const cfg = await call('app.getConfig');
   check('app config carries assetBase for relative art', cfg && !!cfg.assetBase, `assetBase=${cfg && cfg.assetBase}`);

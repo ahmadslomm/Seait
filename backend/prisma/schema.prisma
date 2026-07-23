@@ -418,3 +418,391 @@ model AgencyInvite {
   @@unique([agency_id, uid])
   @@index([uid, status])
 }
+
+// ── room administration ───────────────────────────────────────────────
+// Persisted room roles. The gateway keeps live admin state in memory for
+// permission checks during a session; this is the durable record behind
+// room.addRole / delRole / getRoomManageList, so a grant survives a restart.
+model RoomRole {
+  id        Int      @id @default(autoincrement())
+  rid       Int
+  uid       Int
+  role      String   @default("admin") // admin | host
+  grantedBy Int
+  createdAt DateTime @default(now())
+
+  @@unique([rid, uid])
+  @@index([rid])
+}
+
+model RoomBan {
+  id        Int       @id @default(autoincrement())
+  rid       Int
+  uid       Int
+  kind      String    @default("block") // block (banned from room) | mute
+  reason    String    @default("")
+  by_uid    Int
+  expireAt  DateTime?
+  createdAt DateTime  @default(now())
+
+  @@unique([rid, uid, kind])
+  @@index([rid, kind])
+}
+
+/// Mic queue — room.getApplyMicList / RoomApi.joinMic.
+model MicApply {
+  id        Int      @id @default(autoincrement())
+  rid       Int
+  uid       Int
+  seatNo    Int      @default(-1) // -1 = any free seat
+  status    Int      @default(0) // 0 pending, 1 accepted, 2 rejected
+  createdAt DateTime @default(now())
+
+  @@unique([rid, uid])
+  @@index([rid, status])
+}
+
+/// Fan-call sessions — RoomApi.startCallFans / cancelCallFans.
+model CallFans {
+  id        Int       @id @default(autoincrement())
+  rid       Int
+  uid       Int
+  active    Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  endedAt   DateTime?
+
+  @@index([rid, active])
+}
+
+/// User-level block list — report.addBlackList (distinct from a room ban).
+model UserBlock {
+  id         Int      @id @default(autoincrement())
+  uid        Int
+  target_uid Int
+  createdAt  DateTime @default(now())
+
+  @@unique([uid, target_uid])
+  @@index([uid])
+}
+
+model Report {
+  id         Int      @id @default(autoincrement())
+  uid        Int
+  target_uid Int?
+  rid        Int?
+  kind       String   @default("user")
+  reason     String   @default("")
+  detail     String   @default("")
+  status     Int      @default(0) // 0 open, 1 reviewed
+  createdAt  DateTime @default(now())
+
+  @@index([status])
+}
+
+// ── social feed ───────────────────────────────────────────────────────
+model Moment {
+  id        Int      @id @default(autoincrement())
+  uid       Int
+  text      String   @default("")
+  images    Json?
+  songId    Int?
+  topicId   Int?
+  likes     Int      @default(0)
+  comments  Int      @default(0)
+  views     Int      @default(0)
+  status    Int      @default(1)
+  createdAt DateTime @default(now())
+
+  @@index([uid])
+  @@index([topicId])
+  @@index([createdAt])
+}
+
+model MomentLike {
+  id        Int      @id @default(autoincrement())
+  moment_id Int
+  uid       Int
+  createdAt DateTime @default(now())
+
+  @@unique([moment_id, uid])
+}
+
+model MomentView {
+  id        Int      @id @default(autoincrement())
+  moment_id Int
+  uid       Int
+  createdAt DateTime @default(now())
+
+  @@unique([moment_id, uid])
+}
+
+/// Comments on moments AND on bottles, and replies to other comments — the
+/// original app has separate list actions for each, but one row shape covers
+/// all three: `target_type` says what is being commented on, `parent_id`
+/// makes it a reply.
+model Comment {
+  id          Int      @id @default(autoincrement())
+  target_type String   @default("moment") // moment | bottle | comment
+  target_id   Int
+  parent_id   Int?
+  uid         Int
+  text        String   @default("")
+  praises     Int      @default(0)
+  status      Int      @default(1)
+  createdAt   DateTime @default(now())
+
+  @@index([target_type, target_id])
+  @@index([parent_id])
+}
+
+model CommentPraise {
+  id         Int      @id @default(autoincrement())
+  comment_id Int
+  uid        Int
+  createdAt  DateTime @default(now())
+
+  @@unique([comment_id, uid])
+}
+
+model FeedTopic {
+  id        Int      @id @default(autoincrement())
+  name      String
+  cover     String   @default("")
+  desc      String   @default("")
+  hot       Int      @default(0)
+  sort      Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+// ── drift bottles (voice/song clips) ──────────────────────────────────
+model Bottle {
+  id        Int      @id @default(autoincrement())
+  uid       Int
+  url       String
+  cover     String   @default("")
+  title     String   @default("")
+  duration  Int      @default(0)
+  likes     Int      @default(0)
+  plays     Int      @default(0)
+  /// 0 pending review, 1 approved, 2 rejected — getUserCensorSongs reads this.
+  censor    Int      @default(0)
+  status    Int      @default(1)
+  createdAt DateTime @default(now())
+
+  @@index([uid, censor])
+  @@index([status, createdAt])
+}
+
+model BottleLike {
+  id        Int      @id @default(autoincrement())
+  bottle_id Int
+  uid       Int
+  createdAt DateTime @default(now())
+
+  @@unique([bottle_id, uid])
+  @@index([uid])
+}
+
+// ── PK battles ────────────────────────────────────────────────────────
+model PkMatch {
+  id        Int       @id @default(autoincrement())
+  rid_a     Int
+  rid_b     Int?
+  status    Int       @default(0) // 0 invited, 1 running, 2 finished, 3 refused, 4 cancelled
+  score_a   BigInt    @default(0)
+  score_b   BigInt    @default(0)
+  duration  Int       @default(300)
+  startedAt DateTime?
+  endedAt   DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([rid_a, status])
+  @@index([rid_b, status])
+}
+
+// ── mini games ────────────────────────────────────────────────────────
+model Game {
+  game_id  Int     @id @default(autoincrement())
+  name     String
+  icon     String  @default("")
+  url      String  @default("")
+  provider String  @default("") // amg | yomi | joyplay
+  hot      Int     @default(0)
+  sort     Int     @default(0)
+  active   Boolean @default(true)
+}
+
+model GameRoom {
+  id        Int      @id @default(autoincrement())
+  game_id   Int
+  rid       Int?
+  owner_uid Int
+  roomCode  String   @unique
+  status    Int      @default(1)
+  createdAt DateTime @default(now())
+}
+
+model GamePlayer {
+  id           Int      @id @default(autoincrement())
+  game_id      Int
+  uid          Int
+  score        BigInt   @default(0)
+  wins         Int      @default(0)
+  plays        Int      @default(0)
+  lastPlayedAt DateTime @default(now())
+
+  @@unique([game_id, uid])
+  @@index([game_id, score])
+}
+
+/// Short-lived tokens handed to third-party game SDKs (MiniGame/JoyPlay).
+model GameToken {
+  id        Int      @id @default(autoincrement())
+  uid       Int
+  provider  String
+  token     String   @unique
+  expireAt  DateTime
+  createdAt DateTime @default(now())
+
+  @@index([uid, provider])
+}
+
+// ── room events: bombs, lucky bags, rockets ───────────────────────────
+model RoomBombConfig {
+  id        Int     @id @default(autoincrement())
+  name      String
+  icon      String  @default("")
+  threshold Int     @default(1000)
+  prize     Int     @default(0)
+  active    Boolean @default(true)
+}
+
+model RoomPrizeRecord {
+  id        Int      @id @default(autoincrement())
+  rid       Int
+  uid       Int
+  kind      String   @default("bomb") // bomb | luckybag | rocket | luckydraw
+  prize     Int      @default(0)
+  detail    String   @default("")
+  createdAt DateTime @default(now())
+
+  @@index([rid, kind])
+  @@index([uid])
+}
+
+model LuckyBag {
+  id        Int       @id @default(autoincrement())
+  rid       Int
+  from_uid  Int
+  coins     Int       @default(0)
+  count     Int       @default(1)
+  taken     Int       @default(0)
+  expireAt  DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([rid])
+}
+
+model LuckyBagClaim {
+  id        Int      @id @default(autoincrement())
+  bag_id    Int
+  uid       Int
+  coins     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@unique([bag_id, uid])
+}
+
+/// Rocket gift progress per room — RocketGift.gifts / roomGifts.
+model RocketGift {
+  id        Int      @id @default(autoincrement())
+  rid       Int
+  level     Int      @default(1)
+  progress  BigInt   @default(0)
+  target    BigInt   @default(10000)
+  active    Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+
+  @@unique([rid])
+}
+
+// ── room level / activities ───────────────────────────────────────────
+model RoomLevelConfig {
+  level   Int    @id
+  needExp BigInt @default(0)
+  prize   Int    @default(0)
+  icon    String @default("")
+}
+
+model RoomLevelState {
+  rid       Int      @id
+  level     Int      @default(1)
+  exp       BigInt   @default(0)
+  claimed   Json?
+  updatedAt DateTime @updatedAt
+}
+
+model RoomAct {
+  id      Int       @id @default(autoincrement())
+  name    String
+  cover   String    @default("")
+  desc    String    @default("")
+  startAt DateTime?
+  endAt   DateTime?
+  active  Boolean   @default(true)
+}
+
+model RoomActJoin {
+  id        Int      @id @default(autoincrement())
+  act_id    Int
+  rid       Int
+  uid       Int
+  createdAt DateTime @default(now())
+
+  @@unique([act_id, uid])
+}
+
+// ── misc reference data ───────────────────────────────────────────────
+model CountryZone {
+  code String @id // ISO-2
+  name String
+  zone String // dialling prefix
+  flag String @default("")
+  sort Int    @default(0)
+}
+
+model AppVersion {
+  id        Int      @id @default(autoincrement())
+  platform  String   @default("android")
+  version   String
+  build     Int      @default(0)
+  url       String   @default("")
+  notes     String   @default("")
+  force     Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([platform, build])
+}
+
+/// Room noticeboard/quick-chat phrases and horn broadcasts.
+model Horn {
+  id        Int      @id @default(autoincrement())
+  uid       Int
+  rid       Int?
+  text      String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model Photo {
+  id        Int      @id @default(autoincrement())
+  uid       Int
+  url       String
+  isDefault Boolean  @default(false)
+  sort      Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([uid])
+}

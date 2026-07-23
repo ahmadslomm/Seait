@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-07-23T16:22:28.683Z",
+  "_generated": "2026-07-23T17:27:33.955Z",
   "_sources": {
     "catalog": "src/actions.catalog.json",
     "contract": "zaffa_recovery/COMPLETE_API_CONTRACT.json",
@@ -58,23 +58,15 @@
   },
   "totals": {
     "endpoints": 350,
-    "implemented": 119,
+    "implemented": 350,
     "observed_at_runtime": 6,
-    "modules": 95,
+    "modules": 94,
     "model_classes": 244
   },
   "modules": {
-    "/api": {
-      "total": 1,
-      "implemented": 0,
-      "observed": 0,
-      "actions": [
-        "/api.php"
-      ]
-    },
     "/api/GetUserSig": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/api/GetUserSig.php"
@@ -82,7 +74,7 @@
     },
     "/api/v1/upload/applog": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/api/v1/upload/applog"
@@ -90,7 +82,7 @@
     },
     "/googleplaySub/getSubOrder": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/googleplaySub/getSubOrder.php"
@@ -98,7 +90,7 @@
     },
     "/googleplaySub/getSubReceipt": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/googleplaySub/getSubReceipt.php"
@@ -106,7 +98,7 @@
     },
     "/googleplaySub/subProductList": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/googleplaySub/subProductList.php"
@@ -114,7 +106,7 @@
     },
     "/html/anchor/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/anchor/index.html?lang="
@@ -122,7 +114,7 @@
     },
     "/html/announcementFamily/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/announcementFamily/index.html?uid="
@@ -130,7 +122,7 @@
     },
     "/html/changePhone/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/changePhone/index.php"
@@ -138,7 +130,7 @@
     },
     "/html/coinsMerchant/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/coinsMerchant/index.html?uid="
@@ -146,7 +138,7 @@
     },
     "/html/cpReward/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/cpReward/index.html?"
@@ -154,7 +146,7 @@
     },
     "/html/friendCenter/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/friendCenter/index.html?"
@@ -162,7 +154,7 @@
     },
     "/html/luckyBox/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/luckyBox/index.html?uid="
@@ -170,7 +162,7 @@
     },
     "/html/magicBox/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/magicBox/index.html?lang="
@@ -178,7 +170,7 @@
     },
     "/html/medalRank/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/medalRank/index.html?"
@@ -186,7 +178,7 @@
     },
     "/html/mobiChecker/index": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "/html/mobiChecker/index.php",
@@ -195,7 +187,7 @@
     },
     "/html/pkReward/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/pkReward/index.html?"
@@ -203,7 +195,7 @@
     },
     "/html/pkRule/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/pkRule/index.html?"
@@ -211,7 +203,7 @@
     },
     "/html/report/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/report/index.html?lang="
@@ -219,7 +211,7 @@
     },
     "/html/roomParty/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/roomParty/index.html?"
@@ -227,7 +219,7 @@
     },
     "/html/roomScoreRank/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/roomScoreRank/index.html?type=%1$s&"
@@ -235,7 +227,7 @@
     },
     "/html/vipScoreRank/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/vipScoreRank/index.html?type=%1$s&"
@@ -243,7 +235,7 @@
     },
     "/html/wealth_grade/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/html/wealth_grade/index.html?lang="
@@ -251,7 +243,7 @@
     },
     "/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/index.php"
@@ -259,7 +251,7 @@
     },
     "/share_bottle/index": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "/share_bottle/index.php",
@@ -268,7 +260,7 @@
     },
     "/share_room/index": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "/share_room/index.php"
@@ -276,7 +268,7 @@
     },
     "Anchor": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/Anchor.inviteJoinGuildRes"
@@ -284,7 +276,7 @@
     },
     "Api": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/Api.GetUserSig"
@@ -292,7 +284,7 @@
     },
     "BDCenter": {
       "total": 3,
-      "implemented": 2,
+      "implemented": 3,
       "observed": 1,
       "actions": [
         "Action/BDCenter.inviteGuildRes",
@@ -302,7 +294,7 @@
     },
     "ChargeGiftBag": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/ChargeGiftBag.getGiftBagStatus"
@@ -310,7 +302,7 @@
     },
     "Game": {
       "total": 10,
-      "implemented": 0,
+      "implemented": 10,
       "observed": 0,
       "actions": [
         "Action/Game.createGameRoom",
@@ -327,7 +319,7 @@
     },
     "GameMall": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/GameMall.exchangeProduct",
@@ -336,7 +328,7 @@
     },
     "HiddenSettings": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/HiddenSettings.getHiddenSettings",
@@ -345,7 +337,7 @@
     },
     "IMSvc": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/IMSvc.getQuickChatMsg"
@@ -353,7 +345,7 @@
     },
     "JoyPlay": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/JoyPlay.getUidAndToken"
@@ -361,7 +353,7 @@
     },
     "LiveLuckyBags": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/LiveLuckyBags.fetchBagInfos",
@@ -370,7 +362,7 @@
     },
     "LivePk": {
       "total": 10,
-      "implemented": 0,
+      "implemented": 10,
       "observed": 0,
       "actions": [
         "Action/LivePk.acceptPk",
@@ -387,7 +379,7 @@
     },
     "LiveRocketGift": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/LiveRocketGift.gifts",
@@ -396,7 +388,7 @@
     },
     "LiveRoom": {
       "total": 23,
-      "implemented": 9,
+      "implemented": 23,
       "observed": 1,
       "actions": [
         "Action/LiveRoom.addRole",
@@ -426,7 +418,7 @@
     },
     "LiveRoomBomb": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/LiveRoomBomb.getBombConfig",
@@ -435,7 +427,7 @@
     },
     "LiveRoomLevel": {
       "total": 3,
-      "implemented": 0,
+      "implemented": 3,
       "observed": 0,
       "actions": [
         "Action/LiveRoomLevel.getRoomLevelInfo",
@@ -445,7 +437,7 @@
     },
     "LiveSearch": {
       "total": 2,
-      "implemented": 1,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/LiveSearch.recommend",
@@ -454,7 +446,7 @@
     },
     "LuckyDraw": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/LuckyDraw.drawPrizesPreview"
@@ -462,7 +454,7 @@
     },
     "LuckyNumber": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/LuckyNumber.getConfig",
@@ -471,7 +463,7 @@
     },
     "MiniGame": {
       "total": 5,
-      "implemented": 0,
+      "implemented": 5,
       "observed": 0,
       "actions": [
         "Action/MiniGame.getUidAndToken",
@@ -483,7 +475,7 @@
     },
     "Noble": {
       "total": 4,
-      "implemented": 0,
+      "implemented": 4,
       "observed": 0,
       "actions": [
         "Action/Noble.getBirthdayInfo",
@@ -494,7 +486,7 @@
     },
     "RadioRoomPk": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/RadioRoomPk.rank"
@@ -502,7 +494,7 @@
     },
     "RocketGift": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/RocketGift.gifts",
@@ -511,7 +503,7 @@
     },
     "RoomAct": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/RoomAct.getActInfoById",
@@ -520,7 +512,7 @@
     },
     "RoomApi": {
       "total": 23,
-      "implemented": 1,
+      "implemented": 23,
       "observed": 0,
       "actions": [
         "Action/RoomApi.batchGetUserInfo",
@@ -550,7 +542,7 @@
     },
     "RoomBomb": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/RoomBomb.getBombConfig",
@@ -559,7 +551,7 @@
     },
     "RoomLevel": {
       "total": 3,
-      "implemented": 0,
+      "implemented": 3,
       "observed": 0,
       "actions": [
         "Action/RoomLevel.getRoomLevelInfo",
@@ -569,7 +561,7 @@
     },
     "SuperManage": {
       "total": 7,
-      "implemented": 0,
+      "implemented": 7,
       "observed": 0,
       "actions": [
         "Action/SuperManage.ban",
@@ -583,7 +575,7 @@
     },
     "UsersRoamMsg": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/UsersRoamMsg.getIMNum",
@@ -592,7 +584,7 @@
     },
     "bestFriend": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "Action/bestFriend.handleInvitation"
@@ -600,7 +592,7 @@
     },
     "luckyBags": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "Action/luckyBags.fetchBagInfos",
@@ -609,7 +601,7 @@
     },
     "activity": {
       "total": 6,
-      "implemented": 5,
+      "implemented": 6,
       "observed": 0,
       "actions": [
         "activity.clickBanner",
@@ -622,7 +614,7 @@
     },
     "api_GetCountry": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_GetCountry.php"
@@ -630,7 +622,7 @@
     },
     "api_GetUserSig": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_GetUserSig.php"
@@ -638,7 +630,7 @@
     },
     "api_bind_facebook": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_bind_facebook.php"
@@ -646,7 +638,7 @@
     },
     "api_bind_google": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_bind_google.php"
@@ -654,7 +646,7 @@
     },
     "api_sms_kit_bind_mobile_by_sms_kit": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_sms_kit_bind_mobile_by_sms_kit.php"
@@ -662,7 +654,7 @@
     },
     "api_sms_kit_register_user_by_sms_kit": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_sms_kit_register_user_by_sms_kit.php"
@@ -670,7 +662,7 @@
     },
     "api_sms_kit_update_passwd_by_sms_kit": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_sms_kit_update_passwd_by_sms_kit.php"
@@ -678,7 +670,7 @@
     },
     "api_v1_report_single": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_v1_report_single"
@@ -686,7 +678,7 @@
     },
     "api_v1_upload_applog": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "api_v1_upload_applog"
@@ -694,7 +686,7 @@
     },
     "app": {
       "total": 8,
-      "implemented": 4,
+      "implemented": 8,
       "observed": 1,
       "actions": [
         "app.checkAppVersion",
@@ -709,7 +701,7 @@
     },
     "backPhoto": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "backPhoto.updateDefultPhoto",
@@ -718,7 +710,7 @@
     },
     "bottle": {
       "total": 10,
-      "implemented": 0,
+      "implemented": 10,
       "observed": 0,
       "actions": [
         "bottle.deleteCensorSong",
@@ -735,7 +727,7 @@
     },
     "comment": {
       "total": 7,
-      "implemented": 0,
+      "implemented": 7,
       "observed": 0,
       "actions": [
         "comment.addComment",
@@ -749,7 +741,7 @@
     },
     "countryZone": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "countryZone.getZonelist"
@@ -757,7 +749,7 @@
     },
     "couple": {
       "total": 2,
-      "implemented": 1,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "couple.cpRank",
@@ -766,7 +758,7 @@
     },
     "feedTopic": {
       "total": 4,
-      "implemented": 0,
+      "implemented": 4,
       "observed": 0,
       "actions": [
         "feedTopic.info",
@@ -777,7 +769,7 @@
     },
     "feedback": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "feedback.report"
@@ -806,7 +798,7 @@
     },
     "googleplaySub_getSubOrder": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "googleplaySub_getSubOrder.php"
@@ -814,7 +806,7 @@
     },
     "googleplaySub_getSubReceipt": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "googleplaySub_getSubReceipt.php"
@@ -822,7 +814,7 @@
     },
     "googleplaySub_subProductList": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "googleplaySub_subProductList.php"
@@ -830,7 +822,7 @@
     },
     "googleplay_getOrder": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "googleplay_getOrder.php"
@@ -838,7 +830,7 @@
     },
     "googleplay_getReceipt": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "googleplay_getReceipt.php"
@@ -846,7 +838,7 @@
     },
     "googleplay_productList": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "googleplay_productList.php"
@@ -854,7 +846,7 @@
     },
     "login": {
       "total": 2,
-      "implemented": 0,
+      "implemented": 2,
       "observed": 0,
       "actions": [
         "login.call",
@@ -894,7 +886,7 @@
     },
     "moment": {
       "total": 9,
-      "implemented": 1,
+      "implemented": 9,
       "observed": 0,
       "actions": [
         "moment.browseUsids",
@@ -927,7 +919,7 @@
     },
     "report": {
       "total": 6,
-      "implemented": 1,
+      "implemented": 6,
       "observed": 0,
       "actions": [
         "report.addBlackList",
@@ -939,8 +931,8 @@
       ]
     },
     "room": {
-      "total": 48,
-      "implemented": 23,
+      "total": 49,
+      "implemented": 49,
       "observed": 0,
       "actions": [
         "room.addRole",
@@ -970,6 +962,7 @@
         "room.getRecommendRoomV2",
         "room.getRecommendRoomV3",
         "room.getRoomCharmRank",
+        "room.getRoomCharmRankV2",
         "room.getRoomInfo",
         "room.getRoomManageList",
         "room.getRoomModelConfig",
@@ -1014,7 +1007,7 @@
     },
     "sq": {
       "total": 1,
-      "implemented": 0,
+      "implemented": 1,
       "observed": 0,
       "actions": [
         "sq.config"
@@ -1034,7 +1027,7 @@
     },
     "user": {
       "total": 32,
-      "implemented": 26,
+      "implemented": 32,
       "observed": 0,
       "actions": [
         "user.bashGetIsSubscribe",
@@ -1082,28 +1075,6 @@
   },
   "endpoints": [
     {
-      "action": "/api.php",
-      "module": "/api",
-      "category": "api",
-      "style": "json-rpc",
-      "transport": "POST",
-      "endpoint": "/api.php",
-      "encrypted": false,
-      "request_fields": [
-        "mobile",
-        "password",
-        "deviceid",
-        "token"
-      ],
-      "observed_params": [],
-      "observed_calls": 0,
-      "callers": [],
-      "caller_count": 0,
-      "implemented": false,
-      "extension": false,
-      "evidence": "decoded"
-    },
-    {
       "action": "/api/GetUserSig.php",
       "module": "/api/GetUserSig",
       "category": "user",
@@ -1123,7 +1094,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1147,7 +1119,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1171,7 +1144,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1195,7 +1169,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1219,7 +1194,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1243,7 +1219,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1267,7 +1244,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1289,7 +1267,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -1313,7 +1292,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1337,7 +1317,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1361,7 +1342,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1385,7 +1367,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1409,7 +1392,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1433,7 +1417,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1455,7 +1440,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -1479,7 +1465,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1503,7 +1490,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1527,7 +1515,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1551,7 +1540,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1575,7 +1565,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1599,7 +1590,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1623,7 +1615,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1647,7 +1640,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1669,7 +1663,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -1691,7 +1686,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -1715,7 +1711,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decrypted static string (analysis/php_h5_paths.txt)"
     },
@@ -1737,7 +1734,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -1771,7 +1769,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -1795,7 +1794,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -1829,7 +1829,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -1847,6 +1848,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": true,
       "evidence": "catalog only"
     },
@@ -1881,6 +1883,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -1914,7 +1917,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -1960,7 +1964,8 @@
         }
       ],
       "caller_count": 3,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -1994,7 +1999,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2021,7 +2027,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2048,7 +2055,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2075,7 +2083,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2102,7 +2111,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2129,7 +2139,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2156,7 +2167,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2183,7 +2195,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2210,7 +2223,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2244,7 +2258,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2278,7 +2293,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2312,7 +2328,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2364,7 +2381,8 @@
         }
       ],
       "caller_count": 4,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2398,7 +2416,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2432,7 +2451,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2466,7 +2486,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2500,7 +2521,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2527,7 +2549,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2561,7 +2584,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2595,7 +2619,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2629,7 +2654,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2663,7 +2689,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2690,7 +2717,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -2724,7 +2752,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2758,7 +2787,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2792,7 +2822,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2826,7 +2857,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2860,7 +2892,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2894,7 +2927,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2928,7 +2962,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2962,7 +2997,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -2989,7 +3025,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -3017,6 +3054,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -3050,7 +3088,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3084,7 +3123,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3111,7 +3151,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -3145,7 +3186,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3173,6 +3215,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -3207,6 +3250,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3240,7 +3284,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3275,6 +3320,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3309,6 +3355,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3342,7 +3389,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3376,7 +3424,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3410,7 +3459,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3444,7 +3494,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3487,6 +3538,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3521,6 +3573,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3554,7 +3607,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3582,6 +3636,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -3616,6 +3671,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3642,7 +3698,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -3676,7 +3733,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3710,7 +3768,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3744,7 +3803,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3778,7 +3838,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3812,7 +3873,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3830,6 +3892,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": true,
       "evidence": "catalog only"
     },
@@ -3863,7 +3926,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3897,7 +3961,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3931,7 +3996,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3965,7 +4031,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -3999,7 +4066,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4033,7 +4101,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4067,7 +4136,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4101,7 +4171,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4135,7 +4206,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4169,7 +4241,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4203,7 +4276,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4237,7 +4311,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4271,7 +4346,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4305,7 +4381,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4339,7 +4416,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4373,7 +4451,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4413,7 +4492,8 @@
         }
       ],
       "caller_count": 2,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4447,7 +4527,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4481,7 +4562,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4515,7 +4597,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4549,7 +4632,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4583,7 +4667,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4617,7 +4702,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4651,7 +4737,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4685,7 +4772,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4719,7 +4807,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4753,7 +4842,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4787,7 +4877,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4821,7 +4912,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4855,7 +4947,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4889,7 +4982,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4923,7 +5017,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4957,7 +5052,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -4992,6 +5088,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5025,7 +5122,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5059,7 +5157,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5093,7 +5192,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5127,7 +5227,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5161,7 +5262,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5195,7 +5297,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5229,7 +5332,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5263,7 +5367,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5297,7 +5402,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5331,7 +5437,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5365,7 +5472,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5399,7 +5507,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5433,7 +5542,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5467,7 +5577,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5507,7 +5618,8 @@
         }
       ],
       "caller_count": 2,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5534,7 +5646,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -5568,7 +5681,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5602,7 +5716,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5636,7 +5751,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5676,7 +5792,8 @@
         }
       ],
       "caller_count": 2,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5716,7 +5833,8 @@
         }
       ],
       "caller_count": 2,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5740,7 +5858,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5764,7 +5883,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5788,7 +5908,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/action_endpoints.txt)"
     },
@@ -5823,6 +5944,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -5856,7 +5978,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -5891,6 +6014,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -5908,6 +6032,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -5935,6 +6060,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -5969,6 +6095,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -5990,7 +6117,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6012,7 +6140,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6034,7 +6163,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6056,7 +6186,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6078,7 +6209,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6100,7 +6232,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6122,7 +6255,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6144,7 +6278,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6166,7 +6301,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -6218,7 +6354,8 @@
         }
       ],
       "caller_count": 4,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6253,6 +6390,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6287,6 +6425,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6303,7 +6442,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6326,6 +6466,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "captured"
     },
@@ -6343,6 +6484,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": true,
       "evidence": "catalog only"
     },
@@ -6376,7 +6518,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6416,7 +6559,8 @@
         }
       ],
       "caller_count": 2,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6450,7 +6594,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6484,7 +6629,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6518,7 +6664,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6552,7 +6699,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6586,7 +6734,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6620,7 +6769,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6654,7 +6804,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6688,7 +6839,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6722,7 +6874,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6756,7 +6909,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6790,7 +6944,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6824,7 +6979,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6858,7 +7014,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6892,7 +7049,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6926,7 +7084,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6960,7 +7119,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -6994,7 +7154,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7028,7 +7189,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7062,7 +7224,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7096,7 +7259,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7131,6 +7295,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7164,7 +7329,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7198,7 +7364,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7232,7 +7399,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7266,7 +7434,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7300,7 +7469,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7334,7 +7504,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7369,6 +7540,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7403,6 +7575,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7437,6 +7610,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7471,6 +7645,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7505,6 +7680,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7539,6 +7715,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7573,6 +7750,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7607,6 +7785,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7641,6 +7820,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7675,6 +7855,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7709,6 +7890,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7743,6 +7925,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7777,6 +7960,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7811,6 +7995,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -7832,7 +8017,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -7854,7 +8040,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -7876,7 +8063,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -7898,7 +8086,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -7920,7 +8109,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -7942,7 +8132,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "http",
       "extension": false,
       "evidence": "decoded"
     },
@@ -7969,7 +8160,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -8003,7 +8195,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8038,6 +8231,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8072,6 +8266,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8106,6 +8301,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8123,6 +8319,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8150,6 +8347,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -8190,6 +8388,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8217,6 +8416,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -8244,6 +8444,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -8284,6 +8485,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8318,6 +8520,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8352,6 +8555,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8386,6 +8590,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8420,6 +8625,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8454,6 +8660,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8488,6 +8695,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8522,6 +8730,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8556,6 +8765,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8607,7 +8817,8 @@
         }
       ],
       "caller_count": 4,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8641,7 +8852,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8675,7 +8887,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8709,7 +8922,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8743,7 +8957,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8760,7 +8975,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8788,6 +9004,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -8821,7 +9038,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8855,7 +9073,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8896,6 +9115,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8936,6 +9156,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -8995,6 +9216,7 @@
       ],
       "caller_count": 5,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9028,7 +9250,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9062,7 +9285,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9096,7 +9320,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9130,7 +9355,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9162,6 +9388,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9195,7 +9422,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9229,7 +9457,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9264,6 +9493,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9304,6 +9534,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9337,7 +9568,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9371,7 +9603,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9406,6 +9639,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9439,7 +9673,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9473,7 +9708,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9490,7 +9726,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9517,7 +9754,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -9551,7 +9789,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9585,7 +9824,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9619,7 +9859,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9653,7 +9894,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9687,7 +9929,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9705,6 +9948,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9732,6 +9976,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -9749,6 +9994,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9776,6 +10022,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -9809,7 +10056,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9837,6 +10085,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -9864,6 +10113,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -9898,6 +10148,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9915,6 +10166,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -9932,6 +10184,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": true,
       "evidence": "catalog only"
     },
@@ -9959,6 +10212,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -9993,8 +10247,27 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
+    },
+    {
+      "action": "room.getRoomCharmRankV2",
+      "module": "room",
+      "category": "unknown",
+      "style": "json-rpc",
+      "transport": "POST",
+      "endpoint": "/api.php",
+      "encrypted": true,
+      "request_fields": [],
+      "observed_params": [],
+      "observed_calls": 0,
+      "callers": [],
+      "caller_count": 0,
+      "implemented": true,
+      "served_by": "action",
+      "extension": true,
+      "evidence": "catalog only"
     },
     {
       "action": "room.getRoomInfo",
@@ -10027,6 +10300,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10053,7 +10327,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -10087,7 +10362,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10105,6 +10381,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10132,6 +10409,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -10148,7 +10426,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10175,7 +10454,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -10215,7 +10495,8 @@
         }
       ],
       "caller_count": 2,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10233,6 +10514,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10260,6 +10542,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -10294,6 +10577,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10327,7 +10611,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10344,7 +10629,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10371,7 +10657,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -10405,7 +10692,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10439,7 +10727,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10473,7 +10762,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10507,7 +10797,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10542,6 +10833,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10618,6 +10910,7 @@
       ],
       "caller_count": 8,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10645,6 +10938,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -10662,6 +10956,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": true,
       "evidence": "catalog only"
     },
@@ -10714,6 +11009,7 @@
       ],
       "caller_count": 4,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10748,6 +11044,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10782,6 +11079,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10816,6 +11114,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10832,7 +11131,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10850,6 +11150,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10877,6 +11178,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -10911,6 +11213,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10928,6 +11231,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -10955,6 +11259,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -10989,6 +11294,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11005,7 +11311,8 @@
       "observed_calls": 0,
       "callers": [],
       "caller_count": 0,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11033,6 +11340,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -11066,7 +11374,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11100,7 +11409,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11135,6 +11445,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11193,6 +11504,7 @@
       ],
       "caller_count": 5,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11226,7 +11538,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11261,6 +11574,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11295,6 +11609,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11322,6 +11637,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -11356,6 +11672,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11390,6 +11707,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11417,6 +11735,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -11451,6 +11770,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11485,6 +11805,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11531,6 +11852,7 @@
       ],
       "caller_count": 3,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11565,6 +11887,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11592,6 +11915,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -11626,6 +11950,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11659,7 +11984,8 @@
         }
       ],
       "caller_count": 1,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11694,6 +12020,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11734,6 +12061,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11768,6 +12096,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11819,7 +12148,8 @@
         }
       ],
       "caller_count": 4,
-      "implemented": false,
+      "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11860,6 +12190,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11887,6 +12218,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -11921,6 +12253,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -11955,6 +12288,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -12001,6 +12335,7 @@
       ],
       "caller_count": 3,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -12035,6 +12370,7 @@
       ],
       "caller_count": 1,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     },
@@ -12062,6 +12398,7 @@
       "callers": [],
       "caller_count": 0,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decoded"
     },
@@ -12102,6 +12439,7 @@
       ],
       "caller_count": 2,
       "implemented": true,
+      "served_by": "action",
       "extension": false,
       "evidence": "decrypted static string (analysis/rpc_methods.txt)"
     }
