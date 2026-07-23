@@ -24,7 +24,7 @@ void main() {
       final d = GiftDef.fromApi(_row(2, 'Lucky Bag', 99, 1, 1, 'assets/svga/kroom/waitio_lucky_gift.svga'));
       expect(d.renderer, GiftRenderer.svga);
       expect(d.priority, GiftPriority.rare);
-      expect(d.resolvedUrl, '../assets/svga/kroom/waitio_lucky_gift.svga'); // asset-key normalisation
+      expect(d.resolvedUrl, 'assets/svga/kroom/waitio_lucky_gift.svga'); // in-project asset key
     });
     test('CP Heart → PAG renderer, avatar-band', () {
       final d = GiftDef.fromApi(_row(5, 'CP Heart', 520, 2, 2, 'assets/pag/cp/waitio_cp_heart.pag'));

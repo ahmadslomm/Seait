@@ -26,7 +26,9 @@ class MeScreen extends ConsumerWidget {
 
   Widget _body(BuildContext c, UserModel u) => SingleChildScrollView(child: Column(children: [
     Stack(clipBehavior: Clip.none, children: [
-      Container(height: 250, decoration: const BoxDecoration(gradient: LinearGradient(
+      // Reference puts the stats row directly under the badge row; 250 left a
+      // large dead band between them at real phone width.
+      Container(height: 178, decoration: const BoxDecoration(gradient: LinearGradient(
         begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF3E2064), Color(0xFF2A1148), ZC.bg]))),
       Positioned(left: 16, top: 54, child: Row(children: [
         Text(u.nick.isEmpty ? 'ZaffaLive' : u.nick, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
@@ -40,7 +42,9 @@ class MeScreen extends ConsumerWidget {
         ZBadge('${u.charmLv + 12}', const Color(0xFF1E9E9E), icon: Icons.spa), const SizedBox(width: 5),
         ZBadge('${u.activeLevel}', ZC.gold, icon: Icons.star), const SizedBox(width: 5),
         ZBadge('${u.nobleLevel}', const Color(0xFF3A2A5C), icon: Icons.emoji_events)])),
-      Positioned(right: 6, top: 30, child: const VipMedallion(s: 150)),
+      // Reference: the First-Recharge medallion sits top-right at ~30% of the
+      // screen width — size it relative so it never swallows the header.
+      Positioned(right: 6, top: 24, child: VipMedallion(s: MediaQuery.of(c).size.width * .30)),
     ]),
     Padding(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8), child: Row(children: [
       _stat('${u.fans}', 'Followers'), _stat('${u.following}', 'Following'), _stat('${u.gifts}', 'Gifts'), _stat('${u.beans}', 'Visitors')])),
@@ -79,9 +83,12 @@ class MeScreen extends ConsumerWidget {
     const SizedBox(height: 20),
   ]));
 
-  Widget _stat(String v, String l) => Expanded(child: Column(children: [
-    Text(v, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-    Text(l, style: const TextStyle(color: ZC.textLo, fontSize: 12))]));
+  // Four stats must always fit one row (Gifts can be 6+ digits) — scale the
+  // number down rather than wrap, and keep the label on a single line.
+  Widget _stat(String v, String l) => Expanded(child: Column(mainAxisSize: MainAxisSize.min, children: [
+    FittedBox(fit: BoxFit.scaleDown, child: Text(v, maxLines: 1,
+      style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold))),
+    FittedBox(fit: BoxFit.scaleDown, child: Text(l, maxLines: 1, style: const TextStyle(color: ZC.textLo, fontSize: 12)))]));
   Widget _gi(BuildContext c, IconData i, String l, Color color, String? route) => InkWell(
     onTap: route == null ? null : () => c.push(route),
     child: Column(children: [

@@ -1,6 +1,12 @@
 // Seait backend — Prisma schema (matches com.waig.nalo data model)
-generator client { provider = "prisma-client-js" }
-datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 model User {
   uid          Int      @id
@@ -36,114 +42,234 @@ model User {
 }
 
 model Profile {
-  uid        Int    @id
-  fans       Int    @default(0)
-  subs       Int    @default(0)  // following
-  gifts      Int    @default(0)
-  beans      Int    @default(0)
-  photos     Int    @default(0)
-  songs      Int    @default(0)
-  days       Int    @default(0)
-  cost       BigInt @default(0)
-  levelName  String @default("")
-  nationalFlag String @default("")
-  actTitles  Json?
-  user_label Json?
-  medals     Json?
-  supporters Json?
-  supporters_num Int @default(0)
-  user       User @relation(fields: [uid], references: [uid])
+  uid            Int    @id
+  fans           Int    @default(0)
+  subs           Int    @default(0) // following
+  gifts          Int    @default(0)
+  beans          Int    @default(0)
+  photos         Int    @default(0)
+  songs          Int    @default(0)
+  days           Int    @default(0)
+  cost           BigInt @default(0)
+  levelName      String @default("")
+  nationalFlag   String @default("")
+  actTitles      Json?
+  user_label     Json?
+  medals         Json?
+  supporters     Json?
+  supporters_num Int    @default(0)
+  user           User   @relation(fields: [uid], references: [uid])
 }
 
 model Wealth {
-  uid            Int   @id
-  wealthLv       Int   @default(0)
-  wealthExp      BigInt @default(0)
-  wealthLimit    BigInt @default(0)
+  uid             Int    @id
+  wealthLv        Int    @default(0)
+  wealthExp       BigInt @default(0)
+  wealthLimit     BigInt @default(0)
   nextWealthLvExp BigInt @default(0)
-  charmLv        Int   @default(0)
-  charm          BigInt @default(0)
-  level          Int   @default(0)
+  charmLv         Int    @default(0)
+  charm           BigInt @default(0)
+  level           Int    @default(0)
 }
 
 model Wallet {
-  uid       Int    @id
-  coins     BigInt @default(0)
-  diamonds  BigInt @default(0)
-  gold      BigInt @default(0)
-  beans     BigInt @default(0)
-  updatedAt DateTime @updatedAt
-  user      User @relation(fields: [uid], references: [uid])
+  uid       Int                 @id
+  coins     BigInt              @default(0)
+  diamonds  BigInt              @default(0)
+  gold      BigInt              @default(0)
+  beans     BigInt              @default(0)
+  updatedAt DateTime            @updatedAt
+  user      User                @relation(fields: [uid], references: [uid])
   txns      WalletTransaction[]
 }
+
 model WalletTransaction {
-  id Int @id @default(autoincrement())
-  uid Int
-  deltaCoins BigInt @default(0)
-  deltaDiamonds BigInt @default(0)
-  reason String
-  refId String?
-  createdAt DateTime @default(now())
-  wallet Wallet @relation(fields:[uid],references:[uid])
+  id            Int      @id @default(autoincrement())
+  uid           Int
+  deltaCoins    BigInt   @default(0)
+  deltaDiamonds BigInt   @default(0)
+  reason        String
+  refId         String?
+  createdAt     DateTime @default(now())
+  wallet        Wallet   @relation(fields: [uid], references: [uid])
 }
 
-model VipLevel { level Int @id  name String  type String  privileges Json?  frame String? }
-model NobleLevel { level Int @id  name String  privileges Json?  frame String?  horn Int @default(0) }
+model VipLevel {
+  level      Int     @id
+  name       String
+  type       String
+  privileges Json?
+  frame      String?
+}
+
+model NobleLevel {
+  level      Int     @id
+  name       String
+  privileges Json?
+  frame      String?
+  horn       Int     @default(0)
+}
+
 model UserVip {
-  uid Int @id
-  vip_level Int @default(0)
-  noble_level Int @default(0)
-  expireTime DateTime?
-  user User @relation(fields:[uid],references:[uid])
+  uid         Int       @id
+  vip_level   Int       @default(0)
+  noble_level Int       @default(0)
+  expireTime  DateTime?
+  user        User      @relation(fields: [uid], references: [uid])
 }
 
 model Gift {
-  gift_id Int @id
-  name String
-  icon String @default("")
-  price Int @default(0)
-  coin_type Int @default(1)  // 1 coin 2 diamond
-  category Int @default(0)
-  anim_type Int @default(0)  // svga|pag|mp4
-  anim_url String @default("")
+  gift_id    Int     @id
+  name       String
+  icon       String  @default("")
+  price      Int     @default(0)
+  coin_type  Int     @default(1) // 1 coin 2 diamond
+  category   Int     @default(0)
+  anim_type  Int     @default(0) // svga|pag|mp4
+  anim_url   String  @default("")
   fullscreen Boolean @default(false)
-  active Boolean @default(true)
+  active     Boolean @default(true)
 }
+
 model GiftRecord {
-  id Int @id @default(autoincrement())
-  from_uid Int  to_uid Int  rid Int?
-  gift_id Int  num Int @default(1)  coin_total BigInt @default(0)
-  createdAt DateTime @default(now())
-  @@index([to_uid]) @@index([rid])
+  id         Int      @id @default(autoincrement())
+  from_uid   Int
+  to_uid     Int
+  rid        Int?
+  gift_id    Int
+  num        Int      @default(1)
+  coin_total BigInt   @default(0)
+  createdAt  DateTime @default(now())
+
+  @@index([to_uid])
+  @@index([rid])
 }
 
 model Room {
-  rid Int @id @default(autoincrement())
+  rid       Int          @id @default(autoincrement())
   owner_uid Int
-  name String  roomType Int @default(0)  cover String @default("")
-  notice String @default("")  tag String @default("")  lock Int @default(0)
-  seatCount Int @default(10)  onlineNum Int @default(0)  roomLevel Int @default(0)
-  status Int @default(1)  createdAt DateTime @default(now())
-  members RoomMember[]  seats Seat[]
+  name      String
+  roomType  Int          @default(0)
+  cover     String       @default("")
+  notice    String       @default("")
+  tag       String       @default("")
+  lock      Int          @default(0)
+  seatCount Int          @default(10)
+  onlineNum Int          @default(0)
+  roomLevel Int          @default(0)
+  status    Int          @default(1)
+  createdAt DateTime     @default(now())
+  members   RoomMember[]
+  seats     Seat[]
 }
-model RoomMember { id Int @id @default(autoincrement()) rid Int  uid Int  role String @default("member")  joinedAt DateTime @default(now())  room Room @relation(fields:[rid],references:[rid]) @@unique([rid,uid]) }
-model Seat { id Int @id @default(autoincrement()) rid Int  seatNo Int  uid Int?  micState Int @default(0)  lock Int @default(0)  charmValue BigInt @default(0)  room Room @relation(fields:[rid],references:[rid]) @@unique([rid,seatNo]) }
 
-model Guild { id Int @id @default(autoincrement()) guild_id Int @unique  name String  owner_uid Int  avatar String @default("")  anchorNum Int @default(0)  members GuildMember[] }
-model GuildMember { id Int @id @default(autoincrement()) guild_id Int  uid Int  income BigInt @default(0)  joinedAt DateTime @default(now()) @@unique([guild_id,uid]) }
-model Agency { id Int @id @default(autoincrement()) name String  owner_uid Int }
+model RoomMember {
+  id       Int      @id @default(autoincrement())
+  rid      Int
+  uid      Int
+  role     String   @default("member")
+  joinedAt DateTime @default(now())
+  room     Room     @relation(fields: [rid], references: [rid])
+
+  @@unique([rid, uid])
+}
+
+model Seat {
+  id         Int    @id @default(autoincrement())
+  rid        Int
+  seatNo     Int
+  uid        Int?
+  micState   Int    @default(0)
+  lock       Int    @default(0)
+  charmValue BigInt @default(0)
+  room       Room   @relation(fields: [rid], references: [rid])
+
+  @@unique([rid, seatNo])
+}
+
+model Guild {
+  id        Int           @id @default(autoincrement())
+  guild_id  Int           @unique
+  name      String
+  owner_uid Int
+  avatar    String        @default("")
+  anchorNum Int           @default(0)
+  members   GuildMember[]
+}
+
+model GuildMember {
+  id       Int      @id @default(autoincrement())
+  guild_id Int
+  uid      Int
+  income   BigInt   @default(0)
+  joinedAt DateTime @default(now())
+  guild    Guild    @relation(fields: [guild_id], references: [guild_id])
+
+  @@unique([guild_id, uid])
+}
+
+model Agency {
+  id        Int    @id @default(autoincrement())
+  name      String
+  owner_uid Int
+}
 
 model Cp {
-  id Int @id @default(autoincrement())
-  uid Int  target_uid Int
-  sweet_value BigInt @default(0)  cp_lv Int @default(0)  days Int @default(0)  hasCp Int @default(0)
-  createdAt DateTime @default(now())
-  @@unique([uid,target_uid])
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  target_uid  Int
+  sweet_value BigInt   @default(0)
+  cp_lv       Int      @default(0)
+  days        Int      @default(0)
+  hasCp       Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@unique([uid, target_uid])
 }
-model Friend { id Int @id @default(autoincrement()) uid Int  target_uid Int  type String  createdAt DateTime @default(now()) @@unique([uid,target_uid,type]) }
 
-model Message { id Int @id @default(autoincrement()) from_uid Int  to_uid Int  session_id String  type Int @default(0)  content String  createdAt DateTime @default(now()) @@index([session_id]) }
-model Ranking { id Int @id @default(autoincrement()) rank_type String  period String  uid Int  score BigInt @default(0)  rank Int  computedAt DateTime @default(now()) @@index([rank_type,period,rank]) }
+model Friend {
+  id         Int      @id @default(autoincrement())
+  uid        Int
+  target_uid Int
+  type       String
+  createdAt  DateTime @default(now())
 
-model Settings { uid Int @id  hidden_online Int @default(0)  hidden_ranking Int @default(0)  hidden_act_ranking Int @default(0)  refuse_accost Int @default(0) }
-model Config { key String @id  value Json }
+  @@unique([uid, target_uid, type])
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  from_uid   Int
+  to_uid     Int
+  session_id String
+  type       Int      @default(0)
+  content    String
+  createdAt  DateTime @default(now())
+
+  @@index([session_id])
+}
+
+model Ranking {
+  id         Int      @id @default(autoincrement())
+  rank_type  String
+  period     String
+  uid        Int
+  score      BigInt   @default(0)
+  rank       Int
+  computedAt DateTime @default(now())
+
+  @@index([rank_type, period, rank])
+}
+
+model Settings {
+  uid                Int @id
+  hidden_online      Int @default(0)
+  hidden_ranking     Int @default(0)
+  hidden_act_ranking Int @default(0)
+  refuse_accost      Int @default(0)
+}
+
+model Config {
+  key   String @id
+  value Json
+}

@@ -57,13 +57,13 @@ class GiftDef {
   bool get hasAnimation => animUrl.isNotEmpty && renderer != GiftRenderer.image;
 
   /// Normalised asset/network key for the current project's asset convention
-  /// (registered as `../assets/...`). http urls pass through unchanged.
+  /// (registered as `assets/...`). http urls pass through unchanged.
   String get resolvedUrl {
     final p = animUrl;
     if (p.isEmpty) return p;
     if (p.startsWith('http')) return p;
-    if (p.startsWith('../')) return p;
-    if (p.startsWith('assets/')) return '../$p';
+    // legacy '../assets/..' keys normalise to the in-project 'assets/..' key
+    if (p.startsWith('../')) return p.substring(3);
     return p;
   }
 

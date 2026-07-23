@@ -5,7 +5,7 @@ import 'package:svgaplayer_flutter/svgaplayer_flutter.dart';
 /// nalo/HelloYo do for gift effects. Plays [loops] times then calls [onDone].
 /// Any decode/asset error degrades to [onDone] (no crash) so the queue keeps moving.
 class SvgaRenderer extends StatefulWidget {
-  final String url;         // '../assets/svga/...' or 'http...'
+  final String url;         // 'assets/svga/...' or 'http...'
   final int loops;          // 0 = loop forever until disposed
   final BoxFit fit;
   final VoidCallback? onDone;

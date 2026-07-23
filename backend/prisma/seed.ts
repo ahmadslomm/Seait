@@ -4,11 +4,21 @@ import * as cfg from './real_config.json';
 const db = new PrismaClient();
 const n = (x:any, d=0)=> x==null?d:Number(x);
 
+/** The extracted real_profile.json holds Arabic that was double-encoded during
+ *  capture (UTF-8 bytes read as Latin-1, e.g. "ا" -> "Ø§"). Re-interpreting the
+ *  Latin-1 bytes as UTF-8 recovers the original text. Only applied when the
+ *  bytes actually form valid UTF-8, so correct strings pass through untouched. */
+function demoji(s:any){
+  if (typeof s !== 'string' || !/[À-ÿ]/.test(s)) return s;
+  try { return new TextDecoder('utf-8', { fatal:true }).decode(Buffer.from(s,'latin1')); }
+  catch { return s; }
+}
+
 async function main() {
   const uid = n(p.uid, 1278472);
   // --- User (real account 1278472) ---
-  await db.user.upsert({ where:{ uid }, update:{}, create:{
-    uid, mobile:(p as any).mobile, nick:p.nick, sex:n(p.sex), sign:p.sign, avatar:p.avatar,
+  await db.user.upsert({ where:{ uid }, update:{ nick:demoji(p.nick), sign:demoji(p.sign) }, create:{
+    uid, mobile:(p as any).mobile, nick:demoji(p.nick), sex:n(p.sex), sign:demoji(p.sign), avatar:p.avatar,
     avatarFrame:p.avatarFrame, carFrame:(p as any).carFrame||'', chatBubble:p.chatBubble, infoBgImg:p.infoBgImg,
     birthday:p.birthday, country:String(p.country), regCountry:(p as any).reg_country, region:p.region, lang:p.lang,
     age:n(p.age), constellation:p.constellation, audit_avatar:n((p as any).audit_avatar), real_flag:n((p as any).real_flag),

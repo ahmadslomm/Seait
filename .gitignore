@@ -8,3 +8,7 @@ mobile/.flutter-plugins
 mobile/.flutter-plugins-dependencies
 unknown-gifts.log
 tools/*.json
+mobile/android/.gradle/
+mobile/android/app/build/
+mobile/android/build/
+mobile/.flutter-plugins-dependencies

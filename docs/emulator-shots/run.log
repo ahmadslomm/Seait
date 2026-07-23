@@ -1,0 +1,125 @@
+== device ==
+x86_64
+== phone geometry ==
+geometry: 640x1280 density=249 (=> 411dp wide)
+== fetch + install ==
+apk bytes: 48932997
+worker->backend http=200
+Success
+Performing Streamed Install
+Success
+== launch ==
+  bash arg: -p
+  bash arg: com.example.seait
+  bash arg: -c
+  bash arg: android.intent.category.LAUNCHER
+  bash arg: 1
+args: [-p, com.example.seait, -c, android.intent.category.LAUNCHER, 1]
+ arg: "-p"
+ arg: "com.example.seait"
+ arg: "-c"
+ arg: "android.intent.category.LAUNCHER"
+ arg: "1"
+data="com.example.seait"
+data="android.intent.category.LAUNCHER"
+Events injected: 1
+## Network stats: elapsed time=19ms (0ms mobile, 0ms wifi, 19ms not connected)
+shot 00_launch = 208403B
+== bottom nav (shell tabs) ==
+shot 01_home = 49113B
+shot 02_moment = 35231B
+shot 03_live = 23565B
+shot 04_message = 53701B
+shot 05_me = 208118B
+shot 05b_me_scrolled = 75623B
+== every route by deep link ==
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///wallet pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_wallet = 83061B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///vip pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_vip = 152644B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///cp pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_cp = 59662B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///level pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_level = 30369B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///backpack pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_backpack = 19778B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///guild pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_guild = 31550B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///agency pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_agency = 14190B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///tasks pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_tasks = 13197B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///search pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 10_search = 20906B
+== gift studio + engine scenarios ==
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 20_gift_studio = 102124B
+shot 21_crown = 102124B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 22_angel = 102124B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 23_big = 181081B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 24_combo = 539102B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 25_multi = 446041B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 26_entrance = 508939B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 27_studio_svga = 161777B
+shot 28_svga_preview = 93516B
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 29_studio_pag = 117219B
+shot 29b_pag_preview = 93860B
+== voice room ==
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///room/1 pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+shot 30_room = 58687B
+shot 31_gift_panel = 79627B
+shot 32_gift_selected = 58687B
+shot 33_room_gift_sent = 58687B
+== logcat ==
+07-23 06:08:54.022   508   549 D ArtManagerInternalImpl: /data/misc/iorapd/com.example.seait/1/com.example.seait.MainActivity/compiled_traces/compiled_trace.pb doesn't exist
+07-23 06:08:54.022   508   549 I ActivityTaskManager: Displayed com.example.seait/.MainActivity: +1s845ms
+07-23 06:08:54.023   508   549 I ActivityTaskManager: Fully drawn com.example.seait/.MainActivity: +1s845ms
+07-23 06:08:58.289 26749 26797 D ProfileInstaller: Installing profile for com.example.seait
+07-23 06:09:30.543   508   667 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 06:09:30.586   508   667 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 06:09:30.599   508   668 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 06:09:30.622   508   675 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 06:09:30.628   508   668 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 06:10:11.876   508  2150 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///wallet flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:10:17.171   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///vip flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:10:22.453   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///cp flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:10:27.723   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///level flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:10:33.017   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///backpack flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:10:38.654   508  2150 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///guild flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:10:43.885   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///agency flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:10:49.300   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///tasks flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:10:54.821   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///search flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:11:00.512   508  2150 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///gift-studio flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:11:23.588   508  2150 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///gift-studio flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:11:28.410   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///gift-studio flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:11:35.652 26749 27167 I m.example.seai: Thread[17,tid=27167,Native,Thread*=0x753d6b677820,peer=0x12caf410,"pool-5-thread-1"] recursive attempt to load library "/data/app/~~s-SmIZf5YWS_vKsuIa0lxw==/com.example.seait-mwcm6GZJGI5k8YCp0n9ppw==/base.apk!/lib/x86_64/libpag.so"
+07-23 06:11:35.652 26749 27167 I m.example.seai: Thread[17,tid=27167,Native,Thread*=0x753d6b677820,peer=0x12caf410,"pool-5-thread-1"] recursive attempt to load library "/data/app/~~s-SmIZf5YWS_vKsuIa0lxw==/com.example.seait-mwcm6GZJGI5k8YCp0n9ppw==/base.apk!/lib/x86_64/libpag.so"
+07-23 06:11:35.673 26749 27167 I tgfx    : PAGFile.LoadFromAssets() start: flutter_assets/assets/pag/cp/waitio_cp_heart.pag
+07-23 06:11:46.964   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///gift-studio flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 06:12:04.342   508  1117 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///room/1 flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+== ship back ==

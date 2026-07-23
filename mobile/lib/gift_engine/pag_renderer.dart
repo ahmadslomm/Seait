@@ -6,7 +6,7 @@ import 'package:pag/pag.dart';
 /// [repeat] = 1 plays once then [onDone]; 0 loops forever. On load failure the
 /// `defaultBuilder` fires [onDone] so the queue keeps moving (req: fallback).
 class PagRenderer extends StatelessWidget {
-  final String url;         // '../assets/pag/...' or 'http...'
+  final String url;         // 'assets/pag/...' or 'http...'
   final int repeat;
   final double? width;
   final double? height;

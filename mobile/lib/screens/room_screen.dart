@@ -85,17 +85,21 @@ class _RoomState extends ConsumerState<RoomScreen> {
     );
   }
 
-  Widget _topBar(BuildContext c) => Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), child: Row(children: [
-    IconButton(icon: const Icon(Icons.arrow_back, color: Colors.white), onPressed: () => c.pop()),
-    Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(20)),
-      child: Row(mainAxisSize: MainAxisSize.min, children: [const CircleAvatar(radius: 12, backgroundColor: ZC.card), const SizedBox(width: 6), Text('Room:${widget.rid}', style: const TextStyle(color: Colors.white, fontSize: 12))])),
-    const SizedBox(width: 8),
+  // Compact icon buttons + a flexible room chip so the bar never overflows on
+  // narrow phones (360dp) — same layout, just constrained.
+  static const _tightBtn = BoxConstraints(minWidth: 34, minHeight: 34);
+  Widget _topBar(BuildContext c) => Padding(padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4), child: Row(children: [
+    IconButton(icon: const Icon(Icons.arrow_back, color: Colors.white, size: 22), padding: EdgeInsets.zero, constraints: _tightBtn, onPressed: () => c.pop()),
+    Flexible(child: Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(20)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [const CircleAvatar(radius: 12, backgroundColor: ZC.card), const SizedBox(width: 6),
+        Flexible(child: Text('Room:${widget.rid}', overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontSize: 12)))]))),
+    const SizedBox(width: 6),
     Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3), decoration: BoxDecoration(color: ZC.purple.withValues(alpha: .4), borderRadius: BorderRadius.circular(12)),
       child: const Text('Ranking 99+', style: TextStyle(color: ZC.gold, fontSize: 11))),
     const Spacer(),
     const Icon(Icons.person, color: Colors.white70, size: 18), const Text(' 1', style: TextStyle(color: Colors.white70)),
-    IconButton(icon: const Icon(Icons.share, color: Colors.white70, size: 20), onPressed: () {}),
-    IconButton(icon: const Icon(Icons.more_horiz, color: Colors.white70), onPressed: () => _roomInfo(c)),
+    IconButton(icon: const Icon(Icons.share, color: Colors.white70, size: 20), padding: EdgeInsets.zero, constraints: _tightBtn, onPressed: () {}),
+    IconButton(icon: const Icon(Icons.more_horiz, color: Colors.white70, size: 20), padding: EdgeInsets.zero, constraints: _tightBtn, onPressed: () => _roomInfo(c)),
   ]));
   Widget _banner() => Container(margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), padding: const EdgeInsets.all(8),
     decoration: BoxDecoration(gradient: ZGrad.coin, borderRadius: BorderRadius.circular(20)),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../core/theme.dart';
 
-const _ui = '../assets/ui';
+const _ui = 'assets/ui';
 
 // ---------------- primitives (real cropped app art) ----------------
 class CoinIcon extends StatelessWidget { final double s; const CoinIcon({super.key, this.s = 34});

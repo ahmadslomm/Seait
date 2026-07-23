@@ -20,29 +20,29 @@ class GiftStudioScreen extends ConsumerStatefulWidget {
 class _GiftStudioState extends ConsumerState<GiftStudioScreen> {
   // Real extracted asset files (assets/svga, assets/pag).
   static const _svga = <String>[
-    '../assets/svga/rocket/waitio_rocket_top1.svga',
-    '../assets/svga/rocket/waitio_rocket_top2.svga',
-    '../assets/svga/rocket/waitio_rocket_top3.svga',
-    '../assets/svga/rocket/waitio_room_rocket.svga',
-    '../assets/svga/rocket/waitio_rocket1.svga',
-    '../assets/svga/rocket/waitio_rocket2.svga',
-    '../assets/svga/rocket/waitio_rocket3.svga',
-    '../assets/svga/kroom/waitio_lucky_gift.svga',
-    '../assets/svga/kroom/waitio_lucky_gift_winning.svga',
-    '../assets/svga/kroom/waitio_birthday_lucky_bag.svga',
-    '../assets/svga/kroom/waitio_gift_huizhi.svga',
-    '../assets/svga/cp/waitio_cp_heart.svga',
-    '../assets/svga/cp/waitio_cp_avatar.svga',
-    '../assets/svga/gift/waitio_gift_continuous.svga',
-    '../assets/svga/medal/waitio_xunzhangguang.svga',
+    'assets/svga/rocket/waitio_rocket_top1.svga',
+    'assets/svga/rocket/waitio_rocket_top2.svga',
+    'assets/svga/rocket/waitio_rocket_top3.svga',
+    'assets/svga/rocket/waitio_room_rocket.svga',
+    'assets/svga/rocket/waitio_rocket1.svga',
+    'assets/svga/rocket/waitio_rocket2.svga',
+    'assets/svga/rocket/waitio_rocket3.svga',
+    'assets/svga/kroom/waitio_lucky_gift.svga',
+    'assets/svga/kroom/waitio_lucky_gift_winning.svga',
+    'assets/svga/kroom/waitio_birthday_lucky_bag.svga',
+    'assets/svga/kroom/waitio_gift_huizhi.svga',
+    'assets/svga/cp/waitio_cp_heart.svga',
+    'assets/svga/cp/waitio_cp_avatar.svga',
+    'assets/svga/gift/waitio_gift_continuous.svga',
+    'assets/svga/medal/waitio_xunzhangguang.svga',
   ];
   static const _pag = <String>[
-    '../assets/pag/bomb/waitio_bomb_anim_lv1.pag',
-    '../assets/pag/bomb/waitio_bomb_anim_lv3.pag',
-    '../assets/pag/bomb/waitio_bomb_anim_lv5.pag',
-    '../assets/pag/bomb/waitio_bomb_anim_lv7.pag',
-    '../assets/pag/cp/waitio_cp_heart.pag',
-    '../assets/pag/gift/waitio_gift_continuous.pag',
+    'assets/pag/bomb/waitio_bomb_anim_lv1.pag',
+    'assets/pag/bomb/waitio_bomb_anim_lv3.pag',
+    'assets/pag/bomb/waitio_bomb_anim_lv5.pag',
+    'assets/pag/bomb/waitio_bomb_anim_lv7.pag',
+    'assets/pag/cp/waitio_cp_heart.pag',
+    'assets/pag/gift/waitio_gift_continuous.pag',
   ];
 
   ({String url, bool pag})? _preview;
@@ -70,13 +70,13 @@ class _GiftStudioState extends ConsumerState<GiftStudioScreen> {
     const room = 999;
     switch (scenario) {
       case 'crown':
-        _engine.receive(GiftEvent(def: _byName('Crown of Glory', asset: '../assets/svga/rocket/waitio_rocket_top1.svga', price: 14999, coinType: 2), senderUid: 1278472, senderName: 'ar', roomId: room));
+        _engine.receive(GiftEvent(def: _byName('Crown of Glory', asset: 'assets/svga/rocket/waitio_rocket_top1.svga', price: 14999, coinType: 2), senderUid: 1278472, senderName: 'ar', roomId: room));
         break;
       case 'angel':
-        _engine.receive(GiftEvent(def: _byName('Angel Scepter', asset: '../assets/svga/rocket/waitio_rocket_top2.svga', price: 19999, coinType: 2), senderUid: 1278472, senderName: 'ar', roomId: room));
+        _engine.receive(GiftEvent(def: _byName('Angel Scepter', asset: 'assets/svga/rocket/waitio_rocket_top2.svga', price: 19999, coinType: 2), senderUid: 1278472, senderName: 'ar', roomId: room));
         break;
       case 'big':
-        _engine.receive(GiftEvent(def: _byName('Rocket', asset: '../assets/svga/rocket/waitio_room_rocket.svga', price: 5000, coinType: 2), senderUid: 1150147, senderName: 'partner', roomId: room));
+        _engine.receive(GiftEvent(def: _byName('Rocket', asset: 'assets/svga/rocket/waitio_room_rocket.svga', price: 5000, coinType: 2), senderUid: 1150147, senderName: 'partner', roomId: room));
         break;
       case 'combo':
         // 12 hits of the same small gift → x12 counter, single animation
@@ -86,9 +86,9 @@ class _GiftStudioState extends ConsumerState<GiftStudioScreen> {
         }
         break;
       case 'multi':
-        _engine.receive(GiftEvent(def: _byName('Lucky Bag', asset: '../assets/svga/kroom/waitio_lucky_gift.svga', price: 99, coinType: 1), senderUid: 111, senderName: 'A', targetUid: 5, roomId: room));
-        _engine.receive(GiftEvent(def: _byName('CP Heart', asset: '../assets/svga/cp/waitio_cp_heart.svga', price: 520, coinType: 2), senderUid: 222, senderName: 'B', roomId: room));
-        _engine.receive(GiftEvent(def: _byName('Crown of Glory', asset: '../assets/svga/rocket/waitio_rocket_top1.svga', price: 14999, coinType: 2), senderUid: 333, senderName: 'C', roomId: room));
+        _engine.receive(GiftEvent(def: _byName('Lucky Bag', asset: 'assets/svga/kroom/waitio_lucky_gift.svga', price: 99, coinType: 1), senderUid: 111, senderName: 'A', targetUid: 5, roomId: room));
+        _engine.receive(GiftEvent(def: _byName('CP Heart', asset: 'assets/svga/cp/waitio_cp_heart.svga', price: 520, coinType: 2), senderUid: 222, senderName: 'B', roomId: room));
+        _engine.receive(GiftEvent(def: _byName('Crown of Glory', asset: 'assets/svga/rocket/waitio_rocket_top1.svga', price: 14999, coinType: 2), senderUid: 333, senderName: 'C', roomId: room));
         break;
       case 'entrance':
         _engine.showEntrance(EntranceEvent(uid: 1278472, name: 'ar', nobleLevel: 5));

@@ -331,10 +331,9 @@ packages:
   pag:
     dependency: "direct main"
     description:
-      name: pag
-      sha256: "8ba3b9c18309b0ef71ad53d20c67ed13893ad3cc49fdb7cc48a8d4e78bfe6db7"
-      url: "https://pub.dev"
-    source: hosted
+      path: "third_party/pag"
+      relative: true
+    source: path
     version: "1.0.7"
   path:
     dependency: transitive

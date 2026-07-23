@@ -12,7 +12,13 @@ dependencies:
   cached_network_image: ^3.3.1
   google_fonts: ^6.2.1
   svgaplayer_flutter: ^2.2.0   # SVGA gift animations (same format nalo/HelloYo use)
-  pag: ^1.0.7                  # libpag — PAG bomb/combo animations
+  # libpag — PAG bomb/combo animations. Vendored under third_party/pag because
+  # upstream pag 1.0.7 still ships Flutter's v1 Android embedding
+  # (FlutterNativeView / PluginRegistry.Registrar), removed in Flutter 3.29+.
+  # The vendored copy drops only that dead v1 path (v2 onAttachedToEngine is
+  # untouched) and sets namespace/compileSdk 34/JVM 17 for AGP 8.
+  pag:
+    path: third_party/pag
   path_provider: ^2.1.2        # unknown-gifts.log location
 # svgaplayer_flutter pins http ^0.13 while google_fonts/cache_manager need ^1.x.
 # Both only use http.get + bodyBytes (unchanged across 0.13→1.x), so align on 1.x.
@@ -24,14 +30,14 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - ../assets/ui/
-    - ../assets/images/
-    - ../assets/emoji/
-    - ../assets/svga/cp/
-    - ../assets/svga/gift/
-    - ../assets/svga/kroom/
-    - ../assets/svga/medal/
-    - ../assets/svga/rocket/
-    - ../assets/pag/bomb/
-    - ../assets/pag/cp/
-    - ../assets/pag/gift/
+    - assets/ui/
+    - assets/images/
+    - assets/emoji/
+    - assets/svga/cp/
+    - assets/svga/gift/
+    - assets/svga/kroom/
+    - assets/svga/medal/
+    - assets/svga/rocket/
+    - assets/pag/bomb/
+    - assets/pag/cp/
+    - assets/pag/gift/
