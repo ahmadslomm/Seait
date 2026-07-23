@@ -120,8 +120,8 @@ class MeScreen extends ConsumerWidget {
         _tile(c, Icons.trending_up, 'My income', null),
         _tile(c, Icons.military_tech_outlined, 'Badge', null),
         _tile(c, Icons.animation_outlined, 'Gift Studio', '/gift-studio'),
-        _tile(c, Icons.feedback_outlined, 'Feedback', null),
-        _tile(c, Icons.settings_outlined, 'Settings', null, last: true),
+        _tile(c, Icons.feedback_outlined, 'Feedback', '/feedback'),
+        _tile(c, Icons.settings_outlined, 'Settings', '/settings', last: true),
       ]))),
     const SizedBox(height: 20),
   ]));

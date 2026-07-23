@@ -120,8 +120,12 @@ export class LegacyController {
    */
   @Get('html/*')
   h5(@Param() params: any, @Res() res: any) {
-    const path = String(params['0'] ?? '').split('?')[0];
-    return this.page(res, path.replace(/\/index\.(html|php)$/, '').replace(/[-_/]+/g, ' ').trim() || 'Activity');
+    // Fastify exposes the wildcard as params['*']; Express uses params['0'].
+    // Accept either so the title is derived from the real page name rather than
+    // silently falling back.
+    const raw = String(params['*'] ?? params['0'] ?? '').split('?')[0];
+    const name = raw.replace(/\/index\.(html|php)$/, '').replace(/[-_/]+/g, ' ').trim();
+    return this.page(res, name || 'Activity');
   }
 
   @Get('share_room/index.php')

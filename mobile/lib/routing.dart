@@ -11,6 +11,8 @@ import 'screens/agency_screen.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/search_screen.dart';
 import 'screens/gift_studio_screen.dart';
+import 'screens/settings_screen.dart';
+import 'screens/feedback_screen.dart';
 
 final router = GoRouter(initialLocation: '/', routes: [
   GoRoute(path: '/', builder: (c, s) => const Shell()),
@@ -24,6 +26,8 @@ final router = GoRouter(initialLocation: '/', routes: [
   GoRoute(path: '/tasks', builder: (c, s) => const TasksScreen()),
   GoRoute(path: '/search', builder: (c, s) => const SearchScreen()),
   GoRoute(path: '/gift-studio', builder: (c, s) => const GiftStudioScreen()),
+  GoRoute(path: '/settings', builder: (c, s) => const SettingsScreen()),
+  GoRoute(path: '/feedback', builder: (c, s) => const FeedbackScreen()),
   // ?demoBanner=1 forces the decorative win plate on for QA. The flag is only
   // honoured when built with --dart-define=DEMO_TRIGGERS=true (see kDemoTriggers).
   GoRoute(path: '/room/:rid', builder: (c, s) => RoomScreen(
