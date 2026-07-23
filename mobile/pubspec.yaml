@@ -20,6 +20,8 @@ dependencies:
   pag:
     path: third_party/pag
   path_provider: ^2.1.2        # unknown-gifts.log location
+  archive: ^3.6.1              # unpack the infoBgImg decoration zip
+  video_player: ^2.9.2         # animated profile background (RGB+alpha mp4)
 # svgaplayer_flutter pins http ^0.13 while google_fonts/cache_manager need ^1.x.
 # Both only use http.get + bodyBytes (unchanged across 0.13→1.x), so align on 1.x.
 dependency_overrides:

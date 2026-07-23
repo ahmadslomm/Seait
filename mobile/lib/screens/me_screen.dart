@@ -6,6 +6,7 @@ import '../core/theme.dart';
 import '../providers.dart';
 import '../models/user.dart';
 import '../ui/components.dart';
+import '../decoration/alpha_video_view.dart';
 
 /// Me / Profile — reproduces screenshot 193434, wired to REAL user.getUserinfo.
 class MeScreen extends ConsumerWidget {
@@ -26,10 +27,13 @@ class MeScreen extends ConsumerWidget {
 
   Widget _body(BuildContext c, UserModel u) => SingleChildScrollView(child: Column(children: [
     Stack(clipBehavior: Clip.none, children: [
-      // Reference puts the stats row directly under the badge row; 250 left a
-      // large dead band between them at real phone width.
-      Container(height: 178, decoration: const BoxDecoration(gradient: LinearGradient(
-        begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF3E2064), Color(0xFF2A1148), ZC.bg]))),
+      // Header: the original plays the user's animated decoration here. The API
+      // gives infoBgImg as a CDN zip holding an RGB+alpha mp4 — AlphaVideoView
+      // unpacks and composites it, falling back to the gradient while it loads
+      // or if anything fails.
+      SizedBox(height: 178, width: double.infinity, child: u.infoBgImg.startsWith('http')
+        ? AlphaVideoView(url: u.infoBgImg, fallback: const _HeaderGradient())
+        : const _HeaderGradient()),
       Positioned(left: 16, top: 54, child: Row(children: [
         Text(u.nick.isEmpty ? 'ZaffaLive' : u.nick, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
         const SizedBox(width: 6), const Icon(Icons.edit, color: ZC.textLo, size: 16)])),
@@ -125,4 +129,14 @@ class MeScreen extends ConsumerWidget {
       child: Row(children: [Icon(i, color: Colors.white70, size: 22), const SizedBox(width: 12),
         Text(t, style: const TextStyle(color: Colors.white, fontSize: 15)), const Spacer(),
         const Icon(Icons.chevron_right, color: ZC.textLo, size: 20)])));
+}
+
+/// The static header backdrop, used until (or instead of) the animated
+/// decoration the API points at.
+class _HeaderGradient extends StatelessWidget {
+  const _HeaderGradient();
+  @override
+  Widget build(BuildContext c) => const DecoratedBox(decoration: BoxDecoration(
+    gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
+      colors: [Color(0xFF3E2064), Color(0xFF2A1148), ZC.bg])));
 }
