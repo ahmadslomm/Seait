@@ -17,6 +17,10 @@ async function bootstrap(){
     if (inst.hasContentTypeParser(ct)) inst.removeContentTypeParser(ct);
     inst.addContentTypeParser(ct, { parseAs:'string' }, raw);
   }
+  // Admin asset uploads use multipart/form-data. This parser only activates for
+  // that content type, so the api.php gateway (urlencoded) is untouched. Limit
+  // guards against a single oversized upload wedging the process.
+  await inst.register(require('@fastify/multipart'), { limits: { fileSize: 25 * 1024 * 1024, files: 1 } });
   await app.listen(process.env.PORT||8080,'0.0.0.0');
   console.log('Seait backend (api.php gateway, '+require('./actions.catalog.json')._total+' actions) on :'+(process.env.PORT||8080));
 }

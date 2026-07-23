@@ -8,5 +8,6 @@ import { RoomGateway } from './gateway/room.gateway';
 import { RtcService } from './rtc/rtc.service';
 import { UnknownActionLogger } from './fallback/logger';
 import { API_PROVIDERS } from './modules';
-@Module({ imports:[PrismaModule], controllers:[ApiController, AssetsController, LegacyController], providers:[ActionRouter, RoomGateway, UnknownActionLogger, RtcService, ...API_PROVIDERS] })
+import { AdminModule } from './admin/admin.module';
+@Module({ imports:[PrismaModule, AdminModule], controllers:[ApiController, AssetsController, LegacyController], providers:[ActionRouter, RoomGateway, UnknownActionLogger, RtcService, ...API_PROVIDERS] })
 export class AppModule {}

@@ -806,3 +806,82 @@ model Photo {
 
   @@index([uid])
 }
+
+// ═══════════════════════════════════════════════════════════════════════
+//  ADMIN / CONTROL PANEL
+//  Additive only — no existing model is touched. These back the operator
+//  console at /admin; the app's api.php surface never reads them.
+// ═══════════════════════════════════════════════════════════════════════
+
+/// A back-office operator. Passwords are scrypt-hashed (salt per user); the
+/// plaintext never leaves the login request. `role` gates destructive actions:
+/// super can manage other admins, admin manages content/economy, editor is
+/// read + content edits only.
+model AdminUser {
+  id           Int            @id @default(autoincrement())
+  username     String         @unique
+  passwordHash String
+  salt         String
+  role         String         @default("admin") // super | admin | editor
+  active       Boolean        @default(true)
+  createdAt    DateTime       @default(now())
+  lastLoginAt  DateTime?
+  sessions     AdminSession[]
+}
+
+/// A logged-in admin session. The bearer token the console sends is looked up
+/// here; expired rows are rejected. Logging out deletes the row.
+model AdminSession {
+  id        Int       @id @default(autoincrement())
+  token     String    @unique
+  admin_id  Int
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+  admin     AdminUser @relation(fields: [admin_id], references: [id], onDelete: Cascade)
+
+  @@index([token])
+}
+
+/// Every uploaded art file. The binary lives on disk under assets/uploads/;
+/// this row is the library the asset picker lists, so an admin can reuse an
+/// upload across many catalogue rows instead of re-uploading.
+model AssetFile {
+  id         Int      @id @default(autoincrement())
+  path       String   @unique // relative, e.g. uploads/frames/1712.webp
+  kind       String   @default("image") // image | svga | pag | mp4 | other
+  name       String   @default("")
+  size       Int      @default(0)
+  uploadedBy Int?
+  createdAt  DateTime @default(now())
+
+  @@index([kind])
+}
+
+/// Audit trail. Every create/update/delete/toggle through the admin API writes
+/// one row, so a change can always be traced to an operator. Read-only from the
+/// console.
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  admin_id  Int
+  username  String   @default("")
+  action    String // create | update | delete | toggle | login | balance | ...
+  entity    String   @default("")
+  entity_id String   @default("")
+  detail    Json?
+  createdAt DateTime @default(now())
+
+  @@index([admin_id])
+  @@index([entity])
+  @@index([createdAt])
+}
+
+/// Wealth-tier thresholds. Per-user wealth lives on the Wealth model; this is
+/// the ladder an admin tunes — the app has no table for it yet, so this makes
+/// wealth levels manageable rather than hard-coded.
+model WealthLevelConfig {
+  level   Int    @id
+  name    String @default("")
+  needExp BigInt @default(0)
+  icon    String @default("")
+  color   String @default("")
+}

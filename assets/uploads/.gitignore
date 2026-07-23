@@ -1,0 +1,3 @@
+# Admin-uploaded art is runtime data, not source. Keep the folder, ignore files.
+*
+!.gitignore

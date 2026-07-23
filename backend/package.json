@@ -13,6 +13,7 @@
     "test:rtc": "node test/rtc_token.test.js"
   },
   "dependencies": {
+    "@fastify/multipart": "^8.3.0",
     "@nestjs/common": "^10.3.0",
     "@nestjs/core": "^10.3.0",
     "@nestjs/platform-fastify": "^10.3.0",
