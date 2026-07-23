@@ -116,3 +116,64 @@ tested and proven on device.
 so the Me header keeps the static gradient. The module stays in
 `lib/decoration/` because the download/cache half is correct and reusable; only
 the compositing half is blocked.
+
+---
+
+# The Me-page header is NOT infoBgImg — exhaustive search
+
+Task 4 is **not visually complete**. The animated-decoration pipeline works, but
+the artwork it renders is the wrong one for this screen.
+
+## Proven: it is not the VIP palace
+
+`infoBgImg` for uid 1278472 resolves to the VIP-V palace. Frames 0/10/25/50/70
+were extracted and compared against the original Me header: every frame is a
+violet palace interior with winged horses and a gold crown. The original header
+is a **domed mosque with minarets in warm red/gold**. Different assets — this is
+not a framing or timing artefact.
+
+## Proven: it is not bundled in the APK
+
+Searched `com.waig.nalo` v1.21.150 exhaustively:
+
+| slice | count | result |
+|---|---|---|
+| res/ png+webp, deduped | 1454 | no mosque |
+| wide (ratio 1.6–5.0, w≥400) | 138 | no mosque |
+| tall portrait (h≥600) | 24 | room themes only |
+| large (w≥600) | 208 | all viewed, no mosque |
+| 9-patch | 151 | UI chrome only |
+| assets/ | 176 | svga/pag/emoji/config only |
+| mp4 in apk | 3 | rocket ×2, login_bg |
+
+Found the **header family**: exactly two images are 1125x482 —
+`f093f82508_m_b1` (plain purple default) and `48fd37c50b_m_a45` (Ramadan
+lanterns). Same slot, same dimensions, seasonal variants. The mosque is a third
+variant that ships from the server, not the APK.
+
+## Where it comes from
+
+Captured URLs include `api.zaffalive.com/html/background/index.html` (plus
+`theme` and `roomTheme`) — the background picker. All return **404** today.
+Only four `goods_*.zip` URLs were ever captured, all belonging to this account:
+srcType=1 chatBubble, srcType=2 infoBgImg, srcType=3 avatarFrame ×2. No
+catalogue was captured, so the mosque's hash is unknown.
+
+## Most likely explanation
+
+The reference screenshots are dated **2026-07-20**; the profile API capture is
+**2026-07-22**. `infoBgImg` is user-changeable, so the account very plausibly
+had the mosque background on the 20th and the VIP palace by the 22nd. Replaying
+the original app today would fetch whatever the account has **now** — i.e. the
+VIP palace — so it would not recover the mosque.
+
+## To actually obtain it
+
+1. Have the real account re-select the mosque background, then re-read
+   `infoBgImg`; or
+2. Obtain the decoration catalogue (`mall.*` / the background H5) with a valid
+   session and pull the mosque's `goods_<hash>.zip`; or
+3. Recover the bytes from the original device's cache directory.
+
+Until then the Me header keeps the plain gradient — the VIP palace is gated off
+behind `ANIMATED_HEADER` rather than shipped as a stand-in.

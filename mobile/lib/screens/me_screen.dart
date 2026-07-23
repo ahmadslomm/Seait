@@ -39,13 +39,15 @@ class MeScreen extends ConsumerWidget {
         // header zooms into a meaningless sliver. Fit its width and pull the
         // decorative arch (crown + winged horses) into view instead, and keep it
         // subtle so it frames the header rather than darkening it.
-        if (u.infoBgImg.isNotEmpty)
+        // NOT the original Me header: infoBgImg currently resolves to the VIP-V
+        // palace decoration, which is a different asset from the mosque the
+        // original shows. Gated off until the real header is located.
+        if (kAnimatedHeader && u.infoBgImg.isNotEmpty)
           Opacity(opacity: .45, child: Image.asset('assets/ui/header_deco_vip5.webp',
             fit: BoxFit.fitWidth, alignment: const Alignment(0, -0.72),
             errorBuilder: (_, __, ___) => const SizedBox.shrink())),
-        // Scrim: the original keeps its header artwork dark so the nick/ID stay
-        // legible. Without this the crown washes straight over the ID line.
-        const DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(
+        // Scrim (only meaningful with artwork behind it).
+        if (kAnimatedHeader) const DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(
           begin: Alignment.centerLeft, end: Alignment.centerRight,
           colors: [Color(0xCC1A0B2E), Color(0x772A1148), Color(0x22000000)],
           stops: [0.0, 0.45, 1.0]))),
