@@ -20,6 +20,17 @@ Reached in five batches: batch 1 (119) covered the actively-used surface; batche
 2–5 completed the rest by priority — Room APIs, advanced room, PK, games, moment,
 bottle, then everything remaining.
 
+Transport split: **308 action handlers** (through the encrypted `/api.php`
+gateway) + **42 HTTP/H5 routes** (served directly by `LegacyController` /
+`AssetsController`). The inventory tool reads both, so its 100% figure counts
+what actually responds, not just what has a handler.
+
+Device-verified on the emulator: install Success, **0 crashes**, and the
+fallback logger recorded **no unimplemented action** across a full screen sweep.
+Every screen that had no UI now has one — the last two, Settings
+(`HiddenSettings.*`) and Feedback (`feedback.report`), are wired to real routes
+reachable from the Me tab.
+
 ### Deliberate stubs — implemented, but no real integration behind them
 
 These respond (the route exists, the client's call resolves) but cannot do the
