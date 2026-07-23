@@ -9,7 +9,7 @@ class BackpackScreen extends ConsumerWidget {
   const BackpackScreen({super.key});
   static const cats = ['Frame','Ride','Entry effect','Bubble','Profile Card'];
   @override Widget build(BuildContext c, WidgetRef ref) {
-    final inv = ref.watch(actionProvider((action: 'mall.getMyProduct', params: {})));
+    final inv = ref.watch(actionProvider(ApiCall('mall.getMyProduct')));
     return ZPage(title: 'Backpack', tabs: cats, tabViews: [ for (final cat in cats)
       inv.when(loading: () => const Center(child: CircularProgressIndicator(color: ZC.purple)),
         error: (e, _) => EmptyState(icon: Icons.cloud_off, text: 'API mall.getMyProduct:\n$e'),

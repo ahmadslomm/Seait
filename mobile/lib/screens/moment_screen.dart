@@ -8,7 +8,7 @@ import '../ui/components.dart';
 class MomentScreen extends ConsumerWidget {
   const MomentScreen({super.key});
   @override Widget build(BuildContext c, WidgetRef ref) {
-    final feed = ref.watch(actionProvider((action: 'moment.recomV3', params: {'page': 1})));
+    final feed = ref.watch(actionProvider(ApiCall('moment.recomV3', {'page': 1})));
     return ZPage(title: 'Moment', tabs: const ['Follow','Recommend','Latest'], tabViews: [
       const EmptyState(icon: Icons.pets, text: "You haven't followed anybody yet"),
       feed.when(loading: () => const Center(child: CircularProgressIndicator(color: ZC.purple)),

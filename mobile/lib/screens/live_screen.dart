@@ -8,7 +8,7 @@ import '../ui/components.dart';
 class LiveScreen extends ConsumerWidget {
   const LiveScreen({super.key});
   @override Widget build(BuildContext c, WidgetRef ref) {
-    final live = ref.watch(actionProvider((action: 'Action/LiveRoom.recommend', params: {'page': 1})));
+    final live = ref.watch(actionProvider(ApiCall('Action/LiveRoom.recommend', {'page': 1})));
     return ZPage(title: 'Live', tabs: const ['Popular','Follow'], tabViews: [
       live.when(loading: () => const Center(child: CircularProgressIndicator(color: ZC.purple)),
         error: (e, _) => EmptyState(icon: Icons.cloud_off, text: 'API LiveRoom.recommend:\n$e'),

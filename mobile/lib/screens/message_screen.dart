@@ -8,7 +8,7 @@ import '../ui/components.dart';
 class MessageScreen extends ConsumerWidget {
   const MessageScreen({super.key});
   @override Widget build(BuildContext c, WidgetRef ref) {
-    final msg = ref.watch(actionProvider((action: 'notice.checkNotice', params: {})));
+    final msg = ref.watch(actionProvider(ApiCall('notice.checkNotice')));
     return ZPage(title: 'Message', tabs: const ['Chat','Friends'], tabViews: [
       ListView(children: [
         for (final s in const [['System',Icons.campaign],['Relationship',Icons.favorite],['Reward Assistant',Icons.card_giftcard],['New followers',Icons.person_add],['Official Assistant',Icons.verified]])

@@ -8,7 +8,7 @@ import '../ui/components.dart';
 class SearchScreen extends ConsumerWidget {
   const SearchScreen({super.key});
   @override Widget build(BuildContext c, WidgetRef ref) {
-    final rec = ref.watch(actionProvider((action: 'user.batchGetUserinfoV2', params: {})));
+    final rec = ref.watch(actionProvider(ApiCall('user.batchGetUserinfoV2')));
     return Scaffold(backgroundColor: ZC.bg, appBar: AppBar(title: Container(height: 38, padding: const EdgeInsets.symmetric(horizontal: ZSpace.md),
       decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(ZRadius.pill)),
       child: const Row(children: [Icon(Icons.search, color: ZC.textLo, size: 18), SizedBox(width: 6), Text('Search for users', style: TextStyle(color: ZC.textLo))]))),

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/api.dart';
 import 'core/config.dart';
@@ -6,8 +7,40 @@ import 'models/room.dart';
 
 /// Generic: call ANY action from any screen. Unknown actions return empty and the
 /// backend fallback-logger records them (request+fields) — nothing is mocked/guessed.
-final actionProvider = FutureProvider.family<dynamic, ({String action, Map<String, dynamic> params})>((ref, a) async {
-  return ref.read(apiProvider).call(a.action, params: a.params);
+/// Immutable, value-equal key for [actionProvider].
+///
+/// Riverpod compares family keys with `==`. A record holding a `Map` literal is
+/// NEVER equal to itself across rebuilds, so watching one during `build` spawns
+/// a brand-new provider every frame that restarts loading and never resolves —
+/// the screen sits on its spinner forever. This type collapses the call to a
+/// canonical string so the same request always yields the same key.
+@immutable
+class ApiCall {
+  final String action;
+  final Map<String, dynamic> params;
+  final String _key;
+
+  ApiCall(this.action, [Map<String, dynamic>? params])
+      : params = Map<String, dynamic>.unmodifiable(params ?? const <String, dynamic>{}),
+        _key = _canonical(action, params ?? const <String, dynamic>{});
+
+  static String _canonical(String action, Map<String, dynamic> p) {
+    final keys = p.keys.toList()..sort();
+    return '$action?${keys.map((k) => '$k=${p[k]}').join('&')}';
+  }
+
+  @override
+  bool operator ==(Object other) => other is ApiCall && other._key == _key;
+  @override
+  int get hashCode => _key.hashCode;
+  @override
+  String toString() => 'ApiCall($_key)';
+}
+
+/// Generic: call ANY action. Keyed by [ApiCall] so repeated builds reuse the
+/// same provider instance instead of re-creating it.
+final actionProvider = FutureProvider.family<dynamic, ApiCall>((ref, c) async {
+  return ref.read(apiProvider).call(c.action, params: c.params);
 });
 
 /// Profile / Wallet / VIP / Noble / Wealth / CP / Guild all come from user.getUserinfo.
