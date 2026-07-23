@@ -1,0 +1,134 @@
+[r-room3] 08:03:07 waiting for run lock (max 1800s)
+[r-room3] 08:03:07 lock acquired; run dir = /root/seait-runs/r-room3
+[r-room3] $ adb start-server
+[r-room3] $ adb wait-for-device
+[r-room3] 08:03:07 abi=x86_64
+[r-room3] 08:03:07 phone geometry
+[r-room3] $ adb shell wm size 1080x2340
+[r-room3] $ adb shell wm density 249
+[r-room3] 08:03:14 geometry 640x1280 density=249 (411dp wide)
+[r-room3] 08:03:14 fetching APK
+[r-room3] 08:03:15 apk bytes=61725295 md5=7ff1992bf6ad
+worker->backend http=200
+[r-room3] 08:03:15 install
+[r-room3] 08:03:16 install result: Success
+[r-room3] 08:03:17 installed versionName=versionName=1.0
+[r-room3] $ adb logcat -c
+[r-room3] $ adb shell input keyevent KEYCODE_WAKEUP
+[r-room3] $ adb shell monkey -p com.example.seait -c android.intent.category.LAUNCHER 1
+  bash arg: -p
+  bash arg: com.example.seait
+  bash arg: -c
+  bash arg: android.intent.category.LAUNCHER
+  bash arg: 1
+args: [-p, com.example.seait, -c, android.intent.category.LAUNCHER, 1]
+ arg: "-p"
+ arg: "com.example.seait"
+ arg: "-c"
+ arg: "android.intent.category.LAUNCHER"
+ arg: "1"
+data="com.example.seait"
+data="android.intent.category.LAUNCHER"
+Events injected: 1
+## Network stats: elapsed time=10ms (0ms mobile, 0ms wifi, 10ms not connected)
+[r-room3] 08:03:55 shot 00_launch = 377835B
+[r-room3] 08:03:55 start screenrecord
+[r-room3] 08:03:55 bottom nav sweep
+[r-room3] $ adb shell input tap 64 1241
+[r-room3] 08:04:06 shot 01_home = 59670B
+[r-room3] $ adb shell input tap 192 1241
+[r-room3] 08:04:15 shot 02_moment = 45346B
+[r-room3] $ adb shell input tap 320 1241
+[r-room3] 08:04:24 shot 03_live = 34685B
+[r-room3] $ adb shell input tap 448 1241
+[r-room3] 08:04:34 shot 04_message = 64128B
+[r-room3] $ adb shell input tap 576 1241
+[r-room3] 08:04:45 shot 05_me = 377714B
+[r-room3] $ adb shell input swipe 320 960 320 384 400
+[r-room3] 08:04:56 shot 05b_me_scrolled = 259549B
+[r-room3] 08:04:56 routes by deep link
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///wallet com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///wallet pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:02 shot 10_wallet = 83369B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///vip com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///vip pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:07 shot 10_vip = 153060B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///cp com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///cp pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:12 shot 10_cp = 60045B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///level com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///level pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:18 shot 10_level = 30791B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///backpack com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///backpack pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:25 shot 10_backpack = 20135B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///guild com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///guild pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:30 shot 10_guild = 31963B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///agency com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///agency pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:37 shot 10_agency = 14532B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///tasks com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///tasks pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:44 shot 10_tasks = 13941B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///search com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///search pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:51 shot 10_search = 21457B
+[r-room3] 08:05:51 gift studio + engine
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///gift-studio com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:05:58 shot 20_gift_studio = 102803B
+[r-room3] $ adb shell input tap 140 192
+[r-room3] 08:06:01 shot 21_crown = 102803B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///gift-studio com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] $ adb shell input tap 371 192
+[r-room3] 08:06:06 shot 22_angel = 102867B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///gift-studio com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] $ adb shell input tap 153 256
+[r-room3] 08:06:10 shot 23_big = 181841B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///gift-studio com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] $ adb shell input tap 384 256
+[r-room3] 08:06:16 shot 24_combo = 504916B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///gift-studio com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] $ adb shell input tap 160 320
+[r-room3] 08:06:22 shot 25_multi = 443428B
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///gift-studio com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///gift-studio pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] $ adb shell input tap 396 320
+[r-room3] 08:06:29 shot 26_entrance = 395456B
+[r-room3] 08:06:29 voice room
+[r-room3] $ adb shell am start -a android.intent.action.VIEW -d seait:///room/1 com.example.seait
+Starting: Intent { act=android.intent.action.VIEW dat=seait:///room/1 pkg=com.example.seait }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+[r-room3] 08:06:38 shot 30_room = 470442B
+[r-room3] $ adb shell input tap 608 1216
+[r-room3] 08:06:43 shot 31_gift_panel = 470442B
+[r-room3] $ adb shell input tap 128 576
+[r-room3] 08:06:46 shot 32_gift_selected = 470442B
+[r-room3] $ adb shell input tap 563 1177
+[r-room3] 08:06:50 shot 33_room_gift_sent = 470442B
+[r-room3] 08:06:50 stop screenrecord
+/sdcard/seait_r-room3.mp4: 1 file pulled, 0 skipped. 149.5 MB/s (15821144 bytes in 0.101s)
+[r-room3] 08:06:53 video: -rw-r--r-- 1 root root 15821144 Jul 23 08:06 seait_r-room3.mp4
+[r-room3] 08:06:53 collecting diagnostics
+[r-room3] 08:06:53 crashes=0
+[r-room3] 08:06:53 shots=27
