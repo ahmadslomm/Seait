@@ -152,11 +152,13 @@ class RtcService {
   /// authoritative — this only follows it.
   Future<void> setMuted(bool m) async {
     _muted = m;
+    debugPrint('[rtc] setMuted($m) engine=${_engine != null}');
     try { await _engine?.muteLocalAudioStream(m); } catch (e) { debugPrint('[rtc] mute: $e'); }
   }
 
   /// Promote/demote when the user takes or leaves a seat mid-session.
   Future<void> setPublisher(bool publisher) async {
+    debugPrint('[rtc] setPublisher($publisher) engine=${_engine != null}');
     try {
       await _engine?.setClientRole(
         role: publisher ? ClientRoleType.clientRoleBroadcaster : ClientRoleType.clientRoleAudience);

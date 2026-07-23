@@ -216,6 +216,61 @@ const seatOf = (state, uid) => (state.seats || []).find(s => s.uid === uid);
     if (u && u.users.some(x => x.uid === B_UID)) throw new Error('B still listed after kick');
   });
 
+
+  // ── contracts that drive the RTC layer ──────────────────────────
+  // Real audio needs Agora credentials + two mic'd devices, which this lab does
+  // not have. What IS verifiable here is the state plumbing the client turns
+  // into Agora calls: these events are what trigger rtc.setMuted /
+  // rtc.setPublisher / the speaking halo. If these contracts hold, the RTC layer
+  // is being fed correctly even though the audio itself is unproven.
+  console.log('\n  -- RTC state contracts --');
+
+  await step('seat take emits seat_update for B -> client calls setPublisher(true)', async () => {
+    const onB = next(B, 'seat_update', d => d.seatNo === 2 && d.uid === B_UID);
+    B.emit('seat_update', { rid: RID, uid: B_UID, seatNo: 2 });
+    const s = await onB;
+    if (!s.profile) throw new Error('seat_update carried no profile');
+    return `seat=${s.seatNo}`;
+  });
+
+  await step('owner mute of B emits mic_status(1) on B\'s seat -> setMuted(true)', async () => {
+    const onB = next(B, 'mic_status', d => d.seatNo === 2 && d.micState === 1);
+    A.emit('mic_status', { rid: RID, uid: A_UID, seatNo: 2, micState: 1 });
+    const s = await onB;
+    if (s.uid !== B_UID) throw new Error(`micState applied to uid ${s.uid}`);
+    return 'micState=1';
+  });
+
+  await step('owner unmute emits mic_status(0) -> setMuted(false)', async () => {
+    const onB = next(B, 'mic_status', d => d.seatNo === 2 && d.micState === 0);
+    A.emit('mic_status', { rid: RID, uid: A_UID, seatNo: 2, micState: 0 });
+    await onB;
+    return 'micState=0';
+  });
+
+  await step('B self-mute is allowed (own seat)', async () => {
+    const onA = next(A, 'mic_status', d => d.seatNo === 2 && d.micState === 1);
+    B.emit('mic_status', { rid: RID, uid: B_UID, seatNo: 2, micState: 1 });
+    await onA;
+    B.emit('mic_status', { rid: RID, uid: B_UID, seatNo: 2, micState: 0 });
+  });
+
+  await step('speaking from B reaches A (drives the remote halo)', async () => {
+    const onA = next(A, 'speaking', d => d.seatNo === 2 && d.speaking === true);
+    B.emit('speaking', { rid: RID, seatNo: 2, speaking: true });
+    await onA;
+    const off = next(A, 'speaking', d => d.seatNo === 2 && d.speaking === false);
+    B.emit('speaking', { rid: RID, seatNo: 2, speaking: false });
+    await off;
+    return 'on+off propagated';
+  });
+
+  await step('seat leave emits vacated seat -> client calls setPublisher(false)', async () => {
+    const onA = next(A, 'seat_update', d => d.seatNo === 2 && d.uid === null);
+    B.emit('seat_leave', { rid: RID, uid: B_UID });
+    await onA;
+  });
+
   A.close(); B.close();
   console.log(`\n${pass} passed, ${fail} failed`);
   process.exit(fail === 0 ? 0 : 1);
