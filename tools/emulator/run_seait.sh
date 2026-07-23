@@ -76,6 +76,13 @@ curl -s -m 10 -o /dev/null -w "worker->backend http=%{http_code}\n" "http://$CTR
 say "install"
 adb uninstall "$PKG" > "$RUN_DIR/logs/uninstall.log" 2>&1
 adb install -r -t "$APK" > "$RUN_DIR/logs/install.log" 2>&1
+# Pre-grant runtime permissions: nobody is here to tap Allow, and the RTC
+# publisher path needs the mic. Without this the run only ever exercises the
+# permission-denied fallback.
+for P in RECORD_AUDIO MODIFY_AUDIO_SETTINGS; do
+  adb shell pm grant "$PKG" "android.permission.$P" >>"$LOG" 2>&1
+done
+say "granted: $(adb shell dumpsys package "$PKG" 2>/dev/null | grep -c 'RECORD_AUDIO: granted=true')"
 say "install result: $(tail -1 "$RUN_DIR/logs/install.log")"
 adb shell dumpsys package "$PKG" > "$RUN_DIR/logs/dumpsys_package.log" 2>&1
 say "installed versionName=$(grep -m1 versionName "$RUN_DIR/logs/dumpsys_package.log" | tr -d ' \r')"
