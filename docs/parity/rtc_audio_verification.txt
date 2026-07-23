@@ -1,0 +1,55 @@
+RTC verification — run r-rtc-audio2 (2026-07-23)
+Three independent vantage points: the app's logcat, the socket driver on
+the controller, and a separate Agora participant (headless Chromium).
+
+=== app, logcat (worker clock, ~6s behind controller) ===
+07-23 15:19:08.731  3685  3685 I flutter : [rtc] joined seait_room_1 as publisher
+07-23 15:19:13.503  3685  3685 I flutter : [rtc] setPublisher(true) engine=true
+07-23 15:19:19.503  3685  3685 I flutter : [rtc] setMuted(true) engine=true
+07-23 15:19:25.503  3685  3685 I flutter : [rtc] setMuted(false) engine=true
+07-23 15:19:31.504  3685  3685 I flutter : [rtc] setPublisher(false) engine=true
+07-23 15:19:49.789  3685  3685 I flutter : [rtc] setPublisher(false) engine=true
+07-23 15:19:50.194  3685  3685 I flutter : [rtc] setPublisher(false) engine=true
+
+=== native Agora SDK return codes ===
+api name RtcEngine_setClientRole_3426fa6 result 0
+api name RtcEngine_joinChannel_cdbb747 result 0
+api name RtcEngine_setClientRole_3426fa6 result 0
+api name RtcEngine_updateChannelMediaOptions_7bfc1d7 result 0
+api name RtcEngine_muteLocalAudioStream_5039d15 result 0
+api name RtcEngine_muteLocalAudioStream_5039d15 result 0
+api name RtcEngine_setClientRole_3426fa6 result 0
+api name RtcEngine_updateChannelMediaOptions_7bfc1d7 result 0
+api name RtcEngine_setClientRole_3426fa6 result 0
+api name RtcEngine_updateChannelMediaOptions_7bfc1d7 result 0
+api name RtcEngine_setClientRole_3426fa6 result 0
+api name RtcEngine_updateChannelMediaOptions_7bfc1d7 result 0
+
+=== driver: what it asked for (controller clock) ===
+15:19:14 +  97.4s APP DETECTED in room — starting transition sequence
+15:19:20 + 103.4s STEP 1/4 sit on seat 3 -> expect setPublisher(true)
+15:19:26 + 109.4s STEP 2/4 mute that seat -> expect setMuted(true)
+15:19:32 + 115.4s STEP 3/4 unmute that seat -> expect setMuted(false)
+15:19:38 + 121.4s STEP 4/4 stand up -> expect setPublisher(false)
+15:22:52 + 315.6s APP DETECTED in room — starting transition sequence
+15:22:58 + 321.6s STEP 1/4 sit on seat 3 -> expect setPublisher(true)
+15:23:04 + 327.6s STEP 2/4 mute that seat -> expect setMuted(true)
+15:23:10 + 333.6s STEP 3/4 unmute that seat -> expect setMuted(false)
+15:23:16 + 339.6s STEP 4/4 stand up -> expect setPublisher(false)
+speaking relays for the peer's seat: 1318
+
+=== peer: what a THIRD PARTY observed of the app's stream ===
+15:19:15 + 100.7s [web] user-joined uid=1278472
+15:19:15 + 100.7s [web] user-published uid=1278472 kind=audio
+15:19:15 + 100.8s [web] SUBSCRIBED to audio of uid=1278472
+15:19:16 + 101.9s [web] volume 1278472=7 999100=23
+15:19:18 + 103.9s [web] volume 1278472=12 999100=33
+15:19:24 + 109.9s [web] volume 1278472=8 999100=27
+15:19:32 + 117.5s [web] user-published uid=1278472 kind=audio
+15:19:32 + 117.5s [web] SUBSCRIBED to audio of uid=1278472
+15:19:32 + 117.9s [web] volume 1278472=12 999100=27
+15:19:34 + 119.9s [web] volume 1278472=12 999100=27
+
+Read the mute window: the app's audio reaches the peer at :16 :18 :24,
+stops entirely after the mute at :26, and republishes at :32 the instant
+it is unmuted. That is the mute observed from outside the app.
