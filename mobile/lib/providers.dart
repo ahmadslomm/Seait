@@ -23,6 +23,18 @@ final roomsProvider = FutureProvider<List<RoomModel>>((ref) async {
   return list.map((e) => RoomModel.fromJson(e as Map)).toList();
 });
 
+/// Live room record for a given rid, taken from the same recommend feed the
+/// original client uses. Everything the room renders (seat count, backdrop,
+/// title, lock state) comes from here — nothing is hardcoded in the UI.
+final roomInfoProvider = FutureProvider.family<Map, int>((ref, rid) async {
+  final d = await ref.read(apiProvider).call('room.getRecommendRoomV2', params: {'page': 1});
+  final list = (d is Map ? d['list'] : d) as List? ?? [];
+  for (final r in list) {
+    if (r is Map && int.tryParse('${r['rid']}') == rid) return r;
+  }
+  return const {};
+});
+
 /// Gifts — gift.getGiftList.
 final giftsProvider = FutureProvider<List>((ref) async {
   final d = await ref.read(apiProvider).call('gift.getGiftList');

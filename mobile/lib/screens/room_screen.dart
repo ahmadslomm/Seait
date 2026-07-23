@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../core/theme.dart';
 import '../core/room_socket.dart';
 import '../core/config.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../ui/components.dart';
 import '../providers.dart';
 import '../gift_engine/gift_engine.dart';
@@ -19,20 +20,29 @@ class RoomScreen extends ConsumerStatefulWidget {
 
 class _RoomState extends ConsumerState<RoomScreen> {
   final socket = RoomSocket();
-  int seatCount = 10;
+  int seatCount = 0;              // authoritative value arrives from room data
   List seats = [];
   final chat = <Map>[];
   String? giftBanner;
+  bool _joined = false;
 
   GiftEngine get _engine => ref.read(giftEngineProvider);
 
+  /// Rebuild the local seat list whenever the room's seat count changes.
+  void _sizeSeats(int n) {
+    if (n <= 0 || n == seatCount) return;
+    setState(() {
+      seatCount = n;
+      seats = List.generate(n, (i) => {'seatNo': i, 'uid': null, 'micState': 0, 'charmValue': 0});
+    });
+    if (!_joined) { socket.join(widget.rid, Cfg.myUid, seatCount: n); _joined = true; }
+  }
+
   @override void initState() {
     super.initState();
-    seats = List.generate(seatCount, (i) => {'seatNo': i, 'uid': null, 'micState': 0});
     // Load the REAL gift catalog (gift.getGiftList) into the engine.
     ref.read(giftsProvider.future).then((g) { _engine.clear(); _engine.loadCatalog(g); }).catchError((_) {});
     socket.connect();
-    socket.join(widget.rid, Cfg.myUid, seatCount: seatCount);
     socket.on('room_state', (d) { if (d?['seats'] != null) setState(() => seats = d['seats']); });
     socket.on('seat_update', (s) => setState(() { if (s['seatNo'] < seats.length) seats[s['seatNo']] = s; }));
     socket.on('mic_status', (s) => setState(() { if (s['seatNo'] < seats.length) seats[s['seatNo']] = s; }));
@@ -60,48 +70,86 @@ class _RoomState extends ConsumerState<RoomScreen> {
     _engine.receive(GiftEvent(def: def, senderUid: Cfg.myUid, senderName: 'Me', roomId: widget.rid, count: qty));
   }
 
+  /// Column count comes from the room's own seat count — the original lays 5/10/15
+  /// seat rooms out 5-across and larger rooms 6-across. No fixed assumption.
+  int _cols(int n) {
+    if (n <= 0) return 5;
+    if (n % 5 == 0 && n <= 15) return 5;
+    if (n % 6 == 0) return 6;
+    return n <= 12 ? 4 : 5;
+  }
+
   @override Widget build(BuildContext c) {
-    final host = seats.isNotEmpty ? seats.first : {'seatNo': 0, 'uid': null, 'micState': 0};
-    final guests = seats.length > 1 ? seats.sublist(1) : [];
+    final info = ref.watch(roomInfoProvider(widget.rid));
+    final room = info.asData?.value ?? const {};
+    // seat count is authoritative room data (falls back to the socket's view)
+    final n = int.tryParse('${room['seatCount'] ?? ''}') ?? seats.length;
+    WidgetsBinding.instance.addPostFrameCallback((_) => _sizeSeats(n));
+
+    final cols = _cols(seatCount);
+    final cover = '${room['cover'] ?? ''}';
+    final theme = ['arabian', 'galaxy', 'stage'][(int.tryParse('${room['roomType'] ?? 0}') ?? 0) % 3];
+    final width = MediaQuery.of(c).size.width;
+    final seatD = width * 0.107;   // measured from the original: Ø ≈ 10.7% of width
+
     return Scaffold(
       body: Stack(children: [
-      // Original rooms use a themed artwork backdrop (not a flat gradient);
-      // pick one of the extracted room themes by room id, gradient as fallback.
-      Positioned.fill(child: Image.asset(
-        'assets/ui/room_bg_${const ["arabian", "galaxy", "stage"][0]}.webp',
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => const DecoratedBox(decoration: BoxDecoration(
-          gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
-            colors: [Color(0xFF3A1D6E), Color(0xFF1A0B2E)]))))),
-      Positioned.fill(child: Container(color: const Color(0x552A1148))), // legibility scrim
-      Container(
-        child: SafeArea(child: Column(children: [
-          _topBar(c),
+      // Backdrop: the room's own cover art when the API supplies one, otherwise
+      // the bundled theme selected by the room's type (never a fixed index).
+      Positioned.fill(child: cover.startsWith('http')
+        ? CachedNetworkImage(imageUrl: cover, fit: BoxFit.cover,
+            errorWidget: (_, __, ___) => Image.asset('assets/ui/room_bg_$theme.webp', fit: BoxFit.cover))
+        : Image.asset('assets/ui/room_bg_$theme.webp', fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => const DecoratedBox(decoration: BoxDecoration(
+              gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                colors: [Color(0xFF3A1D6E), Color(0xFF1A0B2E)]))))),
+      Positioned.fill(child: Container(color: const Color(0x442A1148))), // legibility scrim
+      SafeArea(child: Column(children: [
+          _topBar(c, room),
           if (giftBanner != null) _banner(),
-          // host seat
-          Padding(padding: const EdgeInsets.only(top: 8), child: RoomSeat(no: 0, host: true, avatarUrl: host['uid'] != null ? null : null, name: 'Host')),
-          const SizedBox(height: 8),
-          // guest seats grid
-          Expanded(child: GridView.count(crossAxisCount: seatCount <= 10 ? 4 : (seatCount <= 15 ? 5 : 6),
-            padding: const EdgeInsets.symmetric(horizontal: 12), childAspectRatio: .8, physics: const BouncingScrollPhysics(),
-            children: [for (final s in guests) RoomSeat(no: s['seatNo'], avatarUrl: s['uid'] != null ? null : null, onTap: () => socket.takeSeat(widget.rid, s['seatNo'], Cfg.myUid), micOff: (s['micState'] ?? 0) == 1)])),
+          // Seat grid — host occupies cell 0 exactly like the original; every
+          // other cell is "No.N". Sizes derive from the measured proportions.
+          Padding(padding: const EdgeInsets.fromLTRB(6, 6, 6, 0),
+            child: GridView.count(
+              crossAxisCount: cols, shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              childAspectRatio: .78, mainAxisSpacing: 2, crossAxisSpacing: 2,
+              children: [for (int i = 0; i < seats.length; i++) _seat(seats[i], i, seatD)])),
           _chatFeed(),
           _bottomBar(c),
         ])),
-      ),
       const Positioned.fill(child: GiftStage()), // 5-layer gift overlay
       ]),
+    );
+  }
+
+  /// One grid cell. Index 0 is the host/owner chair in the original layout.
+  Widget _seat(dynamic s, int i, double d) {
+    final m = (s is Map) ? s : const {};
+    final uid = m['uid'];
+    return RoomSeat(
+      no: i + 1,
+      diameter: d,
+      host: i == 0,
+      avatarUrl: '${m['avatar'] ?? ''}'.isEmpty ? null : '${m['avatar']}',
+      frameUrl: '${m['avatarFrame'] ?? ''}'.isEmpty ? null : '${m['avatarFrame']}',
+      name: '${m['nick'] ?? ''}',
+      charm: int.tryParse('${m['charmValue'] ?? 0}') ?? 0,
+      micOff: (int.tryParse('${m['micState'] ?? 0}') ?? 0) == 1,
+      locked: (int.tryParse('${m['lock'] ?? 0}') ?? 0) == 1,
+      speaking: m['speaking'] == true,
+      onTap: uid == null ? () => socket.takeSeat(widget.rid, i, Cfg.myUid) : null,
     );
   }
 
   // Compact icon buttons + a flexible room chip so the bar never overflows on
   // narrow phones (360dp) — same layout, just constrained.
   static const _tightBtn = BoxConstraints(minWidth: 34, minHeight: 34);
-  Widget _topBar(BuildContext c) => Padding(padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4), child: Row(children: [
+  Widget _topBar(BuildContext c, Map room) => Padding(padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4), child: Row(children: [
     IconButton(icon: const Icon(Icons.arrow_back, color: Colors.white, size: 22), padding: EdgeInsets.zero, constraints: _tightBtn, onPressed: () => c.pop()),
     Flexible(child: Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(20)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [const CircleAvatar(radius: 12, backgroundColor: ZC.card), const SizedBox(width: 6),
-        Flexible(child: Text('Room:${widget.rid}', overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontSize: 12)))]))),
+        Flexible(child: Text('${room['name'] ?? 'Room ' + widget.rid.toString()}', overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontSize: 12)))]))),
     const SizedBox(width: 6),
     Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3), decoration: BoxDecoration(color: ZC.purple.withValues(alpha: .4), borderRadius: BorderRadius.circular(12)),
       child: const Text('Ranking 99+', style: TextStyle(color: ZC.gold, fontSize: 11))),

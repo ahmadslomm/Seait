@@ -149,16 +149,62 @@ class BalancePill extends StatelessWidget { final String value; final bool diamo
   @override Widget build(BuildContext c) => Row(mainAxisSize: MainAxisSize.min, children: [
     diamond ? const DiamondIcon(s: 16) : const CoinIcon(s: 16), const SizedBox(width: 3), Text(value, style: const TextStyle(color: ZC.gold))]); }
 
-class RoomSeat extends StatelessWidget { final int no; final String? avatarUrl; final String name; final bool host, speaking, micOff; final VoidCallback? onTap;
-  const RoomSeat({super.key, required this.no, this.avatarUrl, this.name = '', this.host = false, this.speaking = false, this.micOff = false, this.onTap});
-  @override Widget build(BuildContext c) { final r = host ? 30.0 : 26.0; return InkWell(onTap: onTap, child: Column(mainAxisSize: MainAxisSize.min, children: [
-    Stack(alignment: Alignment.center, children: [
-      if (speaking) Container(width: r * 2 + 10, height: r * 2 + 10, decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: ZC.gold, width: 3))),
-      Container(width: r * 2, height: r * 2, decoration: BoxDecoration(shape: BoxShape.circle, color: ZC.card, border: Border.all(color: host ? ZC.gold : Colors.white24, width: host ? 2 : 1)),
-        child: avatarUrl != null ? ClipOval(child: CachedNetworkImage(imageUrl: avatarUrl!, fit: BoxFit.cover)) : Icon(host ? Icons.star : Icons.add, color: host ? ZC.gold : ZC.textLo, size: r * 0.7)),
-      if (micOff) Positioned(right: 0, bottom: 0, child: CircleAvatar(radius: 9, backgroundColor: Colors.black54, child: const Icon(Icons.mic_off, size: 11, color: ZC.danger)))]),
-    const SizedBox(height: 3),
-    Text(avatarUrl == null ? (host ? 'Host' : 'No.$no') : name, style: ZType.label.copyWith(fontSize: 10), overflow: TextOverflow.ellipsis)])); } }
+/// A single mic seat, reproducing the original room cell:
+///   translucent ring + chair glyph when empty, avatar (+ decoration frame) when
+///   taken, "No.N" (or the occupant's name) underneath, then a dark heart pill
+///   with the charm count. Diameter is driven by the caller so the grid scales
+///   with the screen instead of using fixed sizes.
+class RoomSeat extends StatelessWidget {
+  final int no;                 // 1-based seat number as shown in the original
+  final String? avatarUrl;
+  final String? frameUrl;       // avatar decoration (network png/webp)
+  final String name;
+  final bool host, speaking, micOff, locked;
+  final int charm;
+  final double diameter;
+  final VoidCallback? onTap;
+  const RoomSeat({super.key, required this.no, this.avatarUrl, this.frameUrl, this.name = '',
+    this.host = false, this.speaking = false, this.micOff = false, this.locked = false,
+    this.charm = 0, this.diameter = 46, this.onTap});
+
+  @override Widget build(BuildContext c) {
+    final d = diameter;
+    return InkWell(onTap: onTap, borderRadius: BorderRadius.circular(d), child: Column(mainAxisSize: MainAxisSize.min, children: [
+      SizedBox(width: d * 1.5, height: d * 1.5, child: Stack(alignment: Alignment.center, children: [
+        // speaking halo
+        if (speaking) Container(width: d + 10, height: d + 10, decoration: BoxDecoration(shape: BoxShape.circle,
+          border: Border.all(color: ZC.gold, width: 2.5),
+          boxShadow: [BoxShadow(color: ZC.gold.withValues(alpha: .45), blurRadius: 10)])),
+        // seat disc
+        Container(width: d, height: d, decoration: BoxDecoration(shape: BoxShape.circle,
+          color: Colors.white.withValues(alpha: .10),
+          border: Border.all(color: Colors.white.withValues(alpha: .45), width: 1.2)),
+          child: avatarUrl != null && avatarUrl!.startsWith('http')
+            ? ClipOval(child: CachedNetworkImage(imageUrl: avatarUrl!, fit: BoxFit.cover,
+                errorWidget: (_, __, ___) => Icon(Icons.chair, color: Colors.white70, size: d * .5)))
+            : Icon(locked ? Icons.lock : Icons.chair, color: Colors.white.withValues(alpha: .85), size: d * .5)),
+        // avatar decoration frame sits OUTSIDE the disc, like the original
+        if (frameUrl != null && frameUrl!.startsWith('http'))
+          IgnorePointer(child: CachedNetworkImage(imageUrl: frameUrl!, width: d * 1.5, height: d * 1.5,
+            fit: BoxFit.contain, errorWidget: (_, __, ___) => const SizedBox.shrink())),
+        if (micOff) Positioned(right: d * .16, bottom: d * .16,
+          child: CircleAvatar(radius: d * .16, backgroundColor: Colors.black54,
+            child: Icon(Icons.mic_off, size: d * .2, color: ZC.danger))),
+      ])),
+      Text(avatarUrl != null && name.isNotEmpty ? name : 'No.$no',
+        style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w500),
+        maxLines: 1, overflow: TextOverflow.ellipsis),
+      const SizedBox(height: 3),
+      // heart / charm pill
+      Container(padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+        decoration: BoxDecoration(color: Colors.black.withValues(alpha: .35), borderRadius: BorderRadius.circular(10)),
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          Icon(Icons.favorite, size: 10, color: ZC.pink),
+          const SizedBox(width: 3),
+          Text('$charm', style: const TextStyle(color: Colors.white, fontSize: 10))])),
+    ]));
+  }
+}
 
 class RankingItem extends StatelessWidget { final int rank; final String name; final int score; final String? avatarUrl;
   const RankingItem({super.key, required this.rank, required this.name, required this.score, this.avatarUrl});
