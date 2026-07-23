@@ -17,6 +17,10 @@ LOCK_WAIT=1800
 PKG=com.example.seait
 
 RUN_ID="${1:-$(date +%Y%m%d-%H%M%S)}"
+# full = the usual whole-app sweep. rtc = sit in the room and do nothing, so a
+# socket driver on the controller can walk seat/mic transitions while we watch
+# what the client asks Agora to do.
+MODE="${2:-full}"
 RUN_DIR="$RUNS/$RUN_ID"
 mkdir -p "$RUNS"
 
@@ -98,6 +102,16 @@ W=$PW; H=$PH
 tapf(){ run adb shell input tap $(( W * $1 / 100 )) $(( H * $2 / 100 )); }
 swipeup(){ run adb shell input swipe $((W/2)) $((H*75/100)) $((W/2)) $((H*30/100)) 400; sleep 2; }
 
+if [ "$MODE" = rtc ]; then
+  # Hold inside room 1 with no interaction. The controller-side driver changes
+  # seat and mic state underneath us; all the evidence lands in logcat.
+  say "rtc mode: entering room 1 and holding"
+  open "/room/1"; shot 30_room 8
+  for i in $(seq 1 14); do sleep 5; done
+  shot 39_room_hold_end 3
+  say "rtc mode: hold finished"
+else
+
 # ── screen recording over the interactive part ──────────────────────
 say "start screenrecord"
 ( adb shell screenrecord --time-limit 170 --size 640x1280 /sdcard/seait_$RUN_ID.mp4 >/dev/null 2>&1 ) &
@@ -113,7 +127,7 @@ swipeup;    shot 05b_me_scrolled 3
 # nav artwork close-up: crop happens on the controller from 05_me
 
 say "routes by deep link"
-for r in wallet vip cp level backpack guild agency tasks search; do
+for r in wallet vip cp level backpack guild agency tasks search settings feedback; do
   open "/$r"; shot "10_$r" 5
 done
 
@@ -141,6 +155,7 @@ sleep 3
 adb pull "/sdcard/seait_$RUN_ID.mp4" "$RUN_DIR/video/" >>"$LOG" 2>&1
 adb shell rm -f "/sdcard/seait_$RUN_ID.mp4" >>"$LOG" 2>&1
 say "video: $(ls -la "$RUN_DIR/video/" 2>/dev/null | tail -1)"
+fi
 
 # ── diagnostics ─────────────────────────────────────────────────────
 say "collecting diagnostics"
