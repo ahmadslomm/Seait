@@ -7,6 +7,7 @@ import '../providers.dart';
 import '../models/user.dart';
 import '../ui/components.dart';
 import '../core/config.dart';
+import '../core/asset_registry.dart';
 import '../decoration/alpha_video_view.dart';
 
 /// Me / Profile — reproduces screenshot 193434, wired to REAL user.getUserinfo.
@@ -43,7 +44,7 @@ class MeScreen extends ConsumerWidget {
         // palace decoration, which is a different asset from the mosque the
         // original shows. Gated off until the real header is located.
         if (kAnimatedHeader && u.infoBgImg.isNotEmpty)
-          Opacity(opacity: .45, child: Image.asset('assets/ui/header_deco_vip5.webp',
+          Opacity(opacity: .45, child: Image.asset(Assets.of('header.deco') ?? '',
             fit: BoxFit.fitWidth, alignment: const Alignment(0, -0.72),
             errorBuilder: (_, __, ___) => const SizedBox.shrink())),
         // Scrim (only meaningful with artwork behind it).
@@ -98,10 +99,10 @@ class MeScreen extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(vertical: 16), decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(16)),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         // original app's 3D menu artwork
-        _gi(c, 'menu_store', 'Store', Icons.storefront, const Color(0xFFE8862E), null),
-        _gi(c, 'menu_task', 'Task', Icons.assignment, const Color(0xFF3FA34D), '/tasks'),
-        _gi(c, 'menu_checkin', 'Check in', Icons.event_available, ZC.purple2, '/tasks'),
-        _gi(c, 'menu_backpack', 'Backpack', Icons.backpack, ZC.gold, '/backpack')]))),
+        _gi(c, 'menu.store', 'Store', Icons.storefront, const Color(0xFFE8862E), null),
+        _gi(c, 'menu.task', 'Task', Icons.assignment, const Color(0xFF3FA34D), '/tasks'),
+        _gi(c, 'menu.checkin', 'Check in', Icons.event_available, ZC.purple2, '/tasks'),
+        _gi(c, 'menu.backpack', 'Backpack', Icons.backpack, ZC.gold, '/backpack')]))),
     const SizedBox(height: 12),
     // Original groups these rows in ONE continuous card with hairline dividers
     // (not separate floating cards), with thin outline glyphs.
@@ -132,7 +133,7 @@ class MeScreen extends ConsumerWidget {
   Widget _gi(BuildContext c, String asset, String l, IconData i, Color color, String? route) => InkWell(
     onTap: route == null ? null : () => c.push(route),
     child: Column(mainAxisSize: MainAxisSize.min, children: [
-      Image.asset('assets/ui/$asset.webp', width: 56, height: 56, fit: BoxFit.contain,
+      Image.asset(Assets.of(asset) ?? '', width: 56, height: 56, fit: BoxFit.contain,
         errorBuilder: (_, __, ___) => Container(width: 52, height: 52,
           decoration: BoxDecoration(gradient: LinearGradient(colors: [color.withValues(alpha: .95), color.withValues(alpha: .7)],
             begin: Alignment.topLeft, end: Alignment.bottomRight), borderRadius: BorderRadius.circular(14)),

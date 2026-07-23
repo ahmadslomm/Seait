@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../core/theme.dart';
+import '../core/asset_registry.dart';
 import '../core/room_socket.dart';
 import '../core/config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -111,11 +112,8 @@ class _RoomState extends ConsumerState<RoomScreen> {
       // the bundled theme selected by the room's type (never a fixed index).
       Positioned.fill(child: cover.startsWith('http')
         ? CachedNetworkImage(imageUrl: cover, fit: BoxFit.cover,
-            errorWidget: (_, __, ___) => Image.asset('assets/ui/room_bg_$theme.webp', fit: BoxFit.cover))
-        : Image.asset('assets/ui/room_bg_$theme.webp', fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => const DecoratedBox(decoration: BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                colors: [Color(0xFF3A1D6E), Color(0xFF1A0B2E)]))))),
+            errorWidget: (_, __, ___) => _backdrop(theme))
+        : _backdrop(theme)),
       Positioned.fill(child: Container(color: const Color(0x442A1148))), // legibility scrim
       // Positioned.fill: the seat grid is shrink-wrapped, so without this the
       // Column sizes to its children and leaves dead space under the bottom bar.
@@ -137,6 +135,22 @@ class _RoomState extends ConsumerState<RoomScreen> {
       ]),
     );
   }
+
+  /// Bundled backdrop for a theme name, resolved through the asset registry so
+  /// a server-side theme manager can override it without touching this screen.
+  Widget _backdrop(String theme) {
+    final a = Assets.roomBackdrop(theme);
+    // A server override is a url; the bundled default is an asset key.
+    if (Assets.isRemote(a)) {
+      return CachedNetworkImage(imageUrl: a!, fit: BoxFit.cover,
+        errorWidget: (_, __, ___) => _gradient());
+    }
+    return Image.asset(a ?? '', fit: BoxFit.cover, errorBuilder: (_, __, ___) => _gradient());
+  }
+
+  Widget _gradient() => const DecoratedBox(decoration: BoxDecoration(
+      gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
+        colors: [Color(0xFF3A1D6E), Color(0xFF1A0B2E)])));
 
   /// One grid cell. Index 0 is the host/owner chair: the original always shows
   /// the room OWNER there (avatar + decoration frame + name), even before anyone
@@ -184,18 +198,18 @@ class _RoomState extends ConsumerState<RoomScreen> {
     margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
     height: 46,
     child: Stack(alignment: Alignment.center, children: [
-      Positioned.fill(child: Image.asset('assets/ui/banner_gold.webp', fit: BoxFit.fill,
+      Positioned.fill(child: Image.asset(Assets.of('room.banner.gold') ?? '', fit: BoxFit.fill,
         errorBuilder: (_, __, ___) => DecoratedBox(decoration: BoxDecoration(
           gradient: ZGrad.coin, borderRadius: BorderRadius.circular(20))))),
       Padding(padding: const EdgeInsets.symmetric(horizontal: 10), child: Row(children: [
-        Image.asset('assets/ui/lucky_bag.webp', width: 30, height: 30,
+        Image.asset(Assets.of('room.luckybag') ?? '', width: 30, height: 30,
           errorBuilder: (_, __, ___) => const Icon(Icons.card_giftcard, color: Colors.brown, size: 20)),
         const SizedBox(width: 6),
         Expanded(child: Text(text, maxLines: 2, overflow: TextOverflow.ellipsis,
           style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w700,
             shadows: [Shadow(color: Color(0xCC3A1200), blurRadius: 3, offset: Offset(0, 1))]))),
         const SizedBox(width: 4),
-        Image.asset('assets/ui/times_100.webp', height: 30,
+        Image.asset(Assets.of('room.times.100') ?? '', height: 30,
           errorBuilder: (_, __, ___) => const SizedBox.shrink()),
       ])),
     ]));

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/api.dart';
 import 'core/config.dart';
+import 'core/asset_registry.dart';
 import 'models/user.dart';
 import 'models/room.dart';
 
@@ -75,6 +76,21 @@ final roomInfoProvider = FutureProvider.family<Map, int>((ref, rid) async {
 final userInfoProvider = FutureProvider.family<Map, int>((ref, uid) async {
   final d = await ref.read(apiProvider).call('user.getUserinfo', params: {'uid': uid, 'toUid': uid});
   return (d is Map) ? d : const {};
+});
+
+/// Server-driven art overrides. The backend may return a {logicalKey: url} map
+/// (future Theme/Background Manager); applying it re-points any asset slot with
+/// no code change. Unknown actions resolve empty and are fallback-logged, so
+/// this is a no-op until the endpoint exists.
+final assetOverridesProvider = FutureProvider<Map<String, dynamic>>((ref) async {
+  try {
+    final d = await ref.read(apiProvider).call('app.getThemeAssets');
+    final m = (d is Map) ? Map<String, dynamic>.from(d) : <String, dynamic>{};
+    if (m.isNotEmpty) Assets.applyOverrides(m);
+    return m;
+  } catch (_) {
+    return <String, dynamic>{};
+  }
 });
 
 /// Gifts — gift.getGiftList.

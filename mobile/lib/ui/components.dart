@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../core/theme.dart';
+import '../core/asset_registry.dart';
 
-const _ui = 'assets/ui';
 
 // ---------------- primitives (real cropped app art) ----------------
 class CoinIcon extends StatelessWidget { final double s; const CoinIcon({super.key, this.s = 34});
-  @override Widget build(BuildContext c) => Image.asset('$_ui/coin_icon.png', width: s, height: s, errorBuilder: (_, __, ___) => Icon(Icons.monetization_on, color: ZC.coin, size: s)); }
+  @override Widget build(BuildContext c) => Image.asset(Assets.of('icon.coin') ?? '', width: s, height: s, errorBuilder: (_, __, ___) => Icon(Icons.monetization_on, color: ZC.coin, size: s)); }
 class DiamondIcon extends StatelessWidget { final double s; const DiamondIcon({super.key, this.s = 34});
-  @override Widget build(BuildContext c) => Image.asset('$_ui/diamond_icon.png', width: s, height: s, errorBuilder: (_, __, ___) => Icon(Icons.diamond, color: ZC.diamond, size: s)); }
+  @override Widget build(BuildContext c) => Image.asset(Assets.of('icon.diamond') ?? '', width: s, height: s, errorBuilder: (_, __, ___) => Icon(Icons.diamond, color: ZC.diamond, size: s)); }
 class VipMedallion extends StatelessWidget { final double s; const VipMedallion({super.key, this.s = 150});
-  @override Widget build(BuildContext c) => Image.asset('$_ui/vip_medallion.png', width: s, errorBuilder: (_, __, ___) => Icon(Icons.workspace_premium, color: ZC.gold, size: s)); }
+  @override Widget build(BuildContext c) => Image.asset(Assets.of('vip.medallion') ?? '', width: s, errorBuilder: (_, __, ___) => Icon(Icons.workspace_premium, color: ZC.gold, size: s)); }
 
 // ---------------- page scaffolding ----------------
 /// Standard page: transparent AppBar + back + optional tabs, on the ZC.bg canvas.
@@ -110,7 +110,7 @@ class WalletCard extends StatelessWidget { final String label, value; final bool
         FittedBox(fit: BoxFit.scaleDown, child: Text(value, maxLines: 1,
           style: TextStyle(color: fg, fontSize: 22, fontWeight: FontWeight.bold)))]))]);
     final w = ClipRRect(borderRadius: BorderRadius.circular(ZRadius.lg), child: Stack(children: [
-      Positioned.fill(child: Image.asset('$_ui/${diamond ? "card_diamonds_bg" : "card_coins_bg"}.webp',
+      Positioned.fill(child: Image.asset(Assets.of(diamond ? 'wallet.card.diamonds' : 'wallet.card.coins') ?? '',
         fit: BoxFit.fill, errorBuilder: (_, __, ___) => DecoratedBox(decoration: BoxDecoration(gradient: diamond ? ZGrad.dia : ZGrad.coin)))),
       Padding(padding: const EdgeInsets.all(ZSpace.lg), child: inner),
     ]));
@@ -120,18 +120,18 @@ class WalletCard extends StatelessWidget { final String label, value; final bool
 
 /// VIP crest + "VIP n" wordmark straight from the original app art.
 class VipCrest extends StatelessWidget { final int level; final double s; const VipCrest({super.key, this.level = 5, this.s = 54});
-  @override Widget build(BuildContext c) => Image.asset('$_ui/vip_crest_$level.webp', width: s, height: s,
+  @override Widget build(BuildContext c) => Image.asset(Assets.of('vip.crest.$level') ?? '', width: s, height: s,
     errorBuilder: (_, __, ___) => Icon(Icons.workspace_premium, color: ZC.gold2, size: s)); }
 
 class VipWordmark extends StatelessWidget { final int level; final double h; const VipWordmark({super.key, this.level = 5, this.h = 34});
-  @override Widget build(BuildContext c) => Image.asset('$_ui/vip_text_$level.webp', height: h, fit: BoxFit.contain,
+  @override Widget build(BuildContext c) => Image.asset(Assets.of('vip.wordmark.$level') ?? '', height: h, fit: BoxFit.contain,
     errorBuilder: (_, __, ___) => Text('VIP $level', style: TextStyle(color: ZC.gold2, fontSize: h * .8, fontWeight: FontWeight.bold))); }
 
 /// Wealth/charm/noble medal art (levels 1-5) from the original app.
 class LevelMedal extends StatelessWidget { final int level; final double s; const LevelMedal(this.level, {super.key, this.s = 26});
   @override Widget build(BuildContext c) {
     final n = level.clamp(1, 5);
-    return Image.asset('$_ui/medal_$n.webp', width: s, height: s,
+    return Image.asset(Assets.of('medal.$n') ?? '', width: s, height: s,
       errorBuilder: (_, __, ___) => Icon(Icons.military_tech, color: ZC.gold, size: s));
   }
 }
@@ -140,7 +140,7 @@ class LevelMedal extends StatelessWidget { final int level; final double s; cons
 class NobleEmblem extends StatelessWidget { final int level; final double s; const NobleEmblem(this.level, {super.key, this.s = 30});
   @override Widget build(BuildContext c) {
     final n = level.clamp(1, 7);
-    return Image.asset('$_ui/noble_$n.webp', width: s, height: s,
+    return Image.asset(Assets.of('noble.$n') ?? '', width: s, height: s,
       errorBuilder: (_, __, ___) => Icon(Icons.emoji_events, color: ZC.gold, size: s));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../core/asset_registry.dart';
 import 'home_screen.dart';
 import 'moment_screen.dart';
 import 'live_screen.dart';
@@ -11,12 +12,12 @@ class _S extends State<Shell> {
   final pages=const [HomeScreen(),MomentScreen(),LiveScreen(),MessageScreen(),MeScreen()];
   final labels=const ['Home','Moment','Live','Message','Me'];
   // Original app's ornate gold nav artwork (selected) + plain variant (idle).
-  final art=const ['nav_home','nav_moment','nav_live','nav_message','nav_me'];
+  final art=const ['home','moment','live','message','me'];
   final icons=const [Icons.mosque,Icons.explore,Icons.videocam,Icons.forum,Icons.person];
 
   Widget _navIcon(int n){
     final on = i==n;
-    return Image.asset('assets/ui/${art[n]}${on ? "" : "_off"}.webp',
+    return Image.asset(Assets.of('nav.${art[n]}${on ? "" : ".off"}') ?? '',
       width:30, height:30, fit:BoxFit.contain,
       errorBuilder:(_,__,___)=>Icon(icons[n], color: on?ZC.gold:ZC.textLo, size:24));
   }
