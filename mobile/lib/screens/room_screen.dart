@@ -43,10 +43,6 @@ class _RoomState extends ConsumerState<RoomScreen> {
 
   @override void initState() {
     super.initState();
-    // Development trigger only — compiled out of normal release builds.
-    if (kDemoTriggers && widget.demoBanner) {
-      giftBanner = 'اونــلاين sends Lucky Bag  ·  100 times returns 4500 coins';
-    }
     // Load the REAL gift catalog (gift.getGiftList) into the engine.
     ref.read(giftsProvider.future).then((g) { _engine.clear(); _engine.loadCatalog(g); }).catchError((_) {});
     socket.connect();
@@ -104,6 +100,10 @@ class _RoomState extends ConsumerState<RoomScreen> {
     final ownerUid = int.tryParse('${room['owner_uid'] ?? ''}') ?? 0;
     final ownerRec = ownerUid == 0 ? const {}
       : (ref.watch(userInfoProvider(ownerUid)).asData?.value ?? const {});
+    // Derived in build (not initState): re-delivering the deep link to an
+    // already-open room reuses the State, so initState would never re-run.
+    final banner = giftBanner ?? ((kDemoTriggers && widget.demoBanner)
+      ? 'اونــلاين sends Lucky Bag  ·  100 times returns 4500 coins' : null);
 
     return Scaffold(
       body: Stack(children: [
@@ -121,7 +121,7 @@ class _RoomState extends ConsumerState<RoomScreen> {
       // Column sizes to its children and leaves dead space under the bottom bar.
       Positioned.fill(child: SafeArea(child: Column(children: [
           _topBar(c, room),
-          if (giftBanner != null) _banner(),
+          if (banner != null) _banner(banner),
           // Seat grid — host occupies cell 0 exactly like the original; every
           // other cell is "No.N". Sizes derive from the measured proportions.
           Padding(padding: const EdgeInsets.fromLTRB(6, 6, 6, 0),
@@ -180,7 +180,7 @@ class _RoomState extends ConsumerState<RoomScreen> {
   /// Lucky-win / gift banner using the original ornate gold plate, with the
   /// "N Times" medallion and the lucky-bag charm layered on top. Falls back to
   /// the coin gradient if the artwork is unavailable.
-  Widget _banner() => Container(
+  Widget _banner(String text) => Container(
     margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
     height: 46,
     child: Stack(alignment: Alignment.center, children: [
@@ -191,7 +191,7 @@ class _RoomState extends ConsumerState<RoomScreen> {
         Image.asset('assets/ui/lucky_bag.webp', width: 30, height: 30,
           errorBuilder: (_, __, ___) => const Icon(Icons.card_giftcard, color: Colors.brown, size: 20)),
         const SizedBox(width: 6),
-        Expanded(child: Text(giftBanner ?? '', maxLines: 2, overflow: TextOverflow.ellipsis,
+        Expanded(child: Text(text, maxLines: 2, overflow: TextOverflow.ellipsis,
           style: const TextStyle(color: Color(0xFF5B3A12), fontSize: 11, fontWeight: FontWeight.w700))),
         Image.asset('assets/ui/times_100.webp', height: 34,
           errorBuilder: (_, __, ___) => const SizedBox.shrink()),
