@@ -77,11 +77,13 @@ class LevelScreen extends ConsumerWidget {
     ),
   ]);
 
-  /// Wealth level thresholds grow with level; this brackets the current exp so
-  /// the bar reflects real standing without pretending a precise server target.
-  int _nextWealthTarget(int lv) {
-    const steps = [0, 10000, 50000, 150000, 400000, 750000, 1200000, 2000000, 3200000, 5000000];
-    if (lv + 1 < steps.length) return steps[lv + 1];
-    return (lv + 1) * 750000;
-  }
+  /// Approximate next-level exp target.
+  ///
+  /// The API does not expose the wealth curve, so this is a display bound, not
+  /// server data — anchored to the one point we know: near level 16 the target
+  /// is ~750000 (the value the original showed for this account). A simple
+  /// linear curve through that anchor keeps the bar sensible at every level
+  /// rather than the earlier formula that jumped to 12.75M and pinned the bar
+  /// near empty for a real 708075 exp.
+  int _nextWealthTarget(int lv) => (lv + 1) * 47000;
 }
