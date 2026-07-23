@@ -38,10 +38,11 @@ class MeScreen extends ConsumerWidget {
       Positioned(left: 16, top: 124, child: Row(children: [
         if (u.nationalFlag.isNotEmpty) Padding(padding: const EdgeInsets.only(right: 6),
           child: ClipRRect(borderRadius: BorderRadius.circular(3), child: CachedNetworkImage(imageUrl: u.nationalFlag, width: 26, height: 17, fit: BoxFit.cover, errorWidget: (_, __, ___) => const SizedBox(width: 26)))),
+        // original app art for the wealth / charm / active / noble badges
         ZBadge('W${u.wealthLv}', const Color(0xFFB03A5B), icon: Icons.shield), const SizedBox(width: 5),
         ZBadge('${u.charmLv + 12}', const Color(0xFF1E9E9E), icon: Icons.spa), const SizedBox(width: 5),
-        ZBadge('${u.activeLevel}', ZC.gold, icon: Icons.star), const SizedBox(width: 5),
-        ZBadge('${u.nobleLevel}', const Color(0xFF3A2A5C), icon: Icons.emoji_events)])),
+        LevelMedal(u.activeLevel, s: 24), const SizedBox(width: 5),
+        NobleEmblem(u.nobleLevel, s: 26)])),
       // Reference: the First-Recharge medallion sits top-right at ~30% of the
       // screen width — size it relative so it never swallows the header.
       Positioned(right: 6, top: 24, child: VipMedallion(s: MediaQuery.of(c).size.width * .30)),
@@ -53,9 +54,10 @@ class MeScreen extends ConsumerWidget {
         borderRadius: BorderRadius.circular(16), border: Border.all(color: ZC.gold, width: 1.5),
         boxShadow: const [BoxShadow(color: Color(0x557B2FF7), blurRadius: 14, offset: Offset(0, 6))]),
       child: Row(children: [
-        const Icon(Icons.workspace_premium, color: ZC.gold2, size: 42), const SizedBox(width: 12),
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('VIP ${u.nobleLevel}', style: const TextStyle(color: ZC.gold2, fontSize: 26, fontWeight: FontWeight.bold)),
+        // original app art: winged VIP crest + gold "VIP n" wordmark
+        VipCrest(level: u.nobleLevel, s: 54), const SizedBox(width: 12),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+          VipWordmark(level: u.nobleLevel, h: 32),
           const Text('Welcome Back VIP', style: TextStyle(color: Colors.white70))]),
         const Spacer(),
         Container(padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -70,16 +72,27 @@ class MeScreen extends ConsumerWidget {
     Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Container(
       padding: const EdgeInsets.symmetric(vertical: 16), decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(16)),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        _gi(c, Icons.storefront, 'Store', const Color(0xFFE8862E), null),
-        _gi(c, Icons.assignment, 'Task', const Color(0xFF3FA34D), '/tasks'),
-        _gi(c, Icons.event_available, 'Check in', ZC.purple2, '/tasks'),
-        _gi(c, Icons.backpack, 'Backpack', ZC.gold, '/backpack')]))),
+        // original app's 3D menu artwork
+        _gi(c, 'menu_store', 'Store', Icons.storefront, const Color(0xFFE8862E), null),
+        _gi(c, 'menu_task', 'Task', Icons.assignment, const Color(0xFF3FA34D), '/tasks'),
+        _gi(c, 'menu_checkin', 'Check in', Icons.event_available, ZC.purple2, '/tasks'),
+        _gi(c, 'menu_backpack', 'Backpack', Icons.backpack, ZC.gold, '/backpack')]))),
     const SizedBox(height: 12),
-    _tile(c, Icons.favorite, 'Cp space', '/cp'), _tile(c, Icons.workspace_premium, 'My level', '/level'),
-    _tile(c, Icons.groups, 'Guild', '/guild'), _tile(c, Icons.business_center, 'Agency', '/agency'),
-    _tile(c, Icons.trending_up, 'My income', null), _tile(c, Icons.military_tech, 'Badge', null),
-    _tile(c, Icons.animation, 'Gift Studio', '/gift-studio'),
-    _tile(c, Icons.feedback, 'Feedback', null), _tile(c, Icons.settings, 'Settings', null),
+    // Original groups these rows in ONE continuous card with hairline dividers
+    // (not separate floating cards), with thin outline glyphs.
+    Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Container(
+      decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(16)),
+      child: Column(children: [
+        _tile(c, Icons.favorite_border, 'Cp space', '/cp'),
+        _tile(c, Icons.star_border, 'My level', '/level'),
+        _tile(c, Icons.groups_outlined, 'Guild', '/guild'),
+        _tile(c, Icons.business_center_outlined, 'Agency', '/agency'),
+        _tile(c, Icons.trending_up, 'My income', null),
+        _tile(c, Icons.military_tech_outlined, 'Badge', null),
+        _tile(c, Icons.animation_outlined, 'Gift Studio', '/gift-studio'),
+        _tile(c, Icons.feedback_outlined, 'Feedback', null),
+        _tile(c, Icons.settings_outlined, 'Settings', null, last: true),
+      ]))),
     const SizedBox(height: 20),
   ]));
 
@@ -89,18 +102,27 @@ class MeScreen extends ConsumerWidget {
     FittedBox(fit: BoxFit.scaleDown, child: Text(v, maxLines: 1,
       style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold))),
     FittedBox(fit: BoxFit.scaleDown, child: Text(l, maxLines: 1, style: const TextStyle(color: ZC.textLo, fontSize: 12)))]));
-  Widget _gi(BuildContext c, IconData i, String l, Color color, String? route) => InkWell(
+  /// Grid entry using the original 3D artwork, falling back to the tinted
+  /// Material tile if the asset is missing.
+  Widget _gi(BuildContext c, String asset, String l, IconData i, Color color, String? route) => InkWell(
     onTap: route == null ? null : () => c.push(route),
-    child: Column(children: [
-      Container(width: 52, height: 52, decoration: BoxDecoration(gradient: LinearGradient(colors: [color.withValues(alpha: .95), color.withValues(alpha: .7)],
-        begin: Alignment.topLeft, end: Alignment.bottomRight), borderRadius: BorderRadius.circular(14)),
-        child: Icon(i, color: Colors.white, size: 26)), const SizedBox(height: 6),
+    child: Column(mainAxisSize: MainAxisSize.min, children: [
+      Image.asset('assets/ui/$asset.webp', width: 56, height: 56, fit: BoxFit.contain,
+        errorBuilder: (_, __, ___) => Container(width: 52, height: 52,
+          decoration: BoxDecoration(gradient: LinearGradient(colors: [color.withValues(alpha: .95), color.withValues(alpha: .7)],
+            begin: Alignment.topLeft, end: Alignment.bottomRight), borderRadius: BorderRadius.circular(14)),
+          child: Icon(i, color: Colors.white, size: 26))),
+      const SizedBox(height: 6),
       Text(l, style: const TextStyle(color: Colors.white, fontSize: 12))]));
-  Widget _tile(BuildContext c, IconData i, String t, String? route) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-    child: InkWell(onTap: route == null ? null : () => c.push(route), borderRadius: BorderRadius.circular(12),
-      child: Container(padding: const EdgeInsets.all(14), decoration: BoxDecoration(color: ZC.card, borderRadius: BorderRadius.circular(12)),
-        child: Row(children: [Icon(i, color: ZC.purple2, size: 22), const SizedBox(width: 12),
-          Text(t, style: const TextStyle(color: Colors.white, fontSize: 15)), const Spacer(),
-          const Icon(Icons.chevron_right, color: ZC.textLo)]))));
+  /// One row inside the grouped card; a hairline divider separates rows exactly
+  /// like the original (the final row has none).
+  Widget _tile(BuildContext c, IconData i, String t, String? route, {bool last = false}) => InkWell(
+    onTap: route == null ? null : () => c.push(route),
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 15),
+      decoration: last ? null : const BoxDecoration(
+        border: Border(bottom: BorderSide(color: Color(0x14FFFFFF), width: 1))),
+      child: Row(children: [Icon(i, color: Colors.white70, size: 22), const SizedBox(width: 12),
+        Text(t, style: const TextStyle(color: Colors.white, fontSize: 15)), const Spacer(),
+        const Icon(Icons.chevron_right, color: ZC.textLo, size: 20)])));
 }

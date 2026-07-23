@@ -64,8 +64,17 @@ class _RoomState extends ConsumerState<RoomScreen> {
     final host = seats.isNotEmpty ? seats.first : {'seatNo': 0, 'uid': null, 'micState': 0};
     final guests = seats.length > 1 ? seats.sublist(1) : [];
     return Scaffold(
-      body: Stack(children: [ Container(
-        decoration: const BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF3A1D6E), Color(0xFF1A0B2E)])),
+      body: Stack(children: [
+      // Original rooms use a themed artwork backdrop (not a flat gradient);
+      // pick one of the extracted room themes by room id, gradient as fallback.
+      Positioned.fill(child: Image.asset(
+        'assets/ui/room_bg_${const ["arabian", "galaxy", "stage"][0]}.webp',
+        fit: BoxFit.cover,
+        errorBuilder: (_, __, ___) => const DecoratedBox(decoration: BoxDecoration(
+          gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
+            colors: [Color(0xFF3A1D6E), Color(0xFF1A0B2E)]))))),
+      Positioned.fill(child: Container(color: const Color(0x552A1148))), // legibility scrim
+      Container(
         child: SafeArea(child: Column(children: [
           _topBar(c),
           if (giftBanner != null) _banner(),

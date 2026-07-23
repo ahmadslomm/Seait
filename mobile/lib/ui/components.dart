@@ -96,13 +96,54 @@ class AvatarFrame extends StatelessWidget { final String avatarUrl; final String
       errorWidget: (_, __, ___) => CircleAvatar(radius: size / 2, backgroundColor: ZC.card, child: const Icon(Icons.person, color: ZC.textLo)))),
     if (frameUrl != null && frameUrl!.endsWith('.png')) CachedNetworkImage(imageUrl: frameUrl!, width: size * 1.4, height: size * 1.4)])); }
 
+/// Coins / Diamonds card — uses the ORIGINAL app's card artwork as the
+/// background (gold silk for coins, violet silk for diamonds) with the gradient
+/// kept only as a fallback if the asset is unavailable.
 class WalletCard extends StatelessWidget { final String label, value; final bool diamond; final VoidCallback? onTap;
   const WalletCard({super.key, required this.label, required this.value, this.diamond = false, this.onTap});
-  @override Widget build(BuildContext c) => ZCard(onTap: onTap, gradient: diamond ? ZGrad.dia : ZGrad.coin, child: Row(children: [
-    diamond ? const DiamondIcon() : const CoinIcon(), const SizedBox(width: ZSpace.sm + 2),
-    Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(label, style: TextStyle(color: (diamond ? Colors.deepPurple.shade900 : Colors.brown.shade800), fontWeight: FontWeight.w700)),
-      Text(value, style: TextStyle(color: diamond ? Colors.deepPurple.shade900 : Colors.brown.shade900, fontSize: 22, fontWeight: FontWeight.bold))]))])); }
+  @override Widget build(BuildContext c) {
+    final fg = diamond ? Colors.deepPurple.shade900 : Colors.brown.shade900;
+    final inner = Row(children: [
+      diamond ? const DiamondIcon() : const CoinIcon(), const SizedBox(width: ZSpace.sm + 2),
+      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+        Text(label, style: TextStyle(color: fg.withValues(alpha: .85), fontWeight: FontWeight.w700)),
+        FittedBox(fit: BoxFit.scaleDown, child: Text(value, maxLines: 1,
+          style: TextStyle(color: fg, fontSize: 22, fontWeight: FontWeight.bold)))]))]);
+    final w = ClipRRect(borderRadius: BorderRadius.circular(ZRadius.lg), child: Stack(children: [
+      Positioned.fill(child: Image.asset('$_ui/${diamond ? "card_diamonds_bg" : "card_coins_bg"}.webp',
+        fit: BoxFit.fill, errorBuilder: (_, __, ___) => DecoratedBox(decoration: BoxDecoration(gradient: diamond ? ZGrad.dia : ZGrad.coin)))),
+      Padding(padding: const EdgeInsets.all(ZSpace.lg), child: inner),
+    ]));
+    return onTap == null ? w : InkWell(onTap: onTap, borderRadius: BorderRadius.circular(ZRadius.lg), child: w);
+  }
+}
+
+/// VIP crest + "VIP n" wordmark straight from the original app art.
+class VipCrest extends StatelessWidget { final int level; final double s; const VipCrest({super.key, this.level = 5, this.s = 54});
+  @override Widget build(BuildContext c) => Image.asset('$_ui/vip_crest_$level.webp', width: s, height: s,
+    errorBuilder: (_, __, ___) => Icon(Icons.workspace_premium, color: ZC.gold2, size: s)); }
+
+class VipWordmark extends StatelessWidget { final int level; final double h; const VipWordmark({super.key, this.level = 5, this.h = 34});
+  @override Widget build(BuildContext c) => Image.asset('$_ui/vip_text_$level.webp', height: h, fit: BoxFit.contain,
+    errorBuilder: (_, __, ___) => Text('VIP $level', style: TextStyle(color: ZC.gold2, fontSize: h * .8, fontWeight: FontWeight.bold))); }
+
+/// Wealth/charm/noble medal art (levels 1-5) from the original app.
+class LevelMedal extends StatelessWidget { final int level; final double s; const LevelMedal(this.level, {super.key, this.s = 26});
+  @override Widget build(BuildContext c) {
+    final n = level.clamp(1, 5);
+    return Image.asset('$_ui/medal_$n.webp', width: s, height: s,
+      errorBuilder: (_, __, ___) => Icon(Icons.military_tech, color: ZC.gold, size: s));
+  }
+}
+
+/// Noble emblem art (1-7) from the original app.
+class NobleEmblem extends StatelessWidget { final int level; final double s; const NobleEmblem(this.level, {super.key, this.s = 30});
+  @override Widget build(BuildContext c) {
+    final n = level.clamp(1, 7);
+    return Image.asset('$_ui/noble_$n.webp', width: s, height: s,
+      errorBuilder: (_, __, ___) => Icon(Icons.emoji_events, color: ZC.gold, size: s));
+  }
+}
 
 class BalancePill extends StatelessWidget { final String value; final bool diamond; const BalancePill(this.value, {super.key, this.diamond = false});
   @override Widget build(BuildContext c) => Row(mainAxisSize: MainAxisSize.min, children: [

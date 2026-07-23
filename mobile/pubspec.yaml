@@ -30,14 +30,38 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/ui/
+    - assets/emoji/face_11/
+    - assets/emoji/face_58/
+    - assets/emoji/face_59/
     - assets/images/
-    - assets/emoji/
-    - assets/svga/cp/
-    - assets/svga/gift/
-    - assets/svga/kroom/
-    - assets/svga/medal/
-    - assets/svga/rocket/
     - assets/pag/bomb/
     - assets/pag/cp/
     - assets/pag/gift/
+    - assets/pag/home/
+    - assets/pag/kroom/
+    - assets/pag/loading/
+    - assets/pag/lucky/
+    - assets/pag/main/
+    - assets/pag/rank/
+    - assets/pag/topbanner/
+    - assets/pag/userspace/
+    - assets/pag/yinbo/
+    - assets/roomEmoji/face_11/
+    - assets/roomEmoji/face_58/
+    - assets/roomEmoji/face_59/
+    - assets/svga/bomb/
+    - assets/svga/cp/
+    - assets/svga/dj/
+    - assets/svga/dynamic/
+    - assets/svga/friend/
+    - assets/svga/gift/
+    - assets/svga/guide/
+    - assets/svga/home/
+    - assets/svga/hosttag/
+    - assets/svga/kroom/
+    - assets/svga/live/
+    - assets/svga/medal/
+    - assets/svga/rocket/
+    - assets/svga/userspace/
+    - assets/svga/yinbo/
+    - assets/ui/
