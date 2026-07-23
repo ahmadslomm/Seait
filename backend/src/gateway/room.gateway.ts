@@ -89,6 +89,17 @@ export class RoomGateway implements OnGatewayDisconnect {
     return p;
   }
 
+  /** Is this uid currently on a seat?
+   *
+   *  The in-memory room state is the source of truth for seats — sitting and
+   *  standing are socket events and are deliberately not written to the DB on
+   *  every transition. Anything that needs to know "may this user speak" must
+   *  ask here; reading prisma.seat sees a stale table and answers no. */
+  isSeated(rid: number, uid: number): boolean {
+    const r = this.rooms.get(rid);
+    return !!r && r.seats.some(s => s.uid === uid);
+  }
+
   private roleOf(r: Room, uid: number): Role {
     if (uid === r.ownerUid) return 'owner';
     if (r.admins.has(uid)) return 'admin';

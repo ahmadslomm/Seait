@@ -4,13 +4,14 @@ import { ok, err, ActionReq } from '../common/envelope';
 import catalog from '../actions.catalog.json';
 import { RtcService } from '../rtc/rtc.service';
 import { UnknownActionLogger } from '../fallback/logger';
+import { RoomGateway } from './room.gateway';
 
 /** Routes an api.php `action` to its handler. Implemented handlers return real data;
  *  everything else is logged (fallback) so missing APIs surface at runtime. */
 @Injectable()
 export class ActionRouter {
   private log = new Logger('ActionRouter');
-  constructor(private prisma: PrismaService, private unknown: UnknownActionLogger, private rtc: RtcService) {}
+  constructor(private prisma: PrismaService, private unknown: UnknownActionLogger, private rtc: RtcService, private roomGw: RoomGateway) {}
   readonly total = (catalog as any)._total;
 
   async route(req: ActionReq): Promise<any> {
@@ -41,9 +42,15 @@ export class ActionRouter {
       const rid = Number(p?.rid || 0);
       const uid = Number(p?.uid || p?._login_uid || 0);
       if (!rid || !uid) return ok({ error:'rid_and_uid_required' });
-      const seat = await this.prisma.seat.findFirst({ where:{ rid, uid } }).catch(()=>null);
+      // Seats live in the room gateway's memory, not the DB — a user who sits
+      // down over the socket never appears in prisma.seat. Asking the DB alone
+      // meant every non-owner got a subscriber token and could never speak, no
+      // matter which seat they took. The DB is still consulted as a fallback
+      // for seats seeded outside the socket path.
       const room = await this.prisma.room.findUnique({ where:{ rid } }).catch(()=>null);
-      const publisher = !!seat || room?.owner_uid === uid;
+      const seated = this.roomGw.isSeated(rid, uid)
+        || !!(await this.prisma.seat.findFirst({ where:{ rid, uid } }).catch(()=>null));
+      const publisher = seated || room?.owner_uid === uid;
       return ok(this.rtc.issue(rid, uid, publisher));
     },
     'gift.getCommonGift':      async () => ok(await this.prisma.gift.findMany({ where:{ active:true }, take:8 })),

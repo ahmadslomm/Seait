@@ -74,6 +74,11 @@ s.on('seat_update', d =>
 s.on('mic_status', d =>
   log(`<- mic_status seat=${d.seatNo} uid=${d.uid ?? 'null'} mic=${d.micState}`));
 s.on('action_denied', d => log('<- action_denied', JSON.stringify(d)));
+// The app relays Agora's volume indication over the socket, so a `speaking`
+// event here for a REMOTE uid is controller-side proof that real audio from
+// that peer reached the emulator loudly enough to cross the halo threshold.
+s.on('speaking', d =>
+  log(`<- speaking seat=${d.seatNo} uid=${d.uid ?? '?'} speaking=${d.speaking}`));
 
 async function step(label, event, payload, waitMs = 6000) {
   log(`STEP ${label}`);
