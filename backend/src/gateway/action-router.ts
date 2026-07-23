@@ -46,6 +46,9 @@ export class ActionRouter {
     const u = await this.prisma.user.findUnique({ where:{ uid }, include:{ profile:true, wallet:true, vip:true } });
     if (!u) return {};
     const p = u.profile; const w:any = u.wallet; const cp = await this.prisma.cp.findFirst({ where:{ uid } });
+    // BUGFIX: guild membership was seeded and modelled but never surfaced, so the
+    // Guild screen always rendered "No guild" despite the user being in one.
+    const gm = await this.prisma.guildMember.findFirst({ where:{ uid }, include:{ guild:true } });
     const wealth = await this.prisma.wealth.findUnique({ where:{ uid } });
     return {
       uid: String(u.uid), mobile: u.mobile, nick: u.nick, sex: String(u.sex), sign: u.sign, avatar: u.avatar,
@@ -60,6 +63,11 @@ export class ActionRouter {
       supporters: p?.supporters ?? [], supporters_num: p?.supporters_num ?? 0,
       wealthLv: wealth?.wealthLv ?? 0, wealthExp: Number(wealth?.wealthExp ?? 0), charmLv: wealth?.charmLv ?? 0, charm: String(wealth?.charm ?? 0),
       cp_info: cp ? { hasCp: cp.hasCp, sweet_value: String(cp.sweet_value), days: cp.days, cp_lv: cp.cp_lv, target_uinfo:{ uid: cp.target_uid } } : { hasCp:0 },
+      guild_info: gm?.guild ? {
+        guild_id: gm.guild.guild_id, name: gm.guild.name, avatar: gm.guild.avatar,
+        owner_uid: gm.guild.owner_uid, anchorNum: gm.guild.anchorNum,
+        income: String(gm.income), joinedAt: gm.joinedAt,
+      } : {},
     };
   }
   private async rooms(){ const rs = await this.prisma.room.findMany({ where:{ status:1 }, take:20 });

@@ -44,8 +44,8 @@ async function main() {
     uid, target_uid:n(cp.target_uinfo?.uid), sweet_value:BigInt(n(cp.sweet_value)), cp_lv:n(cp.cp_lv), days:n(cp.days), hasCp:n(cp.hasCp) }});
   // --- Guild (real: 12147) ---
   const g=(p as any).guild_info||{};
-  if (g.guild_id) { const guild = await db.guild.upsert({ where:{ guild_id:n(g.guild_id) }, update:{}, create:{
-      guild_id:n(g.guild_id), name:g.name, owner_uid:n(g.id), avatar:g.avatar, anchorNum:n(g.anchorNum) }});
+  if (g.guild_id) { const guild = await db.guild.upsert({ where:{ guild_id:n(g.guild_id) }, update:{ name:demoji(g.name) }, create:{
+      guild_id:n(g.guild_id), name:demoji(g.name), owner_uid:n(g.id), avatar:g.avatar, anchorNum:n(g.anchorNum) }});
     await db.guildMember.upsert({ where:{ guild_id_uid:{ guild_id:guild.guild_id, uid } }, update:{}, create:{ guild_id:guild.guild_id, uid }}).catch(()=>{}); }
   // --- Config (server map + SDK keys from real preArea.getServer) ---
   await db.config.upsert({ where:{ key:'server' }, update:{ value: cfg as any }, create:{ key:'server', value: cfg as any }});
