@@ -1,0 +1,79 @@
+07-23 12:45:03.495 29762 29762 W Monkey  : args: [-p, com.example.seait, -c, android.intent.category.LAUNCHER, 1]
+07-23 12:45:03.495 29762 29762 W Monkey  :  arg: "com.example.seait"
+07-23 12:45:03.495 29762 29762 W Monkey  : data="com.example.seait"
+07-23 12:45:03.526   508  3315 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:45:03.567   508   551 I ActivityManager: Start proc 29780:com.example.seait/u0a207 for pre-top-activity {com.example.seait/com.example.seait.MainActivity}
+07-23 12:45:03.880 29780 29780 W m.example.seait: type=1400 audit(0.0:438): avc: denied { read } for name="max_map_count" dev="proc" ino=1883680 scontext=u:r:untrusted_app:s0:c207,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=com.example.seait
+07-23 12:45:03.919 29780 29806 E flutter : [ERROR:flutter/impeller/toolkit/egl/egl.cc(56)] EGL Error: Success (12288) in ../../../flutter/impeller/toolkit/egl/display.cc:161
+07-23 12:45:03.920 29780 29806 E flutter : [ERROR:flutter/impeller/toolkit/egl/egl.cc(56)] EGL Error: Success (12288) in ../../../flutter/impeller/toolkit/egl/display.cc:161
+07-23 12:45:03.949 29780 29806 I flutter : [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+07-23 12:45:05.866   508   549 D ArtManagerInternalImpl: /data/misc/iorapd/com.example.seait/1/com.example.seait.MainActivity/compiled_traces/compiled_trace.pb doesn't exist
+07-23 12:45:05.873   508   549 I ActivityTaskManager: Displayed com.example.seait/.MainActivity: +2s125ms
+07-23 12:45:05.873   508   549 I ActivityTaskManager: Fully drawn com.example.seait/.MainActivity: +2s125ms
+07-23 12:45:07.456   508   667 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:45:07.475   508   667 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:45:07.479   508   668 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:45:07.523   508   668 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:45:07.542   508   675 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:45:09.265 29780 29827 D ProfileInstaller: Installing profile for com.example.seait
+07-23 12:46:18.388   508  1123 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///wallet flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:46:23.628   508   536 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///vip flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:46:28.913   508   536 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///cp flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:46:34.171   508  1123 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///level flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:46:39.405   508   536 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///backpack flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:46:44.669   508  1123 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///guild flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:46:49.972   508   536 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///agency flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:46:55.231   508   536 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///tasks flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:47:00.504   508  1123 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///search flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:47:05.784   508   536 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///gift-studio flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:47:29.268   508   536 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///gift-studio flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:47:36.195   508  1123 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///gift-studio flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:47:36.498 29780 30463 I m.example.seai: Thread[22,tid=30463,Native,Thread*=0x753d6b6b4590,peer=0x12c63b18,"pool-5-thread-1"] recursive attempt to load library "/data/app/~~FII5dkVyKbx_flttUST2Vw==/com.example.seait-1GIUHT4v4chDPX_-AcpTxQ==/base.apk!/lib/x86_64/libpag.so"
+07-23 12:47:36.499 29780 30463 I m.example.seai: Thread[22,tid=30463,Native,Thread*=0x753d6b6b4590,peer=0x12c63b18,"pool-5-thread-1"] recursive attempt to load library "/data/app/~~FII5dkVyKbx_flttUST2Vw==/com.example.seait-1GIUHT4v4chDPX_-AcpTxQ==/base.apk!/lib/x86_64/libpag.so"
+07-23 12:47:36.500 29780 30463 I tgfx    : PAGFile.LoadFromAssets() start: flutter_assets/assets/pag/cp/waitio_cp_heart.pag
+07-23 12:47:43.304   508   536 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///room/1 flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:47:45.030 29780 29780 I spdlog  : [2026-07-23 12:47:45.030][29780][I][iris_logger.cc:157] reset logger to /storage/emulated/0/Android/data/com.example.seait/files/agora-iris.log
+07-23 12:47:45.057 29780 30582 I spdlog  : [2026-07-23 12:47:45.057][30582][I][iris_logger.cc:157] reset logger to /storage/emulated/0/Android/data/com.example.seait/files/agora-iris.log
+07-23 12:47:45.075 29780 30585 I TetheringManager: registerTetheringEventCallback:com.example.seait
+07-23 12:47:45.143   508  2146 D ConnectivityService: requestNetwork for uid/pid:10207/29780 NetworkRequest [ TRACK_DEFAULT id=235, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ]
+07-23 12:47:45.144   508   671 D WifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=235, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ] with score 60 and providerId 3
+07-23 12:47:45.144   508   671 D UntrustedWifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=235, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ] with score 60 and providerId 3
+07-23 12:47:45.144  1070  1070 D PhoneSwitcherNetworkRequstListener: got request NetworkRequest [ TRACK_DEFAULT id=235, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ] with score 60 and providerId 3
+07-23 12:47:45.164   508   675 D ConnectivityService: releasing NetworkRequest [ TRACK_DEFAULT id=235, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ] (release request)
+07-23 12:47:45.197 29780 30582 I spdlog  : [2026-07-23 12:47:45.197][30582][I][iris_rtc_api_engine.cc:456] api name RtcEngine_joinChannel_cdbb747 params "{"token":"007e***************wQ==","channelId":"seait_room_1","uid":1278472,"options":{"publishMicrophoneTrack":true,"autoSubscribeAudio":true,"clientRoleType":1,"channelProfile":1}}"
+07-23 12:47:47.277   508   667 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:47:47.301   508   667 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:47:47.304   508   668 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:47:47.312   508   675 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:47:47.312   508   668 W BestClock: java.time.DateTimeException: Missing NTP fix
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: Failed to decode image
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: android.graphics.ImageDecoder$DecodeException: Failed to create image decoder with message 'unimplemented'Input contained an error.
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder.nCreate(Native Method)
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder.access$200(ImageDecoder.java:173)
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder$ByteBufferSource.createImageDecoder(ImageDecoder.java:250)
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder.decodeBitmapImpl(ImageDecoder.java:1862)
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder.decodeBitmap(ImageDecoder.java:1855)
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: 	at U0.q.c(SourceFile:1)
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: 	at D.C0.h(SourceFile:10)
+07-23 12:47:48.410 29780 29807 E FlutterImageDecoderImplDefault: 	at io.flutter.embedding.engine.FlutterJNI.decodeImage(SourceFile:199)
+07-23 12:47:51.914   508  3315 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///gift-studio flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:47:54.003   508  1859 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=seait:///room/1?demoBanner=1 flg=0x10000000 pkg=com.example.seait cmp=com.example.seait/.MainActivity} from uid 0
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: Failed to decode image
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: android.graphics.ImageDecoder$DecodeException: Failed to create image decoder with message 'unimplemented'Input contained an error.
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder.nCreate(Native Method)
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder.access$200(ImageDecoder.java:173)
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder$ByteBufferSource.createImageDecoder(ImageDecoder.java:250)
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder.decodeBitmapImpl(ImageDecoder.java:1862)
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: 	at android.graphics.ImageDecoder.decodeBitmap(ImageDecoder.java:1855)
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: 	at U0.q.c(SourceFile:1)
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: 	at D.C0.h(SourceFile:10)
+07-23 12:47:54.116 29780 29807 E FlutterImageDecoderImplDefault: 	at io.flutter.embedding.engine.FlutterJNI.decodeImage(SourceFile:199)
+07-23 12:47:54.410   508  2146 D ConnectivityService: requestNetwork for uid/pid:10207/29780 NetworkRequest [ TRACK_DEFAULT id=238, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ]
+07-23 12:47:54.412  1070  1070 D PhoneSwitcherNetworkRequstListener: got request NetworkRequest [ TRACK_DEFAULT id=238, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ] with score 60 and providerId 3
+07-23 12:47:54.413   508   671 D WifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=238, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ] with score 60 and providerId 3
+07-23 12:47:54.413   508   671 D UntrustedWifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=238, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ] with score 60 and providerId 3
+07-23 12:47:54.441   508   675 D ConnectivityService: releasing NetworkRequest [ TRACK_DEFAULT id=238, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10207 AdministratorUids: [] RequestorUid: 10207 RequestorPackageName: com.example.seait] ] (release request)
+07-23 12:47:54.472 29780 30582 I spdlog  : [2026-07-23 12:47:54.472][30582][I][iris_rtc_api_engine.cc:456] api name RtcEngine_joinChannel_cdbb747 params "{"token":"007e***************CA==","channelId":"seait_room_1","uid":1278472,"options":{"publishMicrophoneTrack":true,"autoSubscribeAudio":true,"clientRoleType":1,"channelProfile":1}}"
+07-23 12:48:30.197  1617  3165 I MediaProvider: Begin Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///sdcard/seait_r-rtc2.mp4 flg=0x1400010 cmp=com.google.android.providers.media.module/com.android.providers.media.MediaService }
+07-23 12:48:30.215  1617  3165 W ModernMediaScanner: Failed to visit /sdcard/seait_r-rtc2.mp4: java.nio.file.AccessDeniedException: /sdcard/seait_r-rtc2.mp4
+07-23 12:48:30.220  1617  3165 I MediaProvider: End Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///sdcard/seait_r-rtc2.mp4 flg=0x1400010 cmp=com.google.android.providers.media.module/com.android.providers.media.MediaService }
