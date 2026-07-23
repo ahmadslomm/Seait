@@ -1,0 +1,4 @@
+07-23 14:13:06.695  1071  1979 I spdlog  : [2026-07-23 14:13:06.695][1979][I][iris_rtc_api_engine.cc:530] api name RtcEngine_joinChannel_cdbb747 result 0 outdata {"result":0}
+07-23 14:13:07.168  1071  1071 I flutter : [rtc] joined seait_room_1 as publisher
+07-23 14:13:16.068  1071  1979 I spdlog  : [2026-07-23 14:13:16.068][1979][I][iris_rtc_api_engine.cc:530] api name RtcEngine_joinChannel_cdbb747 result 0 outdata {"result":0}
+07-23 14:13:16.437  1071  1071 I flutter : [rtc] joined seait_room_1 as publisher
